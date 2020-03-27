@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Polidoro-root/EAC/issues"
   },
-  "homepage": "https://github.com/Polidoro-root/EAC#readme"
+  "homepage": "https://github.com/Polidoro-root/EAC#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
