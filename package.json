@@ -1,0 +1,19 @@
+{
+  "name": "eac",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Polidoro-root/EAC.git"
+  },
+  "author": "Polidoro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Polidoro-root/EAC/issues"
+  },
+  "homepage": "https://github.com/Polidoro-root/EAC#readme"
+}
