@@ -4,6 +4,9 @@ const UserController = require('./controllers/UserController');
 const GraduationController = require('./controllers/GraduationController');
 const CompanyController = require('./controllers/CompanyController');
 const VacancyController = require('./controllers/VacancyController');
+const AddressController = require('./controllers/AddressController');
+const ContactController = require('./controllers/ContactController');
+const FavoriteController = require('./controllers/FavoriteController');
 const { celebrate, Segments, Joi } = require('celebrate');
 
 // users routes - start
@@ -56,6 +59,9 @@ routes.post('/graduations', celebrate({
 }),GraduationController.create);
 
 routes.put('/graduations/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    }),    
     [Segments.BODY]: Joi.object().keys({
         graduationLevel: Joi.string().required(),
         course: Joi.string().required()
@@ -65,7 +71,10 @@ routes.put('/graduations/:id', celebrate({
 routes.delete('/graduations/:id', celebrate({
     [Segments.PARAMS]: Joi.object().keys({
         id: Joi.number().required()
-    })
+    }),
+    [Segments.HEADERS]: Joi.object({
+        authorization: Joi.number().required()
+    }).unknown(),
 }), GraduationController.delete);
 // graduations routes - end
 
@@ -96,13 +105,153 @@ routes.delete('/companies/:id', celebrate({
 // companies routes - end
 
 // vacancies routes - start
-routes.get('/vacancies', celebrate({}), VacancyController.index);
+routes.get('/vacancies', VacancyController.index);
 
-routes.post('/vacancies', celebrate({}), VacancyController.create);
+routes.post('/vacancies', celebrate({
+    [Segments.HEADERS]: Joi.object({
+        authorization: Joi.number().required()
+    }).unknown(),
+    [Segments.BODY]: Joi.object().keys({
+        vacancy: Joi.string().required(),
+        salary: Joi.number().required(),
+        requirements: Joi.string().required(),
+        entryTime: Joi.string().required(),
+        departureTime: Joi.string().required(),
+        goingToLunch: Joi.string().required(),
+        backToLunch: Joi.string().required(),    
+        workDays: Joi.string().required(),    
+        benefits: Joi.string().required(),    
+    })
+}), VacancyController.create);
 
-routes.put('/vacancies/:id', celebrate({}), VacancyController.update);
+routes.put('/vacancies/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    }),
+    [Segments.BODY]: Joi.object().keys({
+        vacancy: Joi.string().required(),
+        salary: Joi.number().required(),
+        requirements: Joi.string().required(),
+        entryTime: Joi.string().required(),
+        departureTime: Joi.string().required(),
+        goingToLunch: Joi.string().required(),
+        backToLunch: Joi.string().required(),    
+        workDays: Joi.string().required(),    
+        benefits: Joi.string().required(),    
+    })
+}), VacancyController.update);
 
-routes.delete('/vacancies/:id', celebrate({}), VacancyController.delete);
+routes.delete('/vacancies/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    }),
+    [Segments.HEADERS]: Joi.object({
+        authorization: Joi.number().required()
+    }).unknown(),
+}), VacancyController.delete);
 // vacancies routes - end
+
+// addresses routes - start
+routes.get('/addresses', AddressController.index);
+
+routes.post('/addresses', celebrate({
+    [Segments.HEADERS]: Joi.object({
+        usersId: Joi.optional(),
+        companiesId: Joi.optional(),
+        vacanciesId: Joi.optional(),
+    }).unknown(),
+    [Segments.BODY]: Joi.object().keys({
+        zipCode: Joi.string().optional(),
+        publicPlace: Joi.string().required(),
+        number: Joi.number().required(),
+        neighborhood: Joi.string().required(),
+        city: Joi.string().required(),
+        uf: Joi.string().length(2).required()
+    })
+}), AddressController.create);
+
+routes.put('/addresses/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    }),    
+    [Segments.BODY]: Joi.object().keys({
+        zipCode: Joi.string().optional(),
+        publicPlace: Joi.string().required(),
+        number: Joi.number().required(),
+        neighborhood: Joi.string().required(),
+        city: Joi.string().required(),
+        uf: Joi.string().length(2).required()
+    })
+}), AddressController.update);
+
+routes.delete('/addresses/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    }),
+    [Segments.HEADERS]: Joi.object({
+        usersId: Joi.optional(),
+        companiesId: Joi.optional(),
+        vacanciesId: Joi.optional(),
+    }).unknown()
+}), AddressController.delete);
+// addresses routes - end
+
+// contacts routes - start
+routes.get('/contacts', ContactController.index);
+
+routes.post('/contacts', celebrate({
+    [Segments.HEADERS]: Joi.object({
+        usersId: Joi.optional(),
+        companiesId: Joi.optional()
+    }).unknown(),
+    [Segments.BODY]: Joi.object().keys({
+        email: Joi.string().optional(),
+        phone: Joi.string().optional(),
+        discord: Joi.string().optional()
+    })
+}), ContactController.create);
+
+routes.put('/contacts/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    }),
+    [Segments.BODY]: Joi.object().keys({
+        email: Joi.string().optional(),
+        phone: Joi.string().optional(),
+        discord: Joi.string().optional()
+    })
+}), ContactController.update);
+
+routes.delete('/contacts/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    }),
+    [Segments.HEADERS]: Joi.object({
+        usersId: Joi.optional(),
+        companiesId: Joi.optional()
+    }).unknown(),
+}), ContactController.delete);
+// contacts routes - end
+
+// favorites routes - start
+routes.get('/favorites', FavoriteController.index);
+
+routes.post('/favorites', celebrate({
+    [Segments.HEADERS]: Joi.object({
+        usersId: Joi.optional(),
+        vacanciesId: Joi.optional()
+    }).unknown()
+}), FavoriteController.create);
+
+routes.delete('/favorites/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    }),
+    [Segments.HEADERS]: Joi.object({
+        usersId: Joi.optional(),
+        vacanciesId: Joi.optional()
+    }).unknown()
+}), FavoriteController.delete);
+// favorites routes - end
 
 module.exports = routes;

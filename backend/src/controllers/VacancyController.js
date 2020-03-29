@@ -47,8 +47,7 @@ module.exports = {
 
         const vacancyUpdate = await connection('vacancies')
             .where('id', id)
-            .update({
-                companiesId: vacancy.companiesId,
+            .update({                
                 vacancy: vacancy.vacancy,
                 salary: vacancy.salary,
                 requirements: vacancy.requirements,
@@ -65,16 +64,17 @@ module.exports = {
 
     async delete(request, response){
         const { id } = request.params;
+        
         const companiesId = request.headers.authorization;
 
         const vacancies = await connection('vacancies')
             .where('id', id)
             .select('companiesId')
-            .first();
+            .first();      
 
         if(vacancies.companiesId != companiesId){
             return response.status(401).json({error: 'Operation not Permited'});
-        }
+        }        
         
         await connection('vacancies')
             .where('id', id)

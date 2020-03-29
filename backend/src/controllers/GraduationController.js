@@ -24,7 +24,7 @@ module.exports = {
     },
 
     async update(request, response){
-        const { id } = request.params;
+        const { id } = request.params;        
 
         const graduation = request.body;
 
@@ -40,15 +40,13 @@ module.exports = {
 
     async delete(request, response){
         const { id } = request.params;
+        
         const usersId = request.headers.authorization;
 
         const graduations = await connection('graduations')
             .where('id', id)
             .select('usersId')
             .first();        
-
-        console.log(graduations.usersId);
-        console.log(usersId);
 
         if(graduations.usersId != usersId){
             return response.status(401).json({error: 'Operation not Permited'});
