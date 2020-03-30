@@ -6,7 +6,10 @@ const CompanyController = require('./controllers/CompanyController');
 const VacancyController = require('./controllers/VacancyController');
 const AddressController = require('./controllers/AddressController');
 const ContactController = require('./controllers/ContactController');
+const ContactUserController = require('./controllers/ContactUserController');
+const ContactCompanyController = require('./controllers/ContactCompanyController');
 const FavoriteController = require('./controllers/FavoriteController');
+const DiscordRoomController = require('./controllers/DiscordRoomController');
 const { celebrate, Segments, Joi } = require('celebrate');
 
 // users routes - start
@@ -253,5 +256,41 @@ routes.delete('/favorites/:id', celebrate({
     }).unknown()
 }), FavoriteController.delete);
 // favorites routes - end
+
+// contactUser - start
+routes.get('/contactsUsers', ContactUserController.index);
+
+routes.post('/contactsUsers', ContactUserController.create);
+
+routes.delete('/contactsUsers/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    })    
+}), ContactUserController.delete);
+// contactUser - end
+
+// contactCompany - start
+routes.get('/contactsCompanies', ContactCompanyController.index);
+
+routes.post('/contactsCompanies', ContactCompanyController.create);
+
+routes.delete('/contactsCompanies/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    })
+}), ContactCompanyController.delete);
+// contactCompany - end
+
+// discordRooms - start
+routes.get('/discordRooms', DiscordRoomController.index);
+
+routes.post('/discordRooms', DiscordRoomController.create);
+
+routes.delete('/discordRooms/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required()
+    })    
+}), DiscordRoomController.delete);
+// discordRooms - end
 
 module.exports = routes;
