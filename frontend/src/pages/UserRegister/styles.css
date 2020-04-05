@@ -1,0 +1,38 @@
+.container + .container {
+    margin-top: 2.5%;
+}
+
+.container-fluid header {    
+    margin-top: 2.5%;
+    text-align: center;
+    margin-bottom: 2.5%;
+    font-size: 175%;
+}
+
+.container-fluid header h1 {
+    font-size: 200%;
+}
+.container-fluid form .row {
+    margin-top: 2.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-fluid form .row button {
+    display: flex;
+    width: 100%;
+    padding: 1%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container-fluid form .row a{
+    font-size: 150%;
+    color: #76b7eb;
+    text-decoration: none;
+}
+
+.container-fluid form .row a .arrow-icon{
+    margin-left: 10px;
+}

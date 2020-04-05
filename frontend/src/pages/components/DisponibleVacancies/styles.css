@@ -1,0 +1,103 @@
+.button {
+    background-color: transparent;        
+    border: none;
+    color: #76b7eb;    
+    padding: 1%;
+    display: flex;
+    align-items: center;  
+}
+
+.modal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    background-color: #194052;
+    border: 1px solid #76b7eb;    
+}
+
+.modal .modal-header .modal-title {
+    margin: auto;
+    font-weight: bold;    
+}
+
+.modal .modal-header .close {
+    width: 15%;
+    margin-left: 0;
+}
+
+.modal .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #194052;
+    border: 1px solid #76b7eb;
+}
+
+.modal-footer-button {
+    background-color: transparent;
+    border: none;
+}
+
+.modal-footer-button:hover {
+    background-color: transparent;
+    border: none;
+}
+
+.modal .all{
+    background-color: #194052;
+    border-left: 1px solid #76b7eb;
+    border-right: 1px solid #76b7eb;
+}
+
+.key {
+    font-weight: bold;
+    font-size: 125%;
+}
+
+.value {
+    font-size: 125%;
+}
+
+.card-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120%;
+}
+
+.action {
+    color: #76b7eb;
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 5%;
+}
+
+.card .card-header {
+    background-color: #194052;
+    border: 1px solid #76b7eb;
+    text-align: center;
+}
+
+.card .card-body {
+    background-color: #194052;
+    border-left: 1px solid #76b7eb;
+    border-right: 1px solid #76b7eb;    
+}
+
+.card .card-footer {
+    background-color: #194052;
+    border: 1px solid #76b7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-container .row {    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card-body-row + .card-body-row {
+    margin-top: 5%;
+}

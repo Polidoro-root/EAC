@@ -1,0 +1,9 @@
+.table {
+    font-size: 200%;
+    color: #76b7eb;
+}
+
+.table tbody tr:hover {
+    color: #76b7eb;
+    filter: brightness(200%);
+}

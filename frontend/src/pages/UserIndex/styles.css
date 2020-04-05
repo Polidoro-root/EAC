@@ -1,0 +1,89 @@
+.accordion-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    border-bottom: 2px solid;
+    padding: 1%;
+}
+
+.accordion {
+    margin-bottom: 5%;
+}
+
+.accordion-header,
+.accordion-body {
+   padding: 0;
+}
+
+.accordion-body {
+    padding-bottom: 5%;
+    padding-top: 1%;
+}
+
+.card {
+    margin-top: 10%;
+}
+
+.pagination {
+    margin-top: 5%;
+    margin-bottom: -5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination a {
+    background-color: transparent;
+    border-color: #76b7eb;
+    color: #76b7eb;
+    font-weight: bold;
+}
+
+.search-title{
+    text-align: center;
+}
+
+.button {
+    background-color: transparent;    
+    color: #76b7eb;    
+    padding: 1%;
+    display: flex;
+    align-items: center;  
+}
+
+
+.key {
+    font-weight: bold;
+    font-size: 125%;
+}
+
+.value {
+    font-size: 125%;
+}
+
+.card-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120%;
+}
+
+.action {
+    color: #76b7eb;
+    font-weight: bold;
+    font-size: 18px;    
+}
+
+.modal-footer-buttons {
+    display: flex;
+    align-items: center;    
+    width: 50%;
+    margin: 0;
+}
+
+.modal-footer-buttons button {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+}

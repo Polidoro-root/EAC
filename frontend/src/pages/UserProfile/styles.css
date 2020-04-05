@@ -1,0 +1,116 @@
+.container .content {
+    margin-top: 5%;
+    width: 100%;
+    padding-top: 5%;
+    padding-right: 10%;
+    padding-bottom: 5%;
+    padding-left: 10%;
+    background-color: transparent;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.container .content .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    text-align: center;
+}
+
+.user-data-container-button,
+.contact-data-container-buttons,
+.address-data-container-buttons,
+.professional-data-container-buttons,
+.graduation-data-container-buttons {
+    text-align: center;
+    margin-top: 2.5%;
+}
+
+.user-data-container-button,
+.contact-data-container-buttons,
+.address-data-container-buttons,
+.professional-data-container-buttons,
+.graduation-data-container-buttons,
+.contact-delete-alter-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.accordion-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    border-bottom: 2px solid;
+    padding: 1%;
+    width: 100%;
+    background-color: transparent;
+    color: #76b7eb;
+}
+
+.accordion-header,
+.accordion-body {
+   padding: 0;
+}
+
+.card {
+    margin-top: 5%;    
+}
+
+.accordion-body {
+    padding-bottom: 5%;
+    padding-top: 1%;
+}
+
+.change-password .modal-body,
+.delete-contact .modal-body {
+    background-color: #194052;
+    border-left: 1px solid #76b7eb;
+    border-right: 1px solid #76b7eb;
+}
+
+.change-password .modal-body .input-password,
+.nested-alter .modal-body .input-contact,
+.add-contact .modal-body .input-contact,
+.alter-address .modal-body .input-address,
+.alter-professional .modal-body .input-professional,
+.nested-alter-graduation .modal-body .input-graduation,
+.add-graduation .modal-body .input-graduation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.change-password .modal-body .input-password + .input-password,
+.nested-alter .modal-body .input-contact + .input-contact,
+.add-contact .modal-body .input-contact + .input-contact,
+.alter-address .modal-body .input-address + .input-address,
+.alter-professional .modal-body .input-professional + .input-professional,
+.nested-alter-graduation .modal-body .input-graduation + .input-graduation,
+.add-graduation .modal-body .input-graduation + .input-graduation {
+    margin-top: 5%;
+}
+
+.change-password .modal-body .input-password input,
+.nested-alter .modal-body .input-contact input,
+.add-contact .modal-body .input-contact input,
+.alter-address .modal-body .input-address input,
+.alter-professional .modal-body .input-professional input,
+.alter-professional .modal-body .input-professional textarea,
+.nested-alter-graduation .modal-body .input-graduation input,
+.add-graduation .modal-body .input-graduation input,
+.add-graduation .modal-body .input-graduation select {
+    padding: 2%;
+    font-size: 200%;
+}
+
+.modal-body-border {
+    border-left: 1px solid #76b7eb;
+    border-right: 1px solid #76b7eb;
+    background-color: #194052;
+}
+
+.table tbody tr {
+    cursor: pointer;    
+}

@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+/* #76b7eb */
+body {  
+  font: 400 14px Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #194052;
+  color: #76b7eb;
+}
+
+.button {
+  border-radius: 8px;
+  border: 1px solid #76b7eb;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.button:hover {
+  filter: brightness(200%);
+}
+
+input,
+select,
+textarea,
+.form-control,
+.form-control:focus {
+  background-color: transparent;
+  border-radius: 6px;
+  border: 1px solid #76b7eb;
+  color: #76b7eb;
+}
+
+input::placeholder {
+  color: #76b7eb;
+}
+
+a:hover {  
+  filter: brightness(200%);  
+}
+
+.search-input {
+  border-right: none;
+  padding: 2%;
+  font-size: 200%;
+}
+
+.search-input:focus {
+  border-right: none;
+}
+
+.input-group-prepend {
+  border: 1px solid #76b7eb;
+  border-left: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding-right: 1%;
+  padding-left: 1%;
+}
