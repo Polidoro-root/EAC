@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { 
     FiBookOpen, 
@@ -7,7 +7,6 @@ import {
     FiCrosshair, 
     FiFileText,    
     } from 'react-icons/fi';
-import { GiMale, GiFemale } from 'react-icons/gi';
 import './styles.css';
 
 export default function ProfessionalForm(){        

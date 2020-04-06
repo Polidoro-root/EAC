@@ -8,6 +8,7 @@ import UserProfile from './pages/UserProfile';
 import CompanyLogin from './pages/CompanyLogin';
 import CompanyRegister from './pages/CompanyRegister';
 import CompanyIndex from './pages/CompanyIndex';
+import CompanyProfile from './pages/CompanyProfile';
 
 export default function Routes(){
     return (
@@ -21,6 +22,7 @@ export default function Routes(){
                 <Route path="/companyLogin" component={CompanyLogin} />
                 <Route path="/companyRegister" component={CompanyRegister} />
                 <Route path="/companyIndex" component={CompanyIndex} />
+                <Route path="/companyProfile" component={CompanyProfile} />
             </Switch>
         </BrowserRouter>
     );

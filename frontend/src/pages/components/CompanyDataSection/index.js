@@ -13,14 +13,13 @@ import {
     FiUnlock,
     FiUser,
     FiLock,
-    FiCalendar,    
+    FiFileText,    
     FiChevronsDown,
     FiChevronsUp,
     FiSave
  } from 'react-icons/fi';
-import { GiMale, GiFemale } from 'react-icons/gi';
 
-function UserDataSection(){
+function CompanyDataSection(){
     const [modalChangePassword, setModalChangePassword] = useState(false);    
 
     const toggleChangePassword =
@@ -48,18 +47,7 @@ function UserDataSection(){
         else if(chevrons === "Up"){
             setChevrons('Down');
         }
-    }
-
-    const sex = "Masculino";
-
-    function sexIcon(){
-        if(sex === "Masculino"){
-            return <GiMale color="#76b7eb" size={30}  />;
-        }
-        else if(sex === "Feminino"){
-            return <GiFemale color="#76b7eb" size={30}  />;
-        }
-    }
+    }    
 
     const createMessage = function(id, message){
         if(!document.querySelector('span.action')){
@@ -130,7 +118,7 @@ function UserDataSection(){
                             eventKey="0"
                             onClick={() => toggleAccordionIcon()}
                         >
-                            <h2>Dados Pessoais</h2>
+                            <h2>Dados da Empresa</h2>
                             {accordionIcon('Down')}
                         </Accordion.Toggle>
                     </Card.Header>
@@ -139,15 +127,15 @@ function UserDataSection(){
                             <Container>
                                 <div className="content">
                                     <Row>
-                                        <Col xs="12" sm="10" md="6" lg="6">
+                                        <Col xs="12" sm="12" md="4" lg="4">
                                             <label className="icon">
                                                 <FiUser color="#76b7eb" size={30}  />
                                             </label>
                                             <h3 className="data">
-                                                João Vitor Polidoro
+                                                Tecnomaq
                                             </h3>
                                         </Col>
-                                        <Col xs="12" sm="10" md="6" lg="6">
+                                        <Col xs="12" sm="12" md="4" lg="4">
                                             <label className="icon">
                                                 <FiLock color="#76b7eb" size={30}  />
                                             </label>
@@ -155,25 +143,15 @@ function UserDataSection(){
                                                 Password
                                             </h3>
                                         </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col xs="12" sm="10" md="6" lg="6">
+                                        <Col xs="12" sm="12" md="4" lg="4">
                                             <label className="icon">
-                                                <FiCalendar color="#76b7eb" size={30}  />
+                                                <FiFileText  color="#76b7eb" size={30}  />
                                             </label>
                                             <h3 className="data">
-                                                06/05/2003
+                                                17.927.593/0001-39
                                             </h3>
                                         </Col>
-                                        <Col xs="12" sm="10" md="6" lg="6">
-                                            <label className="icon">
-                                                {sexIcon()}
-                                            </label>
-                                            <h3 className="data">
-                                                {sex}
-                                            </h3>
-                                        </Col>
-                                    </Row>
+                                    </Row>                                        
                                 </div>
                             </Container> 
                             <div className="user-data-container-button">
@@ -198,4 +176,4 @@ function UserDataSection(){
     );
 }
 
-export default UserDataSection;
+export default CompanyDataSection;

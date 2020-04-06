@@ -1,0 +1,29 @@
+.add-address .modal-body .input-address,
+.nested-alter .modal-body .input-address,
+.add-vacancy .modal-body .input-vacancy,
+.nested-alter .modal-body .input-vacancy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-address .modal-body .input-address + .input-address,
+.nested-alter .modal-body .input-address + .input-address,
+.add-vacancy .modal-body .input-vacancy + .input-vacancy,
+.nested-alter .modal-body .input-vacancy + .input-vacancy {
+    margin-top: 5%;
+}
+
+.add-address .modal-body .input-address input,
+.nested-alter .modal-body .input-address input,
+.add-vacancy .modal-body .input-vacancy input,
+.nested-alter .modal-body .input-vacancy input {
+    padding: 2%;
+    font-size: 200%;
+}
+
+.add-address-vacancy .modal-body {
+    border-bottom: 1px solid #76b7eb;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}

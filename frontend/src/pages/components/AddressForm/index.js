@@ -7,8 +7,7 @@ import {
     FaMailBulk, 
     GiFamilyHouse,
     FaCity,
-    FaSearchLocation,
-    FiSearch
+    FaSearchLocation,    
     } from 'react-icons/all';
 import './styles.css';
 

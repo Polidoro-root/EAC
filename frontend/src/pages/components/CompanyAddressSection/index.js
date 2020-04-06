@@ -3,37 +3,35 @@ import {
     Modal, 
     ModalHeader, 
     ModalBody, 
-    ModalFooter,
-    Table,    
+    ModalFooter,    
+    Table    
  } from 'reactstrap';
 import { Accordion, Card } from 'react-bootstrap';
 import { 
-    FiTrash2,
-    FiEdit,    
-    FiPlusCircle,
+    FiTrash2, 
+    FiPlusCircle,     
+    FiEdit,        
     FiChevronsDown,
     FiChevronsUp,
-    FiSave
- } from 'react-icons/all';
+    FiSave  
+    } from 'react-icons/fi';
 
-
-function UserContactSection(){
-    const [modalAddContact, setModalAddContact] = useState(false);
-    const [modalDeleteAndAlterContact, setModalDeleteAndAlterContact] = 
+function CompanyAddressSection(){
+    const [modalAddAddress, setModalAddAddress] = useState(false);
+    const [modalDeleteAndAlterAddress, setModalDeleteAndAlterAddress] =    
         useState(false);
-    const [nestedModalDelete, setNestedModalDelete] = 
-        useState(false);
-    const [nestedModalAlter, setNestedModalAlter] = 
-        useState(false);
+    const [modalNestedAlter, setModalNestedAlter] = useState(false);
+    const [modalNestedDelete, setModalNestedDelete] = useState(false);
 
-    const toggleAddContact = () => setModalAddContact(!modalAddContact);
+    
+    const toggleAddAddress = () => setModalAddAddress(!modalAddAddress);
 
-    const toggleDeleteAndAlterContact = () => 
-        setModalDeleteAndAlterContact(!modalDeleteAndAlterContact);
+    const toggleDeleteAndAlterAddress = 
+        () => setModalDeleteAndAlterAddress(!modalDeleteAndAlterAddress);
 
-    const toggleNestedDelete = () => setNestedModalDelete(!nestedModalDelete);
+    const toggleNestedAlter = () => setModalNestedAlter(!modalNestedAlter);
 
-    const toggleNestedAlter = () => setNestedModalAlter(!nestedModalAlter);
+    const toggleNestedDelete = () => setModalNestedDelete(!modalNestedDelete);
 
     const createMessage = function(id, message){
         if(!document.querySelector('span.action')){
@@ -80,38 +78,65 @@ function UserContactSection(){
             setChevrons('Down');
         }
     }
-
+    
     return (
+    <div>
         <div>
-            <div>
             <Modal 
-                    isOpen={modalAddContact} 
-                    toggle={toggleAddContact} 
+                    isOpen={modalAddAddress} 
+                    toggle={toggleAddAddress} 
                     fade={false}
-                    className="add-contact"
+                    className="add-address"
                 >
                     <ModalHeader 
-                        toggle={toggleAddContact}
+                        toggle={toggleAddAddress}
                     >
-                        Adicionar Contato
+                        Adicionar Endereço
                     </ModalHeader>
                     <ModalBody className="modal-body-border">
-                        <div className="input-contact">
-                            <input type="text" placeholder="Email" />
+                        <div className="input-address">
+                            <input 
+                                type="text"
+                                placeholder="CEP"
+                            />
                         </div>
-                        <div className="input-contact">
-                            <input type="text" placeholder="Telefone" />
+                        <div className="input-address">
+                            <input 
+                                type="text"
+                                placeholder="Logradouro"
+                            />
                         </div>
-                        <div className="input-contact">
-                            <input type="text" placeholder="Discord" />
+                        <div className="input-address">
+                            <input 
+                                type="number"
+                                placeholder="Número"
+                            />
+                        </div>
+                        <div className="input-address">
+                            <input 
+                                type="text"
+                                placeholder="Bairro"
+                            />
+                        </div>
+                        <div className="input-address">
+                            <input 
+                                type="text"
+                                placeholder="Cidade"
+                            />
+                        </div>
+                        <div className="input-address">
+                            <input 
+                                type="text"
+                                placeholder="Estado"
+                            />
                         </div>
                     </ModalBody>
                     <ModalFooter>
                         <button 
-                            id="add-contact-save"
+                            id="add-address-save"
                             className="button col-3" 
-                            onClick={toggleAddContact}
-                            onMouseOver={() => createMessage('add-contact-save', 'Salvar')}
+                            onClick={toggleAddAddress}
+                            onMouseOver={() => createMessage('add-address-save', 'Salvar')}
                             onMouseLeave={() => deleteMessage()}
                         >
                             <FiSave color="#76b7eb" size={30} />
@@ -122,12 +147,12 @@ function UserContactSection(){
 
             <div>
                 <Modal 
-                    isOpen={modalDeleteAndAlterContact} 
-                    toggle={toggleDeleteAndAlterContact}
+                    isOpen={modalDeleteAndAlterAddress} 
+                    toggle={toggleDeleteAndAlterAddress}
                     fade={false}
                 >                    
                     <ModalFooter>
-                        <div className="contact-delete-alter-options">
+                        <div className="address-delete-alter-options">
                             <button
                                 id="delete-icon"                             
                                 onClick={toggleNestedDelete}
@@ -141,7 +166,7 @@ function UserContactSection(){
                                 />
                             </button>
                         </div>
-                        <div className="contact-delete-alter-options">
+                        <div className="address-delete-alter-options">
                             <button 
                                 id="alter-icon"                            
                                 onClick={toggleNestedAlter}
@@ -157,31 +182,52 @@ function UserContactSection(){
                         </div>                        
                         
                         <Modal 
-                            isOpen={nestedModalAlter} 
+                            isOpen={modalNestedAlter} 
                             toggle={toggleNestedAlter}
                             className="nested-alter"
                             fade={false}
                         >
                             <ModalHeader>
-                                Editar Contato
+                                Editar Endereço
                             </ModalHeader>
                             <ModalBody className="modal-body-border">
-                                <div className="input-contact">
-                                    <input type="text" value="jvrpfc@hotmail.com" />
+                                <div className="input-address">
+                                    <input type="text" value="18411-180" />
                                 </div>
-                                <div className="input-contact">
-                                    <input type="text" value="15 99731-1989" />
+                                <div className="input-address">
+                                    <input 
+                                        type="text" 
+                                        value="José Roberto Coelho de Almeida" 
+                                    />
                                 </div>
-                                <div className="input-contact">
-                                    <input type="text" value="8232" />
+                                <div className="input-address">
+                                    <input type="number" value="42" />
+                                </div>
+                                <div className="input-address">
+                                    <input 
+                                        type="text" 
+                                        value="Jardim Virgínia" 
+                                    />
+                                </div>
+                                <div className="input-address">
+                                    <input 
+                                        type="text" 
+                                        value="Itapeva" 
+                                    />
+                                </div>
+                                <div className="input-address">
+                                    <input 
+                                        type="text" 
+                                        value="SP" 
+                                    />
                                 </div>
                             </ModalBody>
                             <ModalFooter>
                                 <button 
-                                    id="edit-contact-save"
+                                    id="edit-address-save"
                                     className="button col-3" 
                                     
-                                    onMouseOver={() => createMessage('edit-contact-save', 'Salvar')}
+                                    onMouseOver={() => createMessage('edit-address-save', 'Salvar')}
                                     onMouseLeave={() => deleteMessage()}
                                 >
                                     <FiSave color="#76b7eb" size={30} />
@@ -193,7 +239,7 @@ function UserContactSection(){
                 </Modal>
             </div>
 
-            <Accordion>
+        <Accordion>
                 <Card className="accordion">
                     <Card.Header className="accordion-header">
                         <Accordion.Toggle                             
@@ -202,50 +248,46 @@ function UserContactSection(){
                             eventKey="0"
                             onClick={() => toggleAccordionIcon()}
                         >
-                            <h2>Contatos</h2>
+                            <h2>Endereços</h2>
                             {accordionIcon('Down')}
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
                             <Card.Body className="accordion-body">
-                            <Table className="contact-table" responsive hover striped>
+                            <Table className="address-table" responsive hover striped>
                                 <thead>
                                     <tr>                    
-                                        <th>Email</th>
-                                        <th>Telefone</th>
-                                        <th>Discord</th>
+                                        <th>CEP</th>
+                                        <th>Logradouro</th>
+                                        <th>Número</th>
+                                        <th>Bairro</th>
+                                        <th>Cidade</th>
+                                        <th>Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>                
                                     <tr 
                                         id="row1" 
                                         className="clickable-row"
-                                        onClick={toggleDeleteAndAlterContact}
+                                        onClick={toggleDeleteAndAlterAddress}
                                     > 
-                                        <td>jvrpfc@hotmail.com</td>
-                                        <td>15 99731-1989</td>
-                                        <td>8232</td>                    
-                                    </tr>                
-                                    <tr id="row2" className="clickable-row">
-                                        <td>jvrp03@hotmail.com</td>
-                                        <td>15 99850-1951</td>
-                                        <td>7305</td>
-                                    </tr>
-                                    <tr id="row3" className="clickable-row">                    
-                                        <td>jv.polidoro@outlook.com</td>
-                                        <td>15 99704-4455</td>
-                                        <td>1904</td>
-                                    </tr>
+                                        <td>18411-180</td>
+                                        <td>José Roberto Coelho de Almeida</td>
+                                        <td>42</td>
+                                        <td>Jardim Virgínia</td>
+                                        <td>Itapeva</td>
+                                        <td>SP</td>
+                                    </tr>                                                    
                                 </tbody>
                             </Table>
                 
-                                <div className="contact-data-container-buttons row">                                    
+                                <div className="address-data-container-buttons row">                                    
                                     <button 
-                                        id="add-contact" 
+                                        id="add-address" 
                                         className="button col-2"
-                                        onMouseOver={() => createMessage('add-contact', 'Adicionar')}
+                                        onMouseOver={() => createMessage('add-address', 'Adicionar')}
                                         onMouseLeave={() => deleteMessage()}
-                                        onClick={toggleAddContact}
+                                        onClick={toggleAddAddress}
                                     >
                                         <FiPlusCircle color="#76b7eb" size={30} />
                                     </button>
@@ -253,9 +295,9 @@ function UserContactSection(){
                             </Card.Body>
                     </Accordion.Collapse>
                 </Card>
-            </Accordion>
+            </Accordion>        
         </div>
     );
 }
 
-export default UserContactSection;
+export default CompanyAddressSection;

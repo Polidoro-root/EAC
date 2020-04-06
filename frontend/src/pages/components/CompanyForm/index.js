@@ -1,7 +1,12 @@
 import React from 'react';
 import InputMask from 'react-input-mask';
 import { Container, Row, Col } from 'react-bootstrap';
-import { FiBriefcase, FiLock, FiFileText } from 'react-icons/fi';
+import { 
+    FiBriefcase, 
+    FiLock,
+    FiUnlock,
+    FiFileText 
+    } from 'react-icons/fi';
 import './styles.css';
 
 export default function CompanyForm(){
@@ -9,7 +14,7 @@ export default function CompanyForm(){
         <Container>
             <div className="content">
                 <Row>
-                    <Col xs="12" sm="10" md="4">
+                    <Col xs="12" sm="10" md="6">
                         <label htmlFor="name">
                             <FiBriefcase color="#76b7eb" size={30}  />
                         </label>
@@ -18,16 +23,7 @@ export default function CompanyForm(){
                             placeholder="Nome da Empresa"                            
                         />
                     </Col>
-                    <Col xs="12" sm="10" md="4">
-                        <label htmlFor="password">
-                            <FiLock color="#76b7eb" size={30}  />
-                        </label>
-                        <input                                                         
-                            type="password"
-                            placeholder="Senha"                                                    
-                        />
-                    </Col>
-                    <Col xs="12" sm="10" md="4">
+                    <Col xs="12" sm="10" md="6">
                         <label htmlFor="cnpj">
                             <FiFileText color="#76b7eb" size={30}  />
                         </label>
@@ -37,6 +33,26 @@ export default function CompanyForm(){
                             type="text"
                             placeholder="CNPJ"
                             maxLength="20"
+                        />
+                    </Col>
+                </Row>
+                <Row>                    
+                    <Col xs="12" sm="10" md="6">
+                        <label htmlFor="password">
+                            <FiLock color="#76b7eb" size={30}  />
+                        </label>
+                        <input                                                         
+                            type="password"
+                            placeholder="Senha"                                                    
+                        />
+                    </Col>
+                    <Col xs="12" sm="10" md="6">
+                        <label htmlFor="password">
+                            <FiUnlock color="#76b7eb" size={30}  />
+                        </label>
+                        <input                                                         
+                            type="password"
+                            placeholder="Confirmar Senha"                                                    
                         />
                     </Col>
                 </Row>                                             

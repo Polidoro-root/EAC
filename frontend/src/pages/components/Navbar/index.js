@@ -39,10 +39,13 @@ const HeaderNavbar = () => {
 
     const currentUrl = function(){
       const url = window.location.href;
-      if(url.indexOf('/user')) {
+
+      const toUrl = url.slice(22);
+
+      if(toUrl.match(/user/)) {
         return '/user';
       }
-      else if(url.indexOf('/company')) {
+      if(toUrl.match(/company/)) {
         return '/company';
       }      
     }
@@ -51,7 +54,7 @@ const HeaderNavbar = () => {
       if(currentUrl() === "/user"){
           return "/userProfile";
       }
-      else if(currentUrl() === "/company"){
+      if(currentUrl() === "/company"){
           return "/companyProfile";
       }    
     };
@@ -60,7 +63,7 @@ const HeaderNavbar = () => {
       if(currentUrl() === "/user"){
         return "/userIndex";
       }
-      else if(currentUrl() === "/company"){
+      if(currentUrl() === "/company"){
         return "/companyIndex";
       }
     };

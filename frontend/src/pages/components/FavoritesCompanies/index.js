@@ -10,12 +10,12 @@ import {
   CardHeader,
   CardFooter,
   CardBody,  
-  CardText  
+  CardText,  
   } from 'reactstrap';
-import { FiPlusCircle, FiFileText } from 'react-icons/fi';
+import { FiTrash2, FiSend, FiFileText } from 'react-icons/fi';
 import './styles.css';
 
-const DisponibleVacancies = () => {
+const FavoritesCompanies = () => {
   const createMessage = function(id, message){
     if(!document.querySelector('span.action')){
         const buttonElement = document.querySelector(`#${id}`);
@@ -400,14 +400,23 @@ const DisponibleVacancies = () => {
             </Col>
           </Row>
         </ModalBody>
-        <ModalFooter>                  
+        <ModalFooter>        
           <div className="modal-footer-buttons">
             <button 
-              id="plus-icon"               
-              onMouseOver={() => createMessage("plus-icon", "Adicionar aos Favoritos")}
+              id="trash-icon"               
+              onMouseOver={() => createMessage("trash-icon", "Deletar")}
               onMouseLeave={() => deleteMessage()}
             >
-              <FiPlusCircle color="#76b7eb" size={30} />
+              <FiTrash2 color="#76b7eb" size={30} />
+            </button>
+          </div>
+          <div className="modal-footer-buttons">
+            <button 
+              id="like-icon"               
+              onMouseOver={() => createMessage("like-icon", "Contatar")}
+              onMouseLeave={() => deleteMessage()}
+            >
+              <FiSend color="#76b7eb" size={30} />
             </button>
           </div>
         </ModalFooter>
@@ -416,4 +425,4 @@ const DisponibleVacancies = () => {
   );
 }
 
-export default DisponibleVacancies;
+export default FavoritesCompanies;

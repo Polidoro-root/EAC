@@ -1,24 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
-    Container, 
-    Col, 
-    Row,
-    Modal, 
-    ModalHeader, 
-    ModalBody, 
-    ModalFooter,
-    Table,    
+    Container,     
  } from 'reactstrap';
-import { Accordion, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { 
-    FiUnlock,
-    FiTrash2,
-    FiEdit,    
-    FiPlusCircle,
-    FiChevronsDown,
-    FiChevronsUp,    
-    } from 'react-icons/fi';
 import './styles.css';
 import HeaderNavbar from '../components/Navbar';
 import UserDataSection from '../components/UserDataSection';

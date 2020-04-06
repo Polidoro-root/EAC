@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { 
-    Container, 
-    Col, 
-    Row,
+import {     
     Modal, 
     ModalHeader, 
     ModalBody, 
@@ -10,9 +7,7 @@ import {
     Table,    
  } from 'reactstrap';
 import { Accordion, Card } from 'react-bootstrap';
-import { 
-    FiBook, 
-    FiBookmark,    
+import {     
     FiTrash2,
     FiEdit,    
     FiPlusCircle,

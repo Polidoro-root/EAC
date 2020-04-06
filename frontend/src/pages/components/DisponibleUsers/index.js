@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { 
-  Button,
+import {   
   Modal,
   ModalHeader,
   ModalBody,
@@ -10,15 +9,13 @@ import {
   Card,
   CardHeader,
   CardFooter,
-  CardBody,
-  CardTitle,
-  CardText,
-  Container
+  CardBody,  
+  CardText,  
   } from 'reactstrap';
-import { FiTrash2, FiSend, FiFileText } from 'react-icons/fi';
+import { FiPlusCircle, FiFileText } from 'react-icons/fi';
 import './styles.css';
 
-const Favorites = () => {
+const DisponibleUsers = () => {
   const createMessage = function(id, message){
     if(!document.querySelector('span.action')){
         const buttonElement = document.querySelector(`#${id}`);
@@ -54,36 +51,36 @@ const Favorites = () => {
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Salário:
+                      Experiência na Área:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      R$ 2000,00
+                      JavaScript, NodeJS e ReactJS
                     </CardText>
                   </Col>
                 </Row>
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Cidade:
+                      Ultimo Emprego:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      Itapeva
+                      Secretário em Consultório de Fisioterapia
                     </CardText>
                   </Col>
                 </Row>
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Estado
+                      Sobre Você:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      SP
+                      Auto-didata e interessado em trabalhar com as tecnologias mais atuais do mercado
                     </CardText>
                   </Col>
                 </Row>
@@ -105,36 +102,36 @@ const Favorites = () => {
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Salário:
+                      Experiência na Área:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      R$ 2000,00
+                      JavaScript, NodeJS e ReactJS
                     </CardText>
                   </Col>
                 </Row>
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Cidade:
+                      Ultimo Emprego:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      Itapeva
+                      Secretário em Consultório de Fisioterapia
                     </CardText>
                   </Col>
                 </Row>
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Estado
+                      Sobre Você:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      SP
+                      Auto-didata e interessado em trabalhar com as tecnologias mais atuais do mercado
                     </CardText>
                   </Col>
                 </Row>
@@ -158,36 +155,36 @@ const Favorites = () => {
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Salário:
+                      Experiência na Área:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      R$ 2000,00
+                      JavaScript, NodeJS e ReactJS
                     </CardText>
                   </Col>
                 </Row>
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Cidade:
+                      Ultimo Emprego:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      Itapeva
+                      Secretário em Consultório de Fisioterapia
                     </CardText>
                   </Col>
                 </Row>
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Estado
+                      Sobre Você:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      SP
+                      Auto-didata e interessado em trabalhar com as tecnologias mais atuais do mercado
                     </CardText>
                   </Col>
                 </Row>
@@ -209,36 +206,36 @@ const Favorites = () => {
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Salário:
+                      Experiência na Área:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      R$ 2000,00
+                      JavaScript, NodeJS e ReactJS
                     </CardText>
                   </Col>
                 </Row>
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Cidade:
+                      Ultimo Emprego:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      Itapeva
+                      Secretário em Consultório de Fisioterapia
                     </CardText>
                   </Col>
                 </Row>
                 <Row className="card-body-row">
                   <Col className="key">
                     <CardText>
-                      Estado
+                      Sobre Você:
                     </CardText>                
                   </Col>
                   <Col className="value">
                     <CardText>
-                      SP
+                      Auto-didata e interessado em trabalhar com as tecnologias mais atuais do mercado
                     </CardText>
                   </Col>
                 </Row>
@@ -261,165 +258,72 @@ const Favorites = () => {
         <Row>
             <Col xs="6" sm="6">
               <ModalBody className="key">
-                Empresa:
+                Nível de Graduação:
               </ModalBody>
             </Col>
             <Col xs="6" sm="6">
               <ModalBody className="value">
-                Tecnomaq
+                Superior
               </ModalBody>
             </Col>
           </Row>
           <Row>
             <Col xs="6" sm="6">
               <ModalBody className="key">
-                CNPJ:
+                Curso:
               </ModalBody>
             </Col>
             <Col xs="6" sm="6">
               <ModalBody className="value">
-                17.927.593/0001-39
+                Ciência da Computação
               </ModalBody>
             </Col>
           </Row>
           <Row>
             <Col xs="6" sm="6">
               <ModalBody className="key">
-                Salário:
+                Experiência na Área:
               </ModalBody>
             </Col>
             <Col xs="6" sm="6">
               <ModalBody className="value">
-                R$ 2000,00
+                JavaScript, NodeJS e ReactJS
               </ModalBody>
             </Col>
           </Row>
           <Row>
             <Col xs="6" sm="6">
               <ModalBody className="key">
-                Cidade:
+                Ultimo Emprego:
               </ModalBody>
             </Col>
             <Col xs="6" sm="6">
               <ModalBody className="value">
-                Itapeva
+                Secretário em Consultório de Fisioterapia
               </ModalBody>
             </Col>
           </Row>
           <Row>
             <Col xs="6" sm="6">
               <ModalBody className="key">
-                Estado:
+                Sobre Você:
               </ModalBody>
             </Col>
             <Col xs="6" sm="6">
               <ModalBody className="value">
-                SP
+                Auto-didata e interessado em trabalhar com as tecnologias mais atuais do mercado
               </ModalBody>
             </Col>
-          </Row>
-          <Row>
-            <Col xs="6" sm="6">
-              <ModalBody className="key">
-                Dias de Trabalho:
-              </ModalBody>
-            </Col>
-            <Col xs="6" sm="6">
-              <ModalBody className="value">
-                Segunda á Sexta
-              </ModalBody>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6" sm="6">
-              <ModalBody className="key">
-                Horário de Entrada:
-              </ModalBody>
-            </Col>
-            <Col xs="6" sm="6">
-              <ModalBody className="value">
-                08:00:00
-              </ModalBody>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6" sm="6">
-              <ModalBody className="key">
-                Horário de Ida ao Almoço:
-              </ModalBody>
-            </Col>
-            <Col xs="6" sm="6">
-              <ModalBody className="value">
-                12:00:00
-              </ModalBody>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6" sm="6">
-              <ModalBody className="key">
-                Horário de Volta do Almoço:
-              </ModalBody>
-            </Col>
-            <Col xs="6" sm="6">
-              <ModalBody className="value">
-                14:00:00
-              </ModalBody>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6" sm="6">
-              <ModalBody className="key">
-                Horário de Saída:
-              </ModalBody>
-            </Col>
-            <Col xs="6" sm="6">
-              <ModalBody className="value">
-                18:00:00
-              </ModalBody>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6" sm="6">
-              <ModalBody className="key">
-                Requisitos:
-              </ModalBody>
-            </Col>
-            <Col xs="6" sm="6">
-              <ModalBody className="value">
-                Curso técnico na área de TI
-              </ModalBody>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6" sm="6">
-              <ModalBody className="key">
-                Benefícios:
-              </ModalBody>
-            </Col>
-            <Col xs="6" sm="6">
-              <ModalBody className="value">
-                Vale alimentação e transporte
-              </ModalBody>
-            </Col>
-          </Row>
+          </Row>        
         </ModalBody>
-        <ModalFooter>        
+        <ModalFooter>                  
           <div className="modal-footer-buttons">
             <button 
-              id="trash-icon"               
-              onMouseOver={() => createMessage("trash-icon", "Deletar")}
+              id="plus-icon"               
+              onMouseOver={() => createMessage("plus-icon", "Adicionar aos Favoritos")}
               onMouseLeave={() => deleteMessage()}
             >
-              <FiTrash2 color="#76b7eb" size={30} />
-            </button>
-          </div>
-          <div className="modal-footer-buttons">
-            <button 
-              id="like-icon"               
-              onMouseOver={() => createMessage("like-icon", "Contatar")}
-              onMouseLeave={() => deleteMessage()}
-            >
-              <FiSend color="#76b7eb" size={30} />
+              <FiPlusCircle color="#76b7eb" size={30} />
             </button>
           </div>
         </ModalFooter>
@@ -428,4 +332,4 @@ const Favorites = () => {
   );
 }
 
-export default Favorites;
+export default DisponibleUsers;

@@ -1,0 +1,5 @@
+.card .card-body .card-body-row .col {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}

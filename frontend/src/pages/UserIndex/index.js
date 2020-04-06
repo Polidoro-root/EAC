@@ -3,8 +3,7 @@ import './styles.css';
 import {
     Container,
     Row, 
-    Col, 
-    Button, 
+    Col,     
     InputGroup,
     InputGroupAddon,    
     Input,
@@ -18,7 +17,7 @@ import {
     FiSearch
     } from 'react-icons/fi';    
 import { Accordion, Card } from 'react-bootstrap';
-import Favorites from '../components/Favorites';
+import FavoritesCompanies from '../components/FavoritesCompanies';
 import HeaderNavbar from '../components/Navbar';
 import DisponibleVacancies from '../components/DisponibleVacancies';
 
@@ -125,7 +124,7 @@ export default function UserIndex(){
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
                             <Card.Body className="accordion-body">
-                                <Favorites />
+                                <FavoritesCompanies />
                             </Card.Body>
                     </Accordion.Collapse>
                 </Card>
