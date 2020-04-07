@@ -16,8 +16,6 @@ import {
     FiChevronsUp,
     FiSearch
     } from 'react-icons/fi';    
-import { Accordion, Card } from 'react-bootstrap';
-import FavoritesCompanies from '../components/FavoritesCompanies';
 import HeaderNavbar from '../components/Navbar';
 import DisponibleVacancies from '../components/DisponibleVacancies';
 
@@ -107,28 +105,7 @@ export default function UserIndex(){
                         </PaginationItem>
                     </Pagination>
                 </Col>
-            </Row>
-
-            <Accordion>
-                <Card className="accordion">
-                    <Card.Header className="accordion-header">
-                        <Accordion.Toggle                             
-                            className="accordion-button" 
-                            variant="link" 
-                            eventKey="0"
-                            onClick={() => toggleAccordionIcon()}
-                        >
-                            <h2>Favoritos</h2>
-                            {accordionIcon('Down')}
-                        </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                            <Card.Body className="accordion-body">
-                                <FavoritesCompanies />
-                            </Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-            </Accordion>
+            </Row>            
             
         </Container>        
     );

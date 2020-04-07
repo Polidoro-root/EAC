@@ -12,7 +12,7 @@ import {
   CardBody,  
   CardText  
   } from 'reactstrap';
-import { FiPlusCircle, FiFileText } from 'react-icons/fi';
+import { FiSend, FiFileText } from 'react-icons/fi';
 import './styles.css';
 
 const DisponibleVacancies = () => {
@@ -403,11 +403,11 @@ const DisponibleVacancies = () => {
         <ModalFooter>                  
           <div className="modal-footer-buttons">
             <button 
-              id="plus-icon"               
-              onMouseOver={() => createMessage("plus-icon", "Adicionar aos Favoritos")}
+              id="send-icon"
+              onMouseOver={() => createMessage("send-icon", "Enviar Mensagem")}
               onMouseLeave={() => deleteMessage()}
             >
-              <FiPlusCircle color="#76b7eb" size={30} />
+              <FiSend color="#76b7eb" size={30} />
             </button>
           </div>
         </ModalFooter>

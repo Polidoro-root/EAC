@@ -8,6 +8,7 @@ import CompanyDataSection from '../components/CompanyDataSection';
 import CompanyContactSection from '../components/CompanyContactSection';
 import CompanyAddressSection from '../components/CompanyAddressSection';
 import CompanyVacancySection from '../components/CompanyVacancySection';
+import CompanyConversationsSection from '../components/CompanyConversationsSection';
 
 function CompanyProfile(){
     return (
@@ -29,6 +30,8 @@ function CompanyProfile(){
             <CompanyAddressSection />
 
             <CompanyVacancySection />
+
+            <CompanyConversationsSection />
             
         </Container>
     );

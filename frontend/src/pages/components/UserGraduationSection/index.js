@@ -100,8 +100,7 @@ function UserGraduationSection(){
                             <select name="nivelGraduacao" id="nivelGraduacao">
                                 <option value="" disabled selected hidden>
                                     Nível de Graduação...
-                                </option>
-                                <option value="incompleto">Incompleto</option>
+                                </option>                                
                                 <option value="tecnico">Técnico</option>
                                 <option value="superior">Superior</option>
                                 <option value="especializacao">Especialização</option>

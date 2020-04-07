@@ -9,6 +9,7 @@ import UserContactSection from '../components/UserContactSection';
 import UserAddressSection from '../components/UserAddressSection';
 import UserProfessionalSection from '../components/UserProfessionalSection';
 import UserGraduationSection from '../components/UserGraduationSection';
+import UserConversationsSection from '../components/UserConversationsSection';
 
 function UserProfile(){                                
     return (                        
@@ -32,6 +33,8 @@ function UserProfile(){
             <UserProfessionalSection />       
 
             <UserGraduationSection />     
+
+            <UserConversationsSection />
             
         </Container>
     );

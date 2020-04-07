@@ -114,3 +114,11 @@
 .table tbody tr {
     cursor: pointer;    
 }
+
+.conversation-modal .modal-footer .conversation-delete-enter-options {    
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+    width: 50%;
+    margin: 0;    
+}

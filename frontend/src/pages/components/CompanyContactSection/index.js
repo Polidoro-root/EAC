@@ -101,10 +101,7 @@ function UserContactSection(){
                         </div>
                         <div className="input-contact">
                             <input type="text" placeholder="Telefone" />
-                        </div>
-                        <div className="input-contact">
-                            <input type="text" placeholder="Discord" />
-                        </div>
+                        </div>                        
                     </ModalBody>
                     <ModalFooter>
                         <button 
@@ -171,10 +168,7 @@ function UserContactSection(){
                                 </div>
                                 <div className="input-contact">
                                     <input type="text" value="15 99731-1989" />
-                                </div>
-                                <div className="input-contact">
-                                    <input type="text" value="8232" />
-                                </div>
+                                </div>                                
                             </ModalBody>
                             <ModalFooter>
                                 <button 
@@ -212,8 +206,7 @@ function UserContactSection(){
                                 <thead>
                                     <tr>                    
                                         <th>Email</th>
-                                        <th>Telefone</th>
-                                        <th>Discord</th>
+                                        <th>Telefone</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>                
@@ -223,18 +216,15 @@ function UserContactSection(){
                                         onClick={toggleDeleteAndAlterContact}
                                     > 
                                         <td>jvrpfc@hotmail.com</td>
-                                        <td>15 99731-1989</td>
-                                        <td>8232</td>                    
+                                        <td>15 99731-1989</td>                                        
                                     </tr>                
                                     <tr id="row2" className="clickable-row">
                                         <td>jvrp03@hotmail.com</td>
-                                        <td>15 99850-1951</td>
-                                        <td>7305</td>
+                                        <td>15 99850-1951</td>                                        
                                     </tr>
                                     <tr id="row3" className="clickable-row">                    
                                         <td>jv.polidoro@outlook.com</td>
-                                        <td>15 99704-4455</td>
-                                        <td>1904</td>
+                                        <td>15 99704-4455</td>                                        
                                     </tr>
                                 </tbody>
                             </Table>

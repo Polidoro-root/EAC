@@ -136,17 +136,9 @@ function UserDataSection(){
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
                         <Card.Body className="accordion-body">
-                            <Container>
-                                <div className="content">
+                            <Container>                                
+                                <div className="content">                                    
                                     <Row>
-                                        <Col xs="12" sm="10" md="6" lg="6">
-                                            <label className="icon">
-                                                <FiUser color="#76b7eb" size={30}  />
-                                            </label>
-                                            <h3 className="data">
-                                                João Vitor Polidoro
-                                            </h3>
-                                        </Col>
                                         <Col xs="12" sm="10" md="6" lg="6">
                                             <label className="icon">
                                                 <FiLock color="#76b7eb" size={30}  />
@@ -155,25 +147,7 @@ function UserDataSection(){
                                                 Password
                                             </h3>
                                         </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col xs="12" sm="10" md="6" lg="6">
-                                            <label className="icon">
-                                                <FiCalendar color="#76b7eb" size={30}  />
-                                            </label>
-                                            <h3 className="data">
-                                                06/05/2003
-                                            </h3>
-                                        </Col>
-                                        <Col xs="12" sm="10" md="6" lg="6">
-                                            <label className="icon">
-                                                {sexIcon()}
-                                            </label>
-                                            <h3 className="data">
-                                                {sex}
-                                            </h3>
-                                        </Col>
-                                    </Row>
+                                    </Row>                                    
                                 </div>
                             </Container> 
                             <div className="user-data-container-button">
