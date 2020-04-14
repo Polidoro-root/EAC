@@ -8,34 +8,12 @@ import { Collapse,
         NavLink        
     } from 'reactstrap';
 import './styles.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiBriefcase, FiUser, FiLogOut, FiMenu } from 'react-icons/fi';
 
 const HeaderNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!isOpen);
-
-    const createMessage = function(id, message){
-        if(!document.querySelector('span.nav-item')){
-            const aElement = document.querySelector(`#${id}`);
-            const spanElement = document.createElement('span');            
-            const text = document.createTextNode(message);
-            
-            spanElement.setAttribute('class', 'nav-item');
-            spanElement.style.color = "#194052";
-            spanElement.style.fontWeight = "bold";
-            spanElement.style.fontSize = "18px";            
-            spanElement.appendChild(text);        
-            aElement.appendChild(spanElement);            
-        }
-    };
-
-    const deleteMessage = function(){
-        if(document.querySelector('span.nav-item')){
-            document.querySelector('span.nav-item').remove();
-        }
-
-    }
+    const toggle = () => setIsOpen(!isOpen);    
 
     const currentUrl = function(){
       const url = window.location.href;
@@ -67,6 +45,13 @@ const HeaderNavbar = () => {
         return "/companyIndex";
       }
     };
+
+    const history = useHistory();
+
+    function handleLogout(){
+      localStorage.clear();
+      history.push('/');
+    }
     
     return (
       <div>                
@@ -83,25 +68,15 @@ const HeaderNavbar = () => {
             <Nav className="ml-auto" navbar>
               <NavItem >
                 <NavLink>
-                  <Link to={profile}>
-                    <button className="button" type="button" id="profile" 
-                    onMouseOver={() => createMessage("profile", "Perfil")}
-                    onMouseLeave={() => deleteMessage()}
-                    >                  
-                      <FiUser className="mx-3" color="#194052" size={30} />
-                    </button>
+                  <Link to={profile}>                    
+                      <FiUser className="mx-3" color="#194052" size={30} />                    
                   </Link>
                 </NavLink>                
               </NavItem>
               <NavItem>
                 <NavLink>
-                  <Link to="/logout">
-                    <button className="button" id="logout"
-                      onMouseOver={() => createMessage("logout", "Sair")}
-                      onMouseLeave={() => deleteMessage()}
-                    >
-                      <FiLogOut className="mx-3" color="#194052" size={30} />
-                    </button>
+                  <Link onClick={handleLogout}>
+                    <FiLogOut className="mx-3" color="#194052" size={30} />
                   </Link>
                 </NavLink>
               </NavItem>            

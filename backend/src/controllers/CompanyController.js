@@ -1,50 +1,94 @@
 const connection = require('../database/connection');
 
 module.exports = {
-    async index(request, response){
-        const companies = await connection('companies').select('*');
-        return response.json(companies); 
-    },
+    async companyData(request, response){
+        const companyId = request.headers.companyid;
 
-    async create(request, response){
-        const { name, cnpj, password } = request.body;
+        const [data] = await connection('companies')
+            .join('contacts', 'companies.id', 'contacts.contactsCompaniesId')
+            .where({
+                'companies.id': companyId
+            })
+            .select('*');
 
-        await connection('companies').insert({
-            name,
-            cnpj,
-            password
-        });
+        const vacancies = await connection('vacancies')
+            .where('vacanciesCompaniesId', companyId)
+            .select('*');        
 
-        return response.json({
-            name,
-            cnpj,
-            password
-        });
-    },
-
-    async update(request, response){
-        const { id } = request.params;
-
-        const company = request.body;
-
-        const companyUpdate = await connection('companies')
-            .where('id', id)
-            .update({
-                name: company.name,
-                cnpj: company.cnpj,
-                password: company.password
-            });
-
-        return response.json(companyUpdate);
-    },
-
-    async delete(request, response){
-        const { id } = request.params;
+        return response.json([data, vacancies]);
         
-        await connection('companies')
-            .where('id', id)
-            .del();
+    },
 
-        return response.status(204).send();
+    async createCompany(request, response){
+        const { name, cnpj, password, email, phone } = request.body;
+
+        const [selectEmail] = await connection('contacts')
+            .where({
+                email: email
+            })
+            .select('email');        
+
+        if(!selectEmail){
+            const [ companyId ] = await connection('companies')
+                .returning('id')
+                .insert({
+                    name: name,
+                    cnpj: cnpj,
+                    password: password                    
+                });
+
+            const [ contactId ] = await connection('contacts')
+            .returning('id')
+                .insert({
+                    contactsCompaniesId: companyId,
+                    email: email,
+                    phone: phone            
+                });            
+            
+            return response.json({ companyId, name, cnpj, password,
+                contactId, email, phone });
+        }
+        else{            
+            return response.json({ error: "This email already exists" });
+        }
+    },
+    
+    async createSession(request, response){
+        const { email, password } = request.body;
+
+        const [company] = await connection('companies')
+            .innerJoin('contacts', 'companies.id', 'contacts.contactsCompaniesId')
+            .where({
+                'contacts.email': email,
+                'companies.password': password
+            })
+            .select('companies.id', 'contacts.id as contactid', 'contacts.email', 'companies.password');
+        
+        if (!company) {
+            return response.status(400).json({ error: 'No Company with this email or password' });
+        }
+    
+        return response.json(company);
+    },
+
+    async changePassword(request, response){
+        const { currentPassword, newPassword, id } = request.body;                
+
+        const [dbPassword] = await connection('companies')
+            .select('password')
+            .where('id', id);
+
+        if(currentPassword === dbPassword.password){
+            const companyPassword = await connection('companies')
+                .update({
+                    password: newPassword
+                })
+                .where('id', id);
+            
+            return response.json(companyPassword);
+        }
+        else{
+            return response.json({ error: "The passwords aren't equals" });
+        }
     }
 };

@@ -17,4 +17,7 @@
     margin: 0;
     width: auto;
 }
-  
+
+.nav-item {
+    padding: 0;
+}

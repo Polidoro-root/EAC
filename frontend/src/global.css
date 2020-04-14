@@ -36,12 +36,16 @@ textarea,
   color: #76b7eb;
 }
 
-input::placeholder {
+a,
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
   color: #76b7eb;
 }
 
 a:hover {  
-  filter: brightness(200%);  
+  filter: brightness(200%);
+  text-decoration: none;
 }
 
 .search-input {

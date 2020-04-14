@@ -9,20 +9,32 @@ import CompanyLogin from './pages/CompanyLogin';
 import CompanyRegister from './pages/CompanyRegister';
 import CompanyIndex from './pages/CompanyIndex';
 import CompanyProfile from './pages/CompanyProfile';
+import ChangePassword from './pages/ChangePassword';
+import AlterContact from './pages/AlterContact';
+import AlterProfessional from './pages/AlterProfessional';
+import AddGraduation from './pages/AddGraduation';
+import AddVacancy from './pages/AddVacancy';
 
 export default function Routes(){
     return (
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/userLogin" component={UserLogin} />
-                <Route path="/userRegister" component={UserRegister} />
-                <Route path="/userIndex" component={UserIndex} />
-                <Route path="/userProfile" component={UserProfile} />
-                <Route path="/companyLogin" component={CompanyLogin} />
-                <Route path="/companyRegister" component={CompanyRegister} />
-                <Route path="/companyIndex" component={CompanyIndex} />
-                <Route path="/companyProfile" component={CompanyProfile} />
+                <Route path="/userLogin" exact component={UserLogin} />
+                <Route path="/userRegister" exact component={UserRegister} />
+                <Route path="/userIndex" exact component={UserIndex} />
+                <Route path="/userProfile" exact component={UserProfile} />
+                <Route path="/userProfile/changePassword" exact component={ChangePassword} />
+                <Route path="/userProfile/alterContact" exact component={AlterContact} />
+                <Route path="/userProfile/alterProfessional" exact component={AlterProfessional} />
+                <Route path="/userProfile/addGraduation" exact component={AddGraduation} />
+                <Route path="/companyLogin" exact component={CompanyLogin} />
+                <Route path="/companyRegister" exact component={CompanyRegister} />
+                <Route path="/companyIndex" exact component={CompanyIndex} />
+                <Route path="/companyProfile" exact component={CompanyProfile} />
+                <Route path="/companyProfile/changePassword" exact component={ChangePassword} />
+                <Route path="/companyProfile/alterContact" exact component={AlterContact} />
+                <Route path="/companyProfile/addVacancy" exact component={AddVacancy} />
             </Switch>
         </BrowserRouter>
     );

@@ -1,55 +1,42 @@
 const connection = require('../database/connection');
 
 module.exports = {
-    async index(request, response){
-        const graduations = await connection('graduations').select('*');
+    async indexGraduation(request, response){
+        const userId = request.headers.userid;
+
+        const graduations = await connection('graduations')
+            .where('graduationsUsersId', userId)
+            .select('*');
+
         return response.json(graduations);
     },
 
-    async create(request, response){
-        const { graduationLevel, course } = request.body;
-        const usersId = request.headers.authorization;
+    async createGraduation(request, response){
+        const id = request.headers.userid;
+        const { graduationLevel, course } = request.body;        
 
-        await connection('graduations').insert({
-            usersId,
-            graduationLevel,
-            course
-        });
-
-        return response.json({
-            usersId,
-            graduationLevel,
-            course
-        });
-    },
-
-    async update(request, response){
-        const { id } = request.params;        
-
-        const graduation = request.body;
-
-        const graduationUpdate = await connection('graduations')
-            .where('id', id)
-            .update({                
-                graduationLevel: graduation.graduationLevel,
-                course: graduation.course,
+        const [graduation] = await connection('graduations')
+            .returning('*')
+            .insert({
+                graduationsUsersId: id,
+                graduationLevel: graduationLevel,
+                course: course
             });
 
-        return response.json(graduationUpdate);
+        return response.json(graduation);
     },
 
-    async delete(request, response){
+    async deleteGraduation(request, response){
         const { id } = request.params;
-        
-        const usersId = request.headers.authorization;
+        const userId = request.headers.userid;
 
-        const graduations = await connection('graduations')
-            .where('id', id)
-            .select('usersId')
-            .first();        
+        const graduation = await connection('graduations')
+          .where('id', id)
+          .select('graduationsUsersId')
+          .first();        
 
-        if(graduations.usersId != usersId){
-            return response.status(401).json({error: 'Operation not Permited'});
+        if (graduation.graduationsUsersId != userId) {
+          return response.status(401).json({ error: 'Operation not permitted.' });
         }
 
         await connection('graduations')
@@ -57,5 +44,5 @@ module.exports = {
             .del();
 
         return response.status(204).send();
-    }
+    },
 };

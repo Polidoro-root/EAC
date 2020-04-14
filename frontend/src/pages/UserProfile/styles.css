@@ -63,46 +63,10 @@
     padding-top: 1%;
 }
 
-.change-password .modal-body,
-.delete-contact .modal-body {
-    background-color: #194052;
-    border-left: 1px solid #76b7eb;
-    border-right: 1px solid #76b7eb;
-}
-
-.change-password .modal-body .input-password,
-.nested-alter .modal-body .input-contact,
-.add-contact .modal-body .input-contact,
-.alter-address .modal-body .input-address,
-.alter-professional .modal-body .input-professional,
-.nested-alter-graduation .modal-body .input-graduation,
-.add-graduation .modal-body .input-graduation {
+.modal-delete-graduation .modal-footer {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.change-password .modal-body .input-password + .input-password,
-.nested-alter .modal-body .input-contact + .input-contact,
-.add-contact .modal-body .input-contact + .input-contact,
-.alter-address .modal-body .input-address + .input-address,
-.alter-professional .modal-body .input-professional + .input-professional,
-.nested-alter-graduation .modal-body .input-graduation + .input-graduation,
-.add-graduation .modal-body .input-graduation + .input-graduation {
-    margin-top: 5%;
-}
-
-.change-password .modal-body .input-password input,
-.nested-alter .modal-body .input-contact input,
-.add-contact .modal-body .input-contact input,
-.alter-address .modal-body .input-address input,
-.alter-professional .modal-body .input-professional input,
-.alter-professional .modal-body .input-professional textarea,
-.nested-alter-graduation .modal-body .input-graduation input,
-.add-graduation .modal-body .input-graduation input,
-.add-graduation .modal-body .input-graduation select {
-    padding: 2%;
-    font-size: 200%;
 }
 
 .modal-body-border {
@@ -121,4 +85,82 @@
     justify-content: center;
     width: 50%;
     margin: 0;    
+}
+
+.accordion-body .container {
+    margin-top: 5%;
+}
+
+.accordion-body div .table-responsive .table tbody 
+
+td, th {
+    font-size: 200%;
+    color: #76b7eb;
+}
+
+.table tbody tr:hover {
+    color: #76b7eb;
+    filter: brightness(200%);
+}
+
+tbody {
+    display: flex;
+    align-items: initial;
+}
+
+.table-collapse {   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accordion-table {
+    margin: 0;
+    width: 100%;
+}
+
+.list-graduations {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   grid-gap: 24px;
+   list-style: none;
+   margin-left: 1%;
+   margin-right: 1%;
+ }
+ 
+ul li {
+  background-color: transparent;
+  padding: 24px;
+  border-radius: 8px;
+  position: relative;
+  border: 2px solid #76b7eb;
+}
+
+ ul li button {
+  background-color: transparent;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  border: 0;
+  transition: filter 0.2s;
+}
+
+ ul li button:hover {
+  filter: brightness(200%);
+}
+
+ ul li strong {
+  display: block;
+  margin-bottom: 16px;
+  color: #76b7eb;
+}
+
+ ul li p + strong {
+  margin-top: 32px;
+}
+
+ ul li p {
+  color: #76b7eb;
+  line-height: 21px;
+  font-size: 16px;
 }

@@ -1,0 +1,9 @@
+.container .content .form .icon-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    padding: 0;
+}

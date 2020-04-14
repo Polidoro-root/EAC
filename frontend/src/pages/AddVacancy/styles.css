@@ -1,0 +1,17 @@
+.container-fluid .container .content form .input-vacancy,
+.container-fluid .container .content form .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-fluid .container .content form .footer {
+    margin-top: 3%;    
+}
+
+.container-fluid .container .content form .input-vacancy input,
+.container-fluid .container .content form .input-vacancy select,
+.container-fluid .container .content form .input-vacancy textarea {
+    padding: 2%;
+    font-size: 200%;
+}

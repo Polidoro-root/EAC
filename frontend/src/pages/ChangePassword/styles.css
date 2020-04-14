@@ -1,0 +1,32 @@
+.container-fluid .container .content {    
+    width: 100%;
+    padding-top: 5%;
+    padding-right: 10%;
+    padding-bottom: 5%;
+    padding-left: 10%;
+    background-color: transparent;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    margin-top: -2%;
+}
+
+
+.container-fluid .container .content form .input-password,
+.container-fluid .container .content form .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-fluid .container .content form .input-password + .input-password {
+    margin-top: 5%;
+}
+
+.container-fluid .container .content form .footer {
+    margin-top: 3%;
+}
+
+.container-fluid .container .content form .input-password input {
+    padding: 2%;
+    font-size: 200%;
+}

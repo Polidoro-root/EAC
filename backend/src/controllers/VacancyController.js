@@ -1,85 +1,42 @@
 const connection = require('../database/connection');
 
 module.exports = {
-    async index(request, response){
-        const vacancies = await connection('vacancies').select('*');
-        return response.json(vacancies);
-    },
+    async createVacancy(request, response){
+        const companyId = request.headers.companyid;
 
-    async create(request, response){
-        const { vacancy, salary, requirements, entryTime, 
-            departureTime, goingToLunch, backToLunch, workDays, benefits
-            } = request.body;
-        
-        const companiesId = request.headers.authorization;
+        const { vacancy, salary, requirements, city, uf } = request.body;
 
-        await connection('vacancies').insert({
-            companiesId,
-            vacancy,
-            salary,
-            requirements,
-            entryTime, 
-            departureTime,
-            goingToLunch,
-            backToLunch,
-            workDays,
-            benefits
-        });
-
-        return response.json({
-            companiesId,
-            vacancy,
-            salary,
-            requirements,
-            entryTime, 
-            departureTime,
-            goingToLunch,
-            backToLunch,
-            workDays,
-            benefits
-        });
-    },
-
-    async update(request, response){
-        const { id } = request.params;
-
-        const vacancy = request.body;
-
-        const vacancyUpdate = await connection('vacancies')
-            .where('id', id)
-            .update({                
-                vacancy: vacancy.vacancy,
-                salary: vacancy.salary,
-                requirements: vacancy.requirements,
-                entryTime: vacancy.entryTime,  
-                departureTime: vacancy.departureTime,
-                goingToLunch: vacancy.goingToLunch,
-                backToLunch: vacancy.backToLunch,
-                workDays: vacancy.workDays,
-                benefits: vacancy.benefits
+        const insertedVacancy = await connection('vacancies')
+            .returning('*')
+            .insert({
+                vacanciesCompaniesId: companyId,
+                vacancy: vacancy,
+                salary: salary,
+                requirements: requirements,
+                city: city,
+                uf: uf
             });
 
-        return response.json(vacancyUpdate);
+        return response.json(insertedVacancy);
     },
 
-    async delete(request, response){
+    async deleteVacancy(request, response){
         const { id } = request.params;
-        
-        const companiesId = request.headers.authorization;
+        const companyId = request.headers.companyid;
 
-        const vacancies = await connection('vacancies')
-            .where('id', id)
-            .select('companiesId')
-            .first();      
+        const vacancy = await connection('vacancies')
+          .where('id', id)
+          .select('vacanciesCompaniesId')
+          .first();        
 
-        if(vacancies.companiesId != companiesId){
-            return response.status(401).json({error: 'Operation not Permited'});
-        }        
-        
+        if (vacancy.vacanciesCompaniesId != companyId) {
+          return response.status(401).json({ error: 'Operation not permitted.' });
+        }
+
         await connection('vacancies')
             .where('id', id)
             .del();
 
         return response.status(204).send();
-    },
+    }
 };

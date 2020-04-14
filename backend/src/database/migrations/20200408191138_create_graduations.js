@@ -1,11 +1,11 @@
 
 exports.up = function(knex) {
     return knex.schema.createTable('graduations', function(table){
-        table.increments();
-        table.integer('usersId').notNullable();
+        table.increments('id');
+        table.integer('graduationsUsersId').unsigned().notNullable();
         table.string('graduationLevel').notNullable();
         table.string('course').notNullable();
-        table.foreign('usersId').references('id').inTable('users');
+        table.foreign('graduationsUsersId').references('id').inTable('users');
     });
 };
 

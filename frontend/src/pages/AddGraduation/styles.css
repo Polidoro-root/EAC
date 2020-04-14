@@ -1,0 +1,15 @@
+.container-fluid .container .content form .input-graduation,
+.container-fluid .container .content form .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-fluid .container .content form .footer {
+    margin-top: 3%;    
+}
+
+.container-fluid .container .content form .input-graduation input {
+    padding: 2%;
+    font-size: 200%;
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 import { Container, Row, Col } from 'react-bootstrap';
 import { 
@@ -11,7 +11,14 @@ import {
     } from 'react-icons/all';
 import './styles.css';
 
-export default function AddressForm(){        
+export default function AddressForm(){
+    const [zipCode, setZipCode] = useState('');
+    const [publicPlace, setPublicPlace] = useState('');
+    const [number, setNumber] = useState(0);
+    const [neighborhood, setNeighborhood] = useState('');
+    const [city, setCity] = useState('');
+    const [uf, setUf] = useState('');
+
     return (
         <Container>
             <div className="content">
@@ -24,7 +31,9 @@ export default function AddressForm(){
                             mask="99999-999"
                             maskChar={null}                                         
                             type="text"
-                            placeholder="CEP"                            
+                            placeholder="CEP"
+                            value={zipCode}
+                            onChange={e => setZipCode(e.target.value)}
                         />
                     </Col>
                     <Col xs="12" sm="10" md="6" lg="6">
@@ -34,6 +43,8 @@ export default function AddressForm(){
                         <input 
                             type="text"
                             placeholder="Logradouro"
+                            value={publicPlace}
+                            onChange={e => setPublicPlace(e.target.value)}
                         />
                     </Col>
                 </Row>                             
@@ -46,6 +57,8 @@ export default function AddressForm(){
                             type="number"
                             placeholder="Número"
                             min="0"
+                            value={number}
+                            onChange={e => setNumber(e.target.value)}
                         />
                     </Col>
                     <Col xs="12" sm="10" md="6" lg="6">
@@ -55,6 +68,8 @@ export default function AddressForm(){
                         <input 
                             type="text"
                             placeholder="Bairro"
+                            value={neighborhood}
+                            onChange={e => setNeighborhood(e.target.value)}
                         />
                     </Col>
                 </Row>
@@ -66,13 +81,20 @@ export default function AddressForm(){
                         <input 
                             type="text"
                             placeholder="Cidade"
+                            value={city}
+                            onChange={e => setCity(e.target.value)}
                         />
                     </Col>
                     <Col xs="12" sm="10" md="6" lg="6">
                         <label htmlFor="uf">
                             <FaSearchLocation color="#76b7eb" size={30} />
                         </label>
-                        <select name="uf" id="uf">
+                        <select 
+                            name="uf" 
+                            id="uf"
+                            value={uf}
+                            onChange={e => setUf(e.target.value)}
+                        >
                             <option value="" disabled selected hidden>Estado...</option>
                             <option value="ac">Acre</option>
                             <option value="al">Alagoas</option>

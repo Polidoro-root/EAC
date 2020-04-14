@@ -36,3 +36,16 @@
 .container-fluid form .row a .arrow-icon{
     margin-left: 10px;
 }
+
+.container .content .row label + input,
+.container .content .row label + select {
+    margin-bottom: 10%;
+}
+
+.container .content .row input, 
+.container .content .row select,
+.container .content .row textarea {
+    width: 100%;
+    font-size: 150%;
+    padding: 2%;
+}
