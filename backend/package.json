@@ -13,11 +13,12 @@
     "celebrate": "^12.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "knex": "^0.20.13",
+    "knex": "^0.20.15",
     "nodemon": "^2.0.3",
     "pg": "^8.0.0",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.6"
+    "sequelize": "^5.21.6",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {
     "sequelize-cli": "^5.5.1"

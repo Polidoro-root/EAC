@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
 import './styles.css';
 import {
-    Container,
-    Row, 
-    Col,     
+    Container,       
     InputGroup,
     InputGroupAddon,    
-    Input,
-    Pagination, 
-    PaginationItem, 
-    PaginationLink    
+    Input,    
     } from 'reactstrap';
 import { 
     FiChevronsDown,
     FiChevronsUp,
-    FiSearch
+    FiSearch,
+    FiSend
     } from 'react-icons/fi';    
 import HeaderNavbar from '../components/Navbar';
-import DisponibleVacancies from '../components/DisponibleVacancies';
+import api from '../../services/api';
 
 
 export default function UserIndex(){
@@ -44,69 +40,85 @@ export default function UserIndex(){
             setChevrons('Down');
         }
     }
+
+    const [search, setSearch] = useState('');
+    const [vacancies, setVacancies] = useState([]);
+
+    async function handleSearchVacancies(e){
+        e.preventDefault();        
+        
+        try{
+            api.get('userIndex', {
+                headers: {
+                    search: search
+                }
+            })
+            .then(response => {
+                setVacancies(response.data);
+            })
+            
+        } catch(err){
+            alert('Operation not Found');
+        }
+    }
     
     return (            
         <Container fluid={true}>
             <HeaderNavbar />
 
             <h1 className="search-title">Pesquise por Vaga:</h1>
-            <InputGroup className="">                
-                <Input 
-                    className="search-input"                     
-                />
-                <InputGroupAddon addonType="prepend">
-                    <button className="button search-button">
-                        <FiSearch color="#76b7eb" size={30}/>
-                    </button>
-                </InputGroupAddon>
-            </InputGroup>
+            <form onSubmit={handleSearchVacancies}>
+                <InputGroup className="">                
+                    <Input 
+                        className="search-input"
+                        placeholder="Ex: Eletricista"
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
+                    />
+                    <InputGroupAddon addonType="prepend">
+                        <button
+                            className="button search-button"
+                            type="submit"
+                        >
+                            <FiSearch color="#76b7eb" size={30}/>
+                        </button>
+                    </InputGroupAddon>
+                </InputGroup>
+            </form>
 
-            <DisponibleVacancies />
+            <ul className="list-vacancies">
+                {vacancies.map(vacancy => (
+                    <li key={vacancy.id}>                        
+                        <strong>VAGA:</strong>
+                        <p>{vacancy.vacancy}</p>
 
-            <Row>
-                <Col>
-                    <Pagination aria-label="Page navigation example">
-                        <PaginationItem>
-                            <PaginationLink first href="#" />
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink previous href="#" />
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#">
-                                1
-                            </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#">
-                                2
-                            </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#">
-                                3
-                            </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#">
-                                4
-                            </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#">
-                                5
-                            </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink next href="#" />
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink last href="#" />
-                        </PaginationItem>
-                    </Pagination>
-                </Col>
-            </Row>            
-            
+                        <strong>SALÁRIO:</strong>
+                        <p>{vacancy.salary}</p>
+
+                        <strong>REQUISITOS:</strong>
+                        <p>{vacancy.requirements}</p>
+                        
+                        <strong>EMPRESA:</strong>
+                        <p>{vacancy.name}</p>
+
+                        <strong>CNPJ:</strong>
+                        <p>{vacancy.cnpj}</p>
+
+                        <strong>CIDADE:</strong>
+                        <p>{vacancy.city}</p>
+
+                        <strong>ESTADO:</strong>
+                        <p>{vacancy.uf}</p>
+
+                        <button
+                            className="collapse-button"
+                            type="button"                            
+                        >
+                            <FiSend color="#76b7eb" size={30} />
+                        </button>
+                    </li>
+                ))}
+            </ul>
         </Container>        
     );
 }

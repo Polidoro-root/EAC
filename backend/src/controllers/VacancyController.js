@@ -1,4 +1,5 @@
 const connection = require('../database/connection');
+const utf8 = require('utf8');
 
 module.exports = {
     async createVacancy(request, response){
@@ -18,6 +19,19 @@ module.exports = {
             });
 
         return response.json(insertedVacancy);
+    },
+
+    async showVacancies(request, response){
+        const search = request.headers.search;
+        
+        const vacancies = await connection('vacancies')
+            .join('companies', 'vacancies.vacanciesCompaniesId', 'companies.id')            
+            .where('vacancy', 'like', `%${search}%`)
+            .select(['vacancies.id as vacancyId', 'vacancy', 'salary', 'requirements', 'city',
+                'uf', 'companies.id as companyId', 'companies.name', 'companies.cnpj']);                  
+
+        console.log(search);
+        return response.json(vacancies);
     },
 
     async deleteVacancy(request, response){

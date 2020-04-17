@@ -1,3 +1,8 @@
+.button {
+    padding: 1%;
+    border: none;
+}
+
 .container .content {
     margin-top: 5%;
     width: 100%;
@@ -51,10 +56,16 @@
 
 .accordion-header,
 .accordion-body {
-   padding: 0;
+    border: 1px solid #76b7eb;
+    padding: 0;
+}
+
+.accordion-header {
+    border-bottom: none;
 }
 
 .card {
+    background-color: transparent;
     margin-top: 5%;    
 }
 
@@ -89,34 +100,6 @@
 
 .accordion-body .container {
     margin-top: 5%;
-}
-
-.accordion-body div .table-responsive .table tbody 
-
-td, th {
-    font-size: 200%;
-    color: #76b7eb;
-}
-
-.table tbody tr:hover {
-    color: #76b7eb;
-    filter: brightness(200%);
-}
-
-tbody {
-    display: flex;
-    align-items: initial;
-}
-
-.table-collapse {   
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.accordion-table {
-    margin: 0;
-    width: 100%;
 }
 
 .list-graduations {

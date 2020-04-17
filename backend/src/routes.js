@@ -10,6 +10,8 @@ routes.post('/userRegister', UserController.createUser);
 
 routes.post('/userLogin', UserController.createSession);
 
+routes.get('/userIndex', VacancyController.showVacancies);
+
 routes.get('/userProfile', UserController.userData);
 
 routes.put('/userProfile/changePassword', UserController.changePassword);

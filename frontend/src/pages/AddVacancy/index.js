@@ -109,6 +109,7 @@ function AddVacancy(){
                                     onChange={e => setUf(e.target.value)}
                                 >
                                     <option value selected hidden>Estado...</option>
+                                    <option value="AC">AC</option>
                                     <option value="AL">AL</option>
                                     <option value="AP">AP</option>
                                     <option value="AM">AM</option>

@@ -45,7 +45,7 @@
     margin-right: 1%;
   }
   
- ul li {
+ul li {
    background-color: transparent;
    padding: 24px;
    border-radius: 8px;
@@ -53,7 +53,7 @@
    border: 2px solid #76b7eb;
  }
  
-  ul li button {
+ul li button {
    background-color: transparent;
    position: absolute;
    right: 24px;

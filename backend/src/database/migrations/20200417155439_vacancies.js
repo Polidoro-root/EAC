@@ -1,3 +1,4 @@
+
 exports.up = function(knex) {
     return knex.schema.createTable('vacancies', function(table){
         table.increments('id');
@@ -9,7 +10,6 @@ exports.up = function(knex) {
         table.string('uf').notNullable();
         table.foreign('vacanciesCompaniesId').references('id').inTable('companies');
     });
-
 };
 
 exports.down = function(knex) {
