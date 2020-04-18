@@ -9,6 +9,7 @@ import CompanyLogin from './pages/CompanyLogin';
 import CompanyRegister from './pages/CompanyRegister';
 import CompanyIndex from './pages/CompanyIndex';
 import CompanyProfile from './pages/CompanyProfile';
+import CompanyChat from './pages/CompanyChat';
 import ChangePassword from './pages/ChangePassword';
 import AlterContact from './pages/AlterContact';
 import AlterProfessional from './pages/AlterProfessional';
@@ -35,6 +36,7 @@ export default function Routes(){
                 <Route path="/companyProfile/changePassword" exact component={ChangePassword} />
                 <Route path="/companyProfile/alterContact" exact component={AlterContact} />
                 <Route path="/companyProfile/addVacancy" exact component={AddVacancy} />
+                <Route path="/companyChat" exact component={CompanyChat} />
             </Switch>
         </BrowserRouter>
     );

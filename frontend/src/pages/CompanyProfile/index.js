@@ -21,7 +21,6 @@ import {
 } from 'react-icons/all';
 import './styles.css';
 import HeaderNavbar from '../components/Navbar';
-import CompanyConversationsSection from '../components/CompanyConversationsSection';
 import api from '../../services/api';
 
 function CompanyProfile(){
@@ -301,9 +300,7 @@ function CompanyProfile(){
                         </Card.Body>
                     </Accordion.Collapse>
                 </Card>
-            </Accordion>
-
-            <CompanyConversationsSection />
+            </Accordion>            
             
         </Container>
     );

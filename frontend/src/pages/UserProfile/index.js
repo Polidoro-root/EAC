@@ -337,7 +337,7 @@ function UserProfile(){
                                                     });
 
                                                     setGraduations(graduations.filter(graduation =>
-                                                            graduation.id !== id));                                                                                                    
+                                                            graduation.id !== id));
                                                 } catch(err) {
                                                     alert('Erro ao deletar graduação, tente novamente.');
                                                 }

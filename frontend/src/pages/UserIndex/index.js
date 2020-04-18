@@ -16,33 +16,11 @@ import HeaderNavbar from '../components/Navbar';
 import api from '../../services/api';
 
 
-export default function UserIndex(){
-    const [chevrons, setChevrons] = useState('Down');    
-
-    function accordionIcon(){
-        let icon;
-
-        if(chevrons === "Down"){
-            icon = <FiChevronsDown className="accordion-icon" color="#76b7eb" size={30} />;            
-        }
-        else if(chevrons === "Up"){
-            icon = <FiChevronsUp className="accordion-icon" color="#76b7eb" size={30} />
-        }
-
-        return icon;
-    }
-
-    function toggleAccordionIcon(){
-        if(chevrons === "Down"){
-            setChevrons('Up');
-        }
-        else if(chevrons === "Up"){
-            setChevrons('Down');
-        }
-    }
-
+export default function UserIndex(){    
     const [search, setSearch] = useState('');
     const [vacancies, setVacancies] = useState([]);
+
+    const userId = localStorage.getItem('userId');
 
     async function handleSearchVacancies(e){
         e.preventDefault();        
@@ -112,7 +90,26 @@ export default function UserIndex(){
 
                         <button
                             className="collapse-button"
-                            type="button"                            
+                            type="button"
+                            onClick={async e => {
+                                e.preventDefault();
+
+                                const data = {
+                                    userId: parseInt(userId),
+                                    companyId: vacancy.companyId,
+                                    vacancyId: vacancy.vacancyId
+                                };
+
+                                console.log(data);
+
+                                try{
+                                    await api.post('userIndex', data);
+
+                                    alert('Enviado');
+                                } catch(err) {
+                                    alert('Erro ao enviar convite. Tente Novamente!');
+                                }
+                            }}
                         >
                             <FiSend color="#76b7eb" size={30} />
                         </button>

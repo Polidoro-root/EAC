@@ -1,5 +1,56 @@
-.card .card-body .card-body-row .col {
-    display: flex;
-    align-items: center;
-    justify-content: start;
+.list-invitations {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+    list-style: none;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.list-invitations-graduations {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+    list-style: none;    
+}
+
+ul li {
+    background-color: transparent;
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+    border: 2px solid #76b7eb;
+}
+
+ul li .collapse-buttons {
+    background-color: transparent;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    border: 0;
+    transition: filter 0.2s;
+}
+  
+ul li button:hover {
+    filter: brightness(200%);
+}
+  
+ul li strong {
+    display: block;
+    margin-bottom: 16px;
+    color: #76b7eb;
+}
+  
+ul li p + strong {
+    margin-top: 32px;
+}
+  
+ul li p {
+    color: #76b7eb;
+    line-height: 21px;
+    font-size: 16px;
+}
+
+ul li h2 {
+    text-align: center;
 }

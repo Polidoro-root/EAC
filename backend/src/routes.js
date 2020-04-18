@@ -5,12 +5,15 @@ const CompanyController = require('./controllers/CompanyController');
 const GraduationController = require('./controllers/GraduationController');
 const ContactController = require('./controllers/ContactController');
 const VacancyController = require('./controllers/VacancyController');
+const InvitationController = require('./controllers/InvitationController');
 
 routes.post('/userRegister', UserController.createUser);
 
 routes.post('/userLogin', UserController.createSession);
 
 routes.get('/userIndex', VacancyController.showVacancies);
+
+routes.post('/userIndex', InvitationController.createInvitation);
 
 routes.get('/userProfile', UserController.userData);
 
@@ -27,6 +30,10 @@ routes.put('/userProfile/alterContact', ContactController.alterContact);
 routes.post('/companyRegister', CompanyController.createCompany);
 
 routes.post('/companyLogin', CompanyController.createSession);
+
+routes.get('/companyIndex', InvitationController.showInvitations);
+
+routes.put('/companyIndex/:id', InvitationController.acceptInvitation);
 
 routes.get('/companyProfile', CompanyController.companyData);
 
