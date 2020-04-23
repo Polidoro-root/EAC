@@ -1,0 +1,102 @@
+.chat {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.chat .section-height {
+    height: 100vh;
+}
+
+.chat .side-panel {    
+    background-color: transparent;
+    border-right: 1px solid #76b7eb;    
+    overflow-y: auto;
+}
+
+.chat .side-panel .navbar,
+.chat .main-panel .navbar {
+    width: 100%;    
+    background-color: #76b7eb;    
+    height: 12%;
+    margin: 0;
+}
+
+.chat .side-panel .navbar a,
+.chat .main-panel .navbar a {
+    color: #194052;
+    font-weight: bold;
+}
+
+.chat .side-panel .searchbar {
+    background-color: transparent;
+    padding: 4%;
+}
+
+.chat .side-panel .searchbar form input {
+    font-size: 150%;
+    border-right: none;    
+}
+
+.chat .side-panel .conversations {
+
+}
+
+.chat .side-panel .conversations .conversations-list .conversation-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #194052;
+    border: none;
+    border-radius: 0%;
+    border-top: 1px solid #76b7eb;
+    list-style: none;
+    transition: filter 0.2s;
+}
+
+.chat .side-panel .conversations .conversations-list .conversation-cell:hover {    
+    filter: brightness(150%)
+}
+
+.chat .side-panel .conversations .conversations-list .conversation-cell:last-child {
+    border-bottom: 1px solid #76b7eb;
+}
+
+.chat .main-panel {    
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat .main-panel footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 12%;
+    background-color: #76b7eb;
+}
+
+.chat .main-panel footer input {
+    background-color: #194052;
+    padding: 1%;
+    font-size: 200%;
+    width: 90%;
+}
+
+.chat .main-panel footer button {
+    background-color: #76b7eb;
+    color: #194052;
+    padding: 1%;
+    border: none;
+    border-radius: 100%;
+    transition: all 0.2s;
+}
+
+.chat .main-panel footer button:hover {
+    cursor: pointer;    
+    filter: opacity(80%);
+    background-color: #194052;
+    color: #76b7eb;
+}

@@ -15,6 +15,7 @@ import AlterContact from './pages/AlterContact';
 import AlterProfessional from './pages/AlterProfessional';
 import AddGraduation from './pages/AddGraduation';
 import AddVacancy from './pages/AddVacancy';
+import Chat from './pages/Chat';
 
 export default function Routes(){
     return (
@@ -29,6 +30,7 @@ export default function Routes(){
                 <Route path="/userProfile/alterContact" exact component={AlterContact} />
                 <Route path="/userProfile/alterProfessional" exact component={AlterProfessional} />
                 <Route path="/userProfile/addGraduation" exact component={AddGraduation} />
+                <Route path="/userProfile/chat" exact component={Chat} />
                 <Route path="/companyLogin" exact component={CompanyLogin} />
                 <Route path="/companyRegister" exact component={CompanyRegister} />
                 <Route path="/companyIndex" exact component={CompanyIndex} />
