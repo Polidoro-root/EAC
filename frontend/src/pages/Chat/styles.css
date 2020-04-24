@@ -8,6 +8,7 @@
     transition: all 0.2s;    
     color: #194052;    
     background-color: transparent !important;
+    border: none;
 }
 
 .chat button:hover,
@@ -126,16 +127,29 @@
     justify-content: space-between;
 }
 
-.chat .main-panel footer {
+.chat .main-panel .navbar .navbar-collapse .navbar-nav  {
+    margin-left: auto;
+    width: 25%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
+}
+
+.chat .main-panel footer {    
     width: 100%;
     height: 12%;
     background-color: #76b7eb;    
 }
 
-.chat .main-panel footer input {
+.chat .main-panel footer form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.chat .main-panel footer form input {
     background-color: #194052;
     padding: 1%;
     padding-left: 2%;
@@ -147,7 +161,7 @@
     border-bottom-left-radius: 25px;
 }
 
-.chat .main-panel footer button {
+.chat .main-panel footer form button {
     background-color: #76b7eb;
     color: #194052;
     padding: 1%;

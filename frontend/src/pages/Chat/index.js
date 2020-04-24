@@ -37,12 +37,10 @@ function Chat(){
                     </NavbarBrand>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink href="/components/">
-                                    <FiMoreVertical size={30} />
-                                </NavLink>
-                            </NavItem>                            
+                        <Nav className="ml-auto" navbar>                            
+                            <button>
+                                <FiMoreVertical size={30} />
+                            </button>                                      
                         </Nav>                    
                     </Collapse>
                 </Navbar>
@@ -53,6 +51,7 @@ function Chat(){
                             <Input 
                                 type="text"
                                 className="search-input"
+                                placeholder="Procure por vaga"
                             />
                             <InputGroupAddon addonType="prepend">
                                 <button
@@ -151,35 +150,33 @@ function Chat(){
                     </NavbarBrand>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink href="/components/">
-                                    <FiSearch size={30}/>
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/components/">
-                                    <FiPaperclip size={30}/>
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/components/">
-                                    <FiMoreVertical size={30}/>
-                                </NavLink>
-                            </NavItem>
+                        <Nav navbar>                            
+                            <button>
+                                <FiSearch size={30}/>
+                            </button>                                                        
+                            <button>
+                                <FiPaperclip size={30}/>
+                            </button>                                                        
+                            <button>
+                                <FiMoreVertical size={30}/>
+                            </button>                            
                         </Nav>                    
                     </Collapse>
                 </Navbar>
 
                 <footer>
-                    <input
-                        type="text"
-                        placeholder="Escreva sua mensagem"
-                    />
+                    <form>
+                        <input
+                            type="text"
+                            placeholder="Escreva sua mensagem"
+                        />
 
-                    <button>
-                        <FiSend size={40} />
-                    </button>
+                        <button
+                            type="submit"                            
+                        >
+                            <FiSend size={40} />
+                        </button>
+                    </form>
                 </footer>
             </section>
         </main>
