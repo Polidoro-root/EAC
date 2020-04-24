@@ -3,22 +3,34 @@
     grid-template-columns: 30% 70%;
 }
 
+.chat button,
+.chat a {
+    transition: all 0.2s;    
+    color: #194052;    
+    background-color: transparent !important;
+}
+
+.chat button:hover,
+.chat a:hover {    
+    cursor: pointer;    
+    filter: brightness(500%);        
+}
+
 .chat .section-height {
     height: 100vh;
 }
 
 .chat .side-panel {    
-    background-color: transparent;
-    border-right: 1px solid #76b7eb;    
-    overflow-y: auto;
+    background-color: transparent;    
 }
 
 .chat .side-panel .navbar,
 .chat .main-panel .navbar {
     width: 100%;    
     background-color: #76b7eb;    
-    height: 12%;
+    height: 10vh;
     margin: 0;
+    border-right: 1px solid #194052;
 }
 
 .chat .side-panel .navbar a,
@@ -28,17 +40,58 @@
 }
 
 .chat .side-panel .searchbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    height: 15vh;
     background-color: transparent;
-    padding: 4%;
+    border-bottom: 1px solid #76b7eb;   
+    border-right: 1px solid #76b7eb;
+    padding-left: 2%;
+    padding-right: 2%;    
+}
+
+.chat .side-panel .searchbar form {
+    width: 100%;
 }
 
 .chat .side-panel .searchbar form input {
     font-size: 150%;
     border-right: none;    
+    border-top-left-radius: 25px;    
+    border-bottom-left-radius: 25px;
+    padding-left: 5%;
+}
+
+.chat .side-panel .searchbar form .input-group-prepend {
+    border-top-right-radius: 25px;    
+    border-bottom-right-radius: 25px;    
+    padding-right: 2%;
+}
+
+.chat .side-panel .searchbar form .input-group-prepend button {
+    color: #76b7eb;
+    outline-color: transparent;
 }
 
 .chat .side-panel .conversations {
+    display: block;
+    height: 75vh;
+    overflow-y: auto;
+    border-right: 1px solid #76b7eb;
+}
 
+.chat .side-panel .conversations::-webkit-scrollbar {    
+    width: 1.5%;    
+    background-color: transparent;    
+}
+
+.chat .side-panel .conversations::-webkit-scrollbar-thumb {
+    background-color: #76b7eb; 
+}
+
+.chat .side-panel .conversations .conversations-list {
+    margin: 0;
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell {
@@ -47,8 +100,8 @@
     justify-content: space-between;
     background-color: #194052;
     border: none;
-    border-radius: 0%;
-    border-top: 1px solid #76b7eb;
+    border-radius: 0;
+    border-top: 0.25px solid #76b7eb;
     list-style: none;
     transition: filter 0.2s;
 }
@@ -56,6 +109,10 @@
 .chat .side-panel .conversations .conversations-list .conversation-cell:hover {    
     filter: brightness(150%)
 }
+
+.chat .side-panel .conversations .conversations-list .conversation-cell:first-child {
+    border-top: none;    
+} 
 
 .chat .side-panel .conversations .conversations-list .conversation-cell:last-child {
     border-bottom: 1px solid #76b7eb;
@@ -75,28 +132,24 @@
     justify-content: space-evenly;
     width: 100%;
     height: 12%;
-    background-color: #76b7eb;
+    background-color: #76b7eb;    
 }
 
 .chat .main-panel footer input {
     background-color: #194052;
     padding: 1%;
+    padding-left: 2%;
     font-size: 200%;
     width: 90%;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
 }
 
 .chat .main-panel footer button {
     background-color: #76b7eb;
     color: #194052;
     padding: 1%;
-    border: none;
-    border-radius: 100%;
-    transition: all 0.2s;
-}
-
-.chat .main-panel footer button:hover {
-    cursor: pointer;    
-    filter: opacity(80%);
-    background-color: #194052;
-    color: #76b7eb;
+    border: none;    
 }
