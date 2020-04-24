@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {     
     Collapse,
     Navbar,
@@ -21,6 +21,7 @@ import {
     FiMoreVertical,
     FiPaperclip,
 } from 'react-icons/fi';
+import socketIOClient from 'socket.io-client';
 
 
 function Chat(){

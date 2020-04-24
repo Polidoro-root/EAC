@@ -17,10 +17,8 @@
     "nodemon": "^2.0.3",
     "pg": "^8.0.0",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.6",
+    "socket.io": "^2.3.0",
     "utf8": "^3.0.0"
   },
-  "devDependencies": {
-    "sequelize-cli": "^5.5.1"
-  }
+  "devDependencies": {}
 }

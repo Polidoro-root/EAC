@@ -8,4 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-module.exports = app;
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+
+module.exports = [ server, io ];
