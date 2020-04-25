@@ -97,14 +97,14 @@
 
 .chat .side-panel .conversations .conversations-list .conversation-cell {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center;    
     background-color: #194052;
     border: none;
     border-radius: 0;
     border-top: 0.25px solid #76b7eb;
     list-style: none;
-    transition: filter 0.2s;
+    transition: filter 0.2s;        
+    
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell:hover {    
@@ -117,6 +117,25 @@
 
 .chat .side-panel .conversations .conversations-list .conversation-cell:last-child {
     border-bottom: 1px solid #76b7eb;
+}
+
+.chat .side-panel .conversations .conversations-list .conversation-cell .company-vacancy {
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+    justify-content: space-between;    
+    margin-left: 5%;
+    font-size: 150%;
+}
+
+.chat .side-panel .conversations .conversations-list .conversation-cell 
+.company-vacancy .company {
+    font-weight: bold;
+}
+
+.chat .side-panel .conversations .conversations-list .conversation-cell 
+.messages-not-verified {
+    margin-left: auto;
 }
 
 .chat .main-panel {    

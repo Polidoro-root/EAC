@@ -6,6 +6,7 @@ const GraduationController = require('./controllers/GraduationController');
 const ContactController = require('./controllers/ContactController');
 const VacancyController = require('./controllers/VacancyController');
 const InvitationController = require('./controllers/InvitationController');
+const ChatController = require('./controllers/ChatController');
 
 routes.post('/userRegister', UserController.createUser);
 
@@ -26,6 +27,10 @@ routes.post('/userProfile/addGraduation', GraduationController.createGraduation)
 routes.delete('/userProfile/:id', GraduationController.deleteGraduation);
 
 routes.put('/userProfile/alterContact', ContactController.alterContact);
+
+routes.get('/userProfile/chat', ChatController.listChats);
+
+routes.post('/userProfile/chat', ChatController.createChat);
 
 routes.post('/companyRegister', CompanyController.createCompany);
 

@@ -4,9 +4,7 @@ import {
     Navbar,
     NavbarToggler,
     NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
+    Nav,    
     Input,
     InputGroup,
     InputGroupAddon
@@ -22,15 +20,30 @@ import {
     FiPaperclip,
 } from 'react-icons/fi';
 import socketIOClient from 'socket.io-client';
-
+import api from '../../services/api';
 
 function Chat(){
+    const userId = localStorage.getItem('userId');
+
+    const [chats, setChats] = useState([]);
+
+    useEffect(() => {
+        api.get('userProfile/chat', {
+            headers: {
+                userId: userId
+            }
+        })
+        .then(response => {
+            setChats(response.data);
+        })
+    }, []);
+    
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <main className="chat">
+        <main className="chat">            
             <section className="section-height side-panel">
                 <Navbar expand="md">
                     <NavbarBrand href="/userProfile">
@@ -68,78 +81,23 @@ function Chat(){
 
                 <div className="conversations">
                     <ul className="conversations-list">
-                        <li className="conversation-cell">
-                            <span className="identifier">
-                                <FiBriefcase size={30} />
-                                <span>NOME</span>
+                    {chats.map(chat => (
+                        <li
+                            key={chat.id}
+                            className="conversation-cell"
+                        >
+                            <span className="briefcase">
+                                <FiBriefcase size={50} />
+                            </span>
+                            <span className="company-vacancy">                                
+                                <span className="company">{chat.name}</span>
+                                <span className="vacancy">{chat.vacancy}</span>                                
                             </span>
                             <span className="messages-not-verified">
-                                <FiAlertCircle size={30} />
+                                <FiAlertCircle size={40} />
                             </span>
                         </li>
-                        <li className="conversation-cell">
-                            <span className="identifier">
-                                <FiBriefcase size={30} />
-                                <span>NOME</span>
-                            </span>
-                            <span className="messages-not-verified">
-                                <FiAlertCircle size={30} />
-                            </span>
-                        </li>
-                        <li className="conversation-cell">
-                            <span className="identifier">
-                                <FiBriefcase size={30} />
-                                <span>NOME</span>
-                            </span>
-                            <span className="messages-not-verified">
-                                <FiAlertCircle size={30} />
-                            </span>
-                        </li>
-                        <li className="conversation-cell">
-                            <span className="identifier">
-                                <FiBriefcase size={30} />
-                                <span>NOME</span>
-                            </span>
-                            <span className="messages-not-verified">
-                                <FiAlertCircle size={30} />
-                            </span>
-                        </li>
-                        <li className="conversation-cell">
-                            <span className="identifier">
-                                <FiBriefcase size={30} />
-                                <span>NOME</span>
-                            </span>
-                            <span className="messages-not-verified">
-                                <FiAlertCircle size={30} />
-                            </span>
-                        </li>
-                        <li className="conversation-cell">
-                            <span className="identifier">
-                                <FiBriefcase size={30} />
-                                <span>NOME</span>
-                            </span>
-                            <span className="messages-not-verified">
-                                <FiAlertCircle size={30} />
-                            </span>
-                        </li>
-                        <li className="conversation-cell">
-                            <span className="identifier">
-                                <FiBriefcase size={30} />
-                                <span>NOME</span>
-                            </span>
-                            <span className="messages-not-verified">
-                                <FiAlertCircle size={30} />
-                            </span>
-                        </li>
-                        <li className="conversation-cell">
-                            <span className="identifier">
-                                <FiBriefcase size={30} />
-                                <span>NOME</span>
-                            </span>
-                            <span className="messages-not-verified">
-                                <FiAlertCircle size={30} />
-                            </span>
-                        </li>
+                    ))}                    
                     </ul>
                 </div>
             </section>

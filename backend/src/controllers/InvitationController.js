@@ -6,14 +6,16 @@ module.exports = {
 
         let invitations = await connection('invitations')
             .join('users', 'invitations.invitationsUsersId', 'users.id')
+            .join('vacancies', 'invitations.invitationsVacanciesId', 'vacancies.id')
             .where({                
                 'invitations.invitationsCompaniesId': companyId,
                 'invitations.accepted': false
             })
-            .select('invitations.*', 'users.id as userId','users.interestArea',
-                'users.experienceArea', 'users.lastJob', 'users.aboutYourself'
-            );
-        
+            .select('invitations.*', 'vacancies.id as vacancyId', 'vacancies.vacancy',
+                'users.id as userId','users.interestArea', 'users.experienceArea',
+                'users.lastJob', 'users.aboutYourself'
+            );        
+
         for (let index = 0; index < invitations.length; index++) {
             invitations[index]['graduations'] = await connection('graduations')
                 .where('graduationsUsersId', '=', invitations[index]['invitationsUsersId'])
