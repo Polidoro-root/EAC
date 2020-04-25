@@ -40,7 +40,7 @@ function Chat(){
     
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggle = () => setIsOpen(!isOpen);
+    const toggle = () => setIsOpen(!isOpen);        
 
     return (
         <main className="chat">            
@@ -51,17 +51,17 @@ function Chat(){
                     </NavbarBrand>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar>
-                        <Nav className="ml-auto" navbar>                            
+                        <Nav className="ml-auto" navbar>
                             <button>
                                 <FiMoreVertical size={30} />
-                            </button>                                      
-                        </Nav>                    
+                            </button>
+                        </Nav>
                     </Collapse>
                 </Navbar>
 
                 <div className="searchbar">
                     <form>
-                        <InputGroup className="">                
+                        <InputGroup className="">
                             <Input 
                                 type="text"
                                 className="search-input"
@@ -83,21 +83,29 @@ function Chat(){
                     <ul className="conversations-list">
                     {chats.map(chat => (
                         <li
-                            key={chat.id}
+                            key={chat.chatId}
                             className="conversation-cell"
+                            id={`chat${chat.chatId}`}
+                            onClick={e => {
+                                const company = document.querySelector('#currentChatCompany');
+                                const vacancy = document.querySelector('#currentChatVacancy');
+
+                                company.innerHTML = chat.name;
+                                vacancy.innerHTML = chat.vacancy;
+                            }}
                         >
                             <span className="briefcase">
                                 <FiBriefcase size={50} />
                             </span>
-                            <span className="company-vacancy">                                
+                            <span className="company-vacancy">
                                 <span className="company">{chat.name}</span>
-                                <span className="vacancy">{chat.vacancy}</span>                                
+                                <span className="vacancy">{chat.vacancy}</span>
                             </span>
                             <span className="messages-not-verified">
                                 <FiAlertCircle size={40} />
                             </span>
                         </li>
-                    ))}                    
+                    ))}   
                     </ul>
                 </div>
             </section>
@@ -107,21 +115,23 @@ function Chat(){
                     <NavbarBrand href="/userProfile">
                         <FiBriefcase size={50} />
                     </NavbarBrand>
+                    <div className="currentChat">
+                        <strong><span id="currentChatCompany"></span></strong>
+                        <span id="currentChatVacancy"></span>
+                    </div>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar>
                         <Nav navbar>                            
                             <button>
-                                <FiSearch size={30}/>
-                            </button>                                                        
-                            <button>
-                                <FiPaperclip size={30}/>
-                            </button>                                                        
-                            <button>
                                 <FiMoreVertical size={30}/>
-                            </button>                            
-                        </Nav>                    
+                            </button>
+                        </Nav>
                     </Collapse>
                 </Navbar>
+
+                <div className="messages-area">
+                    <ul></ul>
+                </div>
 
                 <footer>
                     <form>
@@ -131,7 +141,7 @@ function Chat(){
                         />
 
                         <button
-                            type="submit"                            
+                            type="submit"
                         >
                             <FiSend size={40} />
                         </button>
