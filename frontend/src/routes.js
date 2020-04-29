@@ -5,6 +5,7 @@ import UserLogin from './pages/UserLogin';
 import UserRegister from './pages/UserRegister';
 import UserIndex from './pages/UserIndex';
 import UserProfile from './pages/UserProfile';
+import UserChat from './pages/UserChat';
 import CompanyLogin from './pages/CompanyLogin';
 import CompanyRegister from './pages/CompanyRegister';
 import CompanyIndex from './pages/CompanyIndex';
@@ -15,7 +16,6 @@ import AlterContact from './pages/AlterContact';
 import AlterProfessional from './pages/AlterProfessional';
 import AddGraduation from './pages/AddGraduation';
 import AddVacancy from './pages/AddVacancy';
-import Chat from './pages/Chat';
 
 export default function Routes(){
     return (
@@ -30,7 +30,7 @@ export default function Routes(){
                 <Route path="/userProfile/alterContact" exact component={AlterContact} />
                 <Route path="/userProfile/alterProfessional" exact component={AlterProfessional} />
                 <Route path="/userProfile/addGraduation" exact component={AddGraduation} />
-                <Route path="/userProfile/chat" exact component={Chat} />
+                <Route path="/userProfile/chat" exact component={UserChat} />
                 <Route path="/companyLogin" exact component={CompanyLogin} />
                 <Route path="/companyRegister" exact component={CompanyRegister} />
                 <Route path="/companyIndex" exact component={CompanyIndex} />
@@ -38,7 +38,7 @@ export default function Routes(){
                 <Route path="/companyProfile/changePassword" exact component={ChangePassword} />
                 <Route path="/companyProfile/alterContact" exact component={AlterContact} />
                 <Route path="/companyProfile/addVacancy" exact component={AddVacancy} />
-                <Route path="/companyChat" exact component={CompanyChat} />
+                <Route path="/companyProfile/chat" exact component={CompanyChat} />
             </Switch>
         </BrowserRouter>
     );

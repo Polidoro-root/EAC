@@ -4,19 +4,23 @@ module.exports = {
     async companyData(request, response){
         const companyId = request.headers.companyid;
 
-        const [data] = await connection('companies')
+        const company = await connection('companies')
             .join('contacts', 'companies.id', 'contacts.contactsCompaniesId')
             .where({
+                'contacts.contactsCompaniesId': companyId,
                 'companies.id': companyId
             })
-            .select('*');
+            .select('companies.*', 'contacts.id as contactId', 'contacts.email',
+                'contacts.phone'
+            );
 
-        const vacancies = await connection('vacancies')
-            .where('vacanciesCompaniesId', companyId)
-            .select('*');        
+        for (let index in company){
+            company[index]['vacancies'] = await connection('vacancies')
+                .where('vacanciesCompaniesId', '=', company[index]['id'])
+                .select('*');
+        }
 
-        return response.json([data, vacancies]);
-        
+        return response.json(company);        
     },
 
     async createCompany(request, response){

@@ -1,3 +1,9 @@
-const [ app, io ] = require('./app');
+const { server } = require('./app');
+const io = require('./socket');
 
-app.listen(3333);
+const host = 'localhost';
+const port = 3333;
+
+server.listen(port, () => {
+    console.log(`[HTTP] Listen => Server is running at http://${host}:${port}`);
+});

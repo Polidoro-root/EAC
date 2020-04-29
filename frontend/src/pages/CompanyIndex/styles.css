@@ -14,43 +14,50 @@
     list-style: none;    
 }
 
-ul li {
+.list-invitations li {
     background-color: transparent;
     padding: 24px;
     border-radius: 8px;
     position: relative;
     border: 2px solid #76b7eb;
 }
-
-ul li .collapse-buttons {
-    background-color: transparent;
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    border: 0;
-    transition: filter 0.2s;
-}
   
-ul li button:hover {
-    filter: brightness(200%);
-}
-  
-ul li strong {
+.list-invitations li strong {
     display: block;
     margin-bottom: 16px;
     color: #76b7eb;
 }
   
-ul li p + strong {
+.list-invitations li p + strong {
     margin-top: 32px;
 }
   
-ul li p {
+.list-invitations li p {
     color: #76b7eb;
     line-height: 21px;
     font-size: 16px;
+    word-break: break-all;
 }
 
-ul li h2 {
+.list-invitations li h2 {
     text-align: center;
+}
+
+.list-invitations li footer {
+    width: 100%;
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.list-invitations li footer button {
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s;
+}
+
+.list-invitations li footer button:hover {
+    cursor: pointer;
+    filter: brightness(200%);
 }

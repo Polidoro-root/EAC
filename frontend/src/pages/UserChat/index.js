@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {     
     Collapse,
     Navbar,
@@ -16,13 +17,12 @@ import {
     FiAlertCircle,
     FiSearch,
     FiSend,
-    FiMoreVertical,
-    FiPaperclip,
+    FiMoreVertical,    
 } from 'react-icons/fi';
 import socketIOClient from 'socket.io-client';
 import api from '../../services/api';
 
-function Chat(){
+function UserChat(){
     const userId = localStorage.getItem('userId');
 
     const [chats, setChats] = useState([]);
@@ -46,9 +46,9 @@ function Chat(){
         <main className="chat">            
             <section className="section-height side-panel">
                 <Navbar expand="md">
-                    <NavbarBrand href="/userProfile">
+                    <Link to="/userProfile">
                         <FiUser size={50} />
-                    </NavbarBrand>
+                    </Link>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -152,4 +152,4 @@ function Chat(){
     );
 }
 
-export default Chat;
+export default UserChat;

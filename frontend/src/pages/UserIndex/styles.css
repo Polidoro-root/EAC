@@ -24,7 +24,7 @@
     font-size: 18px;    
 }
 
-.list-vacancies {
+.list-disponible-vacancies {
     margin-top: 5%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -34,7 +34,7 @@
     margin-right: 1%;
 }
 
-ul li {
+.list-disponible-vacancies li {
     background-color: transparent;
     padding: 24px;
     border-radius: 8px;
@@ -42,7 +42,7 @@ ul li {
     border: 2px solid #76b7eb;
 }
 
-ul li button {
+.list-disponible-vacancies li button {
     background-color: transparent;
     position: absolute;
     right: 24px;
@@ -51,21 +51,21 @@ ul li button {
     transition: filter 0.2s;
 }
 
-ul li button:hover {
+.list-disponible-vacancies li button:hover {
     filter: brightness(200%);
 }
 
-ul li strong {
+.list-disponible-vacancies li strong {
     display: block;
     margin-bottom: 16px;
     color: #76b7eb;
 }
 
-ul li p + strong {
+.list-disponible-vacancies li p + strong {
     margin-top: 32px;
 }
 
-ul li p {
+.list-disponible-vacancies li p {
     color: #76b7eb;
     line-height: 21px;
     font-size: 16px;

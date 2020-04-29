@@ -87,7 +87,11 @@
     background-color: transparent;    
 }
 
-.chat .side-panel .conversations::-webkit-scrollbar-thumb {
+.chat .side-panel .conversations::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1.5vh #76b7eb;
+}
+
+.chat .side-panel .conversations::-webkit-scrollbar-thumb {    
     background-color: #76b7eb; 
 }
 
@@ -96,6 +100,8 @@
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell {
+    height: 12vh;
+    padding: 1%;
     display: flex;
     align-items: center;    
     background-color: #194052;
@@ -103,8 +109,7 @@
     border-radius: 0;
     border-top: 0.25px solid #76b7eb;
     list-style: none;
-    transition: filter 0.2s;        
-    
+    transition: filter 0.2s;
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell:hover {    
@@ -139,19 +144,14 @@
 }
 
 .chat .main-panel {    
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    background-color: transparent;    
 }
 
 .chat .main-panel .navbar .currentChat {
     display: flex;
     flex-direction: column;
     align-items: initial;
-    justify-content: space-between;    
-    height: 100%;
+    justify-content: space-between;
     width: 50%;
     color: #194052;
     font-size: 150%;
@@ -167,7 +167,7 @@
 
 .chat .main-panel .messages-area {
     width: 100%;
-    height: 100vh;
+    height: 78vh;
     background-color: transparent;
     overflow-y: auto;
 }

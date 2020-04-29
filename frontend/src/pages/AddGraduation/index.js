@@ -39,8 +39,8 @@ function AddGraduation(){
         const userId = localStorage.getItem('userId');
 
         const data = {            
-            graduationLevel: graduationLevel,
-            course: course            
+            graduationLevel: graduationLevel.toLocaleUpperCase(0),
+            course: course.toLocaleUpperCase(0)
         };
 
         try{

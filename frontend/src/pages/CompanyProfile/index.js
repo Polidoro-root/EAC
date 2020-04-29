@@ -17,37 +17,14 @@ import {
     FiAtSign,
     FiPhone,
     FiTrash2,
-    FiEdit
-} from 'react-icons/all';
+    FiEdit,
+    FiMessageSquare
+} from 'react-icons/fi';
 import './styles.css';
 import HeaderNavbar from '../components/Navbar';
 import api from '../../services/api';
 
-function CompanyProfile(){
-    const [chevrons, setChevrons] = useState('Down');   
-
-    function accordionIcon(){
-        let icon;
-
-        if(chevrons === "Down"){
-            icon = <FiChevronsDown className="accordion-icon" color="#76b7eb" size={30} />;            
-        }
-        else if(chevrons === "Up"){
-            icon = <FiChevronsUp className="accordion-icon" color="#76b7eb" size={30} />
-        }
-
-        return icon;
-    }
-
-    function toggleAccordionIcon(){
-        if(chevrons === "Down"){
-            setChevrons('Up');
-        }
-        else if(chevrons === "Up"){
-            setChevrons('Down');
-        }
-    }    
-
+function CompanyProfile(){    
     const createMessage = function(id, message){
         if(!document.querySelector('span.action')){
             const aElement = document.querySelector(`#${id}`);
@@ -69,6 +46,7 @@ function CompanyProfile(){
         }
     }
     
+    const [company, setCompany] = useState([]);    
     const [vacancies, setVacancies] = useState([]);
 
     const companyId = localStorage.getItem('companyId');
@@ -78,36 +56,25 @@ function CompanyProfile(){
             headers: {
                 companyId: companyId
             }
-        }).then(response => {
-            setVacancies(response.data[1]);
+        }).then(response => {            
+            setCompany(response.data);
+            setVacancies(response.data[0].vacancies);
         })
-    }, [companyId]);
+    }, [companyId]);    
 
-    const getData = async () => {
-        const response = await api.get('companyProfile', {
-            headers: {
-                companyId: companyId
-            }
-        });
-        
-        localStorage.setItem('Name', response.data[0].name);
-        localStorage.setItem('Password', response.data[0].password);
-        localStorage.setItem('Cnpj', response.data[0].cnpj);
-        localStorage.setItem('Email', response.data[0].email);
-        localStorage.setItem('Phone', response.data[0].phone);
-    }
+    company.map(company => {
+        localStorage.setItem('Name', company.name);
+        localStorage.setItem('Password', company.password);
+        localStorage.setItem('Cnpj', company.cnpj);
+        localStorage.setItem('Email', company.email);
+        localStorage.setItem('Phone', company.phone);    
+    });
 
-    getData();
-
-    const name = localStorage.getItem('Name');
-    const password = localStorage.getItem('Password');
-    const cnpj = localStorage.getItem('Cnpj');
-    const email = localStorage.getItem('Email');
-    const phone = localStorage.getItem('Phone');
+    const history = useHistory();
 
     return (
         <Container fluid={true}>
-
+            
             <HeaderNavbar />
 
             <header>
@@ -117,6 +84,8 @@ function CompanyProfile(){
                 </p>
             </header>
 
+            {company.map(company => (
+            <div key={company.id}>
             <Accordion>
                 <Card className="accordion">
                     <Card.Header className="accordion-header">
@@ -124,10 +93,10 @@ function CompanyProfile(){
                             className="accordion-button" 
                             variant="link" 
                             eventKey="0"
-                            onClick={() => toggleAccordionIcon()}
+                            
                         >
                             <h2>Dados da Empresa</h2>
-                            {accordionIcon('Down')}
+                            
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
@@ -140,7 +109,7 @@ function CompanyProfile(){
                                                 <FiUser color="#76b7eb" size={30}  />
                                             </label>
                                             <h3 className="data">
-                                                {name}
+                                                {company.name}
                                             </h3>
                                         </Col>
                                         <Col xs="12" sm="12" md="4" lg="4">
@@ -156,7 +125,7 @@ function CompanyProfile(){
                                                 <FiFileText  color="#76b7eb" size={30}  />
                                             </label>
                                             <h3 className="data">
-                                                {cnpj}
+                                                {company.cnpj}
                                             </h3>
                                         </Col>
                                     </Row>                                        
@@ -189,10 +158,10 @@ function CompanyProfile(){
                             className="accordion-button" 
                             variant="link" 
                             eventKey="0"
-                            onClick={() => toggleAccordionIcon()}
+                            
                         >
                             <h2>Contatos</h2>
-                            {accordionIcon('Down')}
+                            
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
@@ -202,11 +171,11 @@ function CompanyProfile(){
                                         <Row>
                                             <Col>
                                                 <FiAtSign color="#76b7eb" size={50} />
-                                                <h2>{email}</h2>
+                                                <h2>{company.email}</h2>
                                             </Col>
                                             <Col>
                                                 <FiPhone color="#76b7eb" size={50} />
-                                                <h2>{phone}</h2>
+                                                <h2>{company.phone}</h2>
                                             </Col>
                                         </Row>
                                     </section>
@@ -227,7 +196,8 @@ function CompanyProfile(){
                     </Accordion.Collapse>
                 </Card>
             </Accordion>            
-
+            </div>
+            ))}
             <Accordion>
                 <Card className="accordion">
                     <Card.Header className="accordion-header">
@@ -235,10 +205,10 @@ function CompanyProfile(){
                             className="accordion-button" 
                             variant="link" 
                             eventKey="0"
-                            onClick={() => toggleAccordionIcon()}
+                            
                         >
                             <h2>Vagas</h2>
-                            {accordionIcon('Down')}
+                            
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
@@ -269,12 +239,13 @@ function CompanyProfile(){
 
                                                 try{
                                                     const id = vacancy.id;
+
                                                     await api.delete(`companyProfile/${id}`,{
                                                         headers: { companyId: companyId }
                                                     });
 
-                                                    setVacancies(vacancies.filter(vacancy =>
-                                                            vacancy.id !== id));
+                                                    setVacancies(vacancies.filter(vacancy => 
+                                                        vacancy.id !== id));
                                                 } catch(err) {
                                                     alert('Erro ao deletar vaga, tente novamente.');
                                                 }
@@ -300,7 +271,18 @@ function CompanyProfile(){
                         </Card.Body>
                     </Accordion.Collapse>
                 </Card>
-            </Accordion>            
+            </Accordion>
+
+            <div className="go-to-the-chat-page">
+                <Link
+                    id="chat-link"
+                    to="/companyProfile/chat"
+                    onMouseOver={() => createMessage('chat-link', 'Ir para o Chat')}
+                    onMouseLeave={() => deleteMessage()}
+                >
+                    <FiMessageSquare color="#76b7eb" />
+                </Link>
+            </div>
             
         </Container>
     );

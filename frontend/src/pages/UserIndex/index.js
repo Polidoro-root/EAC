@@ -28,7 +28,7 @@ export default function UserIndex(){
         try{
             api.get('userIndex', {
                 headers: {
-                    search: search
+                    search: search.toLocaleUpperCase(0)
                 }
             })
             .then(response => {
@@ -64,7 +64,7 @@ export default function UserIndex(){
                 </InputGroup>
             </form>
 
-            <ul className="list-vacancies">
+            <ul className="list-disponible-vacancies">
                 {vacancies.map(vacancy => (
                     <li key={vacancy.id}>                        
                         <strong>VAGA:</strong>

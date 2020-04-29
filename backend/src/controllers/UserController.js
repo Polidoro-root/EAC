@@ -1,22 +1,26 @@
 const connection = require('../database/connection');
-const GraduationController = require('./GraduationController');
 
 module.exports = {
     async userData(request, response){
         const userId = request.headers.userid;        
-
-        const [data] = await connection('users')
-            .join('contacts', 'users.id', 'contacts.contactsUsersId')            
+    
+        const user = await connection('users')
+            .join('contacts', 'users.id', 'contacts.contactsUsersId')
             .where({
+                'contacts.contactsUsersId': userId,
                 'users.id': userId
             })
-            .select('*');
+            .select('users.*', 'contacts.id as contactId', 'contacts.email',
+                'contacts.phone'
+            );
 
-        const graduations = await connection('graduations')
-            .where('graduationsUsersId', userId)
-            .select('*');        
-        
-        return response.json([data, graduations]);
+        for (let index in user){
+            user[index]['graduations'] = await connection('graduations')
+                .where('graduationsUsersId', '=', user[index]['id'])
+                .select('*');
+        }
+
+        return response.json(user);
     },
 
     async createUser(request, response){

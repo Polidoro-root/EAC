@@ -43,10 +43,10 @@ function AddVacancy(){
         const companyId = localStorage.getItem('companyId');
 
         const data = {            
-            vacancy: vacancy,
+            vacancy: vacancy.toLocaleUpperCase(0),
             salary: salary,
             requirements: requirements,
-            city: city,
+            city: city.toLocaleUpperCase(0),
             uf: uf,
         };
 

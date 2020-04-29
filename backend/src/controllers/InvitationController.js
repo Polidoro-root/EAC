@@ -16,7 +16,7 @@ module.exports = {
                 'users.lastJob', 'users.aboutYourself'
             );        
 
-        for (let index = 0; index < invitations.length; index++) {
+        for (let index in invitations) {
             invitations[index]['graduations'] = await connection('graduations')
                 .where('graduationsUsersId', '=', invitations[index]['invitationsUsersId'])
                 .select('*');            
@@ -56,5 +56,25 @@ module.exports = {
             });
 
         return response.json(invitation);
+    },
+
+    async deleteInvitation(request, response){
+        const { id } = request.params;
+        const companyId = request.headers.companyid;
+
+        const invitation = await connection('invitations')
+          .where('id', id)
+          .select('invitationsCompaniesId')
+          .first();        
+
+        if (invitation.invitationsCompaniesId != companyId) {
+          return response.status(401).json({ error: 'Operation not permitted.' });
+        }
+
+        await connection('invitations')
+            .where('id', id)
+            .del();
+
+        return response.status(204).send();
     }
 };

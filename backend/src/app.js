@@ -9,6 +9,5 @@ app.use(express.json());
 app.use(routes);
 
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
 
-module.exports = [ server, io ];
+module.exports = { server };

@@ -3,16 +3,13 @@ import {
     Container,
     Col, 
     Row,
-    Table,    
  } from 'reactstrap';
 import { Accordion, Card } from 'react-bootstrap';
 import './styles.css';
 import HeaderNavbar from '../components/Navbar';
 import {
     FiTrash2,
-    FiEdit,
-    FiChevronsDown,
-    FiChevronsUp,
+    FiEdit,    
     FiBookOpen, 
     FiChevronsLeft,
     FiBriefcase,
@@ -22,14 +19,9 @@ import {
     FiUnlock,
     FiAtSign,
     FiPhone,
-    FaMailBulk,
-    FiHome,
-    TiSortNumerically,
-    GiFamilyHouse,
-    FaCity,
-    FaSearchLocation,
+    FiMessageSquare,
     FiPlusCircle
-    } from 'react-icons/all';
+    } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
@@ -53,32 +45,9 @@ function UserProfile(){
         if(document.querySelector('span.action')){
             document.querySelector('span.action').remove();
         }
-    }
-
-    const [chevrons, setChevrons] = useState('Down');    
-
-    function accordionIcon(){
-        let icon;
-
-        if(chevrons === "Down"){
-            icon = <FiChevronsDown className="accordion-icon" color="#76b7eb" size={30} />;            
-        }
-        else if(chevrons === "Up"){
-            icon = <FiChevronsUp className="accordion-icon" color="#76b7eb" size={30} />
-        }
-
-        return icon;
-    }
-
-    function toggleAccordionIcon(){
-        if(chevrons === "Down"){
-            setChevrons('Up');
-        }
-        else if(chevrons === "Up"){
-            setChevrons('Down');
-        }
     }    
 
+    const [user, setUser] = useState([]);
     const [graduations, setGraduations] = useState([]);
 
     const userId = localStorage.getItem('userId');
@@ -88,34 +57,23 @@ function UserProfile(){
             headers: {
                 userId: userId
             }
-        }).then(response => {
-            setGraduations(response.data[1]);
+        })
+        .then(response => {
+            setUser(response.data);
+            setGraduations(response.data[0].graduations);
         });        
-    }, [userId]);
-
-    const getData = async () => {
-        const response = await api.get('userProfile', {
-            headers: {
-                userId: userId
-            }
-        });
-
-        localStorage.setItem('InterestArea', response.data[0].interestArea);
-        localStorage.setItem('ExperienceArea', response.data[0].experienceArea);
-        localStorage.setItem('LastJob', response.data[0].lastJob);        
-        localStorage.setItem('AboutYourself', response.data[0].aboutYourself);
-        localStorage.setItem('Email', response.data[0].email);
-        localStorage.setItem('Phone', response.data[0].phone);        
-    };
+    }, [userId]);   
     
-    getData();
+    console.log(graduations);
     
-    const interestArea = localStorage.getItem('InterestArea');
-    const experienceArea = localStorage.getItem('ExperienceArea');
-    const lastJob = localStorage.getItem('LastJob');
-    const aboutYourself = localStorage.getItem('AboutYourself');
-    const email = localStorage.getItem('Email');
-    const phone = localStorage.getItem('Phone');    
+    user.map(user => {
+        localStorage.setItem('InterestArea', user.interestArea);
+        localStorage.setItem('ExperienceArea', user.experienceArea);
+        localStorage.setItem('LastJob', user.lastJob);        
+        localStorage.setItem('AboutYourself', user.aboutYourself);
+        localStorage.setItem('Email', user.email);
+        localStorage.setItem('Phone', user.phone);            
+    });
 
     const history = useHistory();
 
@@ -129,11 +87,11 @@ function UserProfile(){
                 <p>
                     Insira seus dados na área de Graduações para destacar-se
                 </p>                
-            </header>
-            {console.log(graduations)}
+            </header>            
             
-            <div>
-            
+            {user.map(user => (
+            <div key={user.id}>
+
             <Accordion>
                 <Card className="accordion">
                     <Card.Header className="accordion-header">
@@ -141,10 +99,10 @@ function UserProfile(){
                             className="accordion-button" 
                             variant="link" 
                             eventKey="0"
-                            onClick={() => toggleAccordionIcon()}
+                            
                         >
                             <h2>Dados Pessoais</h2>
-                            {accordionIcon('Down')}
+                            
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
@@ -189,10 +147,10 @@ function UserProfile(){
                             className="accordion-button" 
                             variant="link" 
                             eventKey="0"
-                            onClick={() => toggleAccordionIcon()}
+                            
                         >
                             <h2>Contato</h2>
-                            {accordionIcon('Down')}
+                            
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
@@ -202,11 +160,11 @@ function UserProfile(){
                                         <Row>
                                             <Col>
                                                 <FiAtSign color="#76b7eb" size={50} />
-                                                <h2>{email}</h2>
+                                                <h2>{user.email}</h2>
                                             </Col>
                                             <Col>
                                                 <FiPhone color="#76b7eb" size={50} />
-                                                <h2>{phone}</h2>
+                                                <h2>{user.phone}</h2>
                                             </Col>
                                         </Row>
                                     </section>
@@ -235,10 +193,10 @@ function UserProfile(){
                         className="accordion-button" 
                         variant="link" 
                         eventKey="0"
-                        onClick={() => toggleAccordionIcon()}
+                        
                     >
                         <h2>Área Profissional</h2>
-                        {accordionIcon('Down')}
+                        
                     </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
@@ -251,7 +209,7 @@ function UserProfile(){
                                             <FiCrosshair color="#76b7eb" size={30} />
                                         </label>
                                         <h3 className="data">
-                                            {interestArea}
+                                            {user.interestArea}
                                         </h3>
                                     </Col>
                                     <Col xs="12" sm="10" md="6" lg="6">
@@ -259,7 +217,7 @@ function UserProfile(){
                                             <FiBookOpen color="#76b7eb" size={30} />
                                         </label>
                                         <h3 className="data">
-                                            {experienceArea}
+                                            {user.experienceArea}
                                         </h3>
                                     </Col>
                                 </Row>
@@ -270,7 +228,7 @@ function UserProfile(){
                                             <FiBriefcase color="#76b7eb" size={30} />
                                         </label>
                                         <h3 className="data">
-                                            {lastJob}
+                                            {user.lastJob}
                                         </h3>
                                     </Col>
                                     <Col xs="12" sm="10" md="6" lg="6">
@@ -278,7 +236,7 @@ function UserProfile(){
                                             <FiFileText color="#76b7eb" size={30} />
                                         </label>
                                         <h3 className="data">
-                                            {aboutYourself}
+                                            {user.aboutYourself}
                                         </h3>
                                     </Col>
                                 </Row>                                
@@ -298,7 +256,9 @@ function UserProfile(){
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
-        </Accordion>      
+        </Accordion>
+        </div>
+        ))}
 
         <Accordion>
                 <Card className="accordion">
@@ -307,10 +267,10 @@ function UserProfile(){
                             className="accordion-button" 
                             variant="link" 
                             eventKey="0"
-                            onClick={() => toggleAccordionIcon()}
+                            
                         >
                             <h2>Graduações</h2>
-                            {accordionIcon('Down')}
+                            
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
@@ -332,16 +292,17 @@ function UserProfile(){
 
                                                 try{
                                                     const id = graduation.id;
+
                                                     await api.delete(`userProfile/${id}`,{
                                                         headers: { userId: userId }
                                                     });
 
                                                     setGraduations(graduations.filter(graduation =>
-                                                            graduation.id !== id));
+                                                        graduation.id !== id));
                                                 } catch(err) {
                                                     alert('Erro ao deletar graduação, tente novamente.');
                                                 }
-                                            }}                                            
+                                            }}
                                         >
                                             <FiTrash2 color="#76b7eb" size={30} />
                                         </button>
@@ -364,52 +325,18 @@ function UserProfile(){
                     </Accordion.Collapse>
                 </Card>
             </Accordion>
+
+            <div className="go-to-the-chat-page">
+                <Link
+                    id="chat-link"
+                    to="/userProfile/chat"
+                    onMouseOver={() => createMessage('chat-link', 'Ir para o Chat')}
+                    onMouseLeave={() => deleteMessage()}
+                >
+                    <FiMessageSquare color="#76b7eb" />
+                </Link>
+            </div>
             
-            <Accordion>
-                <Card className="accordion">
-                    <Card.Header className="accordion-header">
-                        <Accordion.Toggle
-                            className="accordion-button" 
-                            variant="link" 
-                            eventKey="0"
-                            onClick={() => toggleAccordionIcon()}
-                        >
-                            <h2>Conversas</h2>
-                            {accordionIcon('Down')}
-                        </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                        <Card.Body className="accordion-body">
-                            <Table responsive hover striped>
-                                <thead>
-                                    <tr>                                        
-                                        <th>Empresa</th>
-                                        <th>Vaga</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr
-                                        id="row1" 
-                                        className="clickable-row"                                        
-                                    >                                        
-                                        <td>Tecnomaq</td>
-                                        <td>Programador</td>
-                                    </tr>
-                                    <tr>                                        
-                                        <td>X-tudo</td>
-                                        <td>Cozinheiro</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lojas CEM</td>
-                                        <td>Vendedor</td>
-                                    </tr>
-                                </tbody>
-                            </Table>                            
-                        </Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-            </Accordion>
-            </div>            
         </Container>
     );
 }

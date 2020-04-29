@@ -30,15 +30,17 @@ routes.put('/userProfile/alterContact', ContactController.alterContact);
 
 routes.get('/userProfile/chat', ChatController.listChats);
 
-routes.post('/userProfile/chat', ChatController.createChat);
-
 routes.post('/companyRegister', CompanyController.createCompany);
 
 routes.post('/companyLogin', CompanyController.createSession);
 
 routes.get('/companyIndex', InvitationController.showInvitations);
 
+routes.post('/companyIndex', ChatController.createChat);
+
 routes.put('/companyIndex/:id', InvitationController.acceptInvitation);
+
+routes.delete('/companyIndex/:id', InvitationController.deleteInvitation);
 
 routes.get('/companyProfile', CompanyController.companyData);
 
@@ -51,5 +53,7 @@ routes.post('/companyProfile/addVacancy', VacancyController.createVacancy);
 routes.delete('/companyProfile/:id', VacancyController.deleteVacancy);
 
 routes.put('/companyProfile/alterContact', ContactController.alterContact);
+
+routes.get('/companyProfile/chat', ChatController.listChats);
 
 module.exports = routes;

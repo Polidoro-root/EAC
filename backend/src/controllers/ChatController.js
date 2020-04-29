@@ -43,6 +43,8 @@ module.exports = {
         const companyId = request.headers.companyid;
         const vacancyId = request.headers.vacancyid;
 
+        console.log(userId, companyId, vacancyId);
+
         const [chat] = await connection('chats')
             .returning('*')
             .insert({
