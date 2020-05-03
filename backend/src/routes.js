@@ -56,4 +56,8 @@ routes.put('/companyProfile/alterContact', ContactController.alterContact);
 
 routes.get('/companyProfile/chat', ChatController.listChats);
 
+routes.get('/chat', (request, response) => {
+    response.send('server is up and running');
+});
+
 module.exports = routes;

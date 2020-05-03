@@ -19,20 +19,16 @@ import {
     FiSend,
     FiMoreVertical,    
 } from 'react-icons/fi';
-import io from 'socket.io-client';
-import uuid from 'uuid/v4';
 import api from '../../services/api';
 
-const myId = uuid();
-
-const socket = io('http://localhost:3333');
-socket.on('connect', () => 
-    console.log('[IO] Connect => A new connection has been established'));
-
 function CompanyChat(){
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => setIsOpen(!isOpen);
+
     const companyId = localStorage.getItem('companyId');
 
-    const [chats, setChats] = useState([]);
+    const [chats, setChats] = useState([]);    
 
     useEffect(() => {
         api.get('companyProfile/chat', {
@@ -41,38 +37,10 @@ function CompanyChat(){
             }
         })
         .then(response => {
-            setChats(response.data);
+            setChats(response.data);            
         })
-    }, []);    
-    
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggle = () => setIsOpen(!isOpen);
-
-    const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState([]);
-
-    useEffect(() => {
-        const handleNewMessage =
-            newMessage => setMessages([...messages, newMessage]);
-
-        socket.on('chat.message', handleNewMessage);
-
-        return () => socket.off('chat.message', handleNewMessage);
-    }, [messages]);    
-
-    const handleSendMessage = e => {
-        e.preventDefault();
-
-        if(message.trim()){
-            socket.emit('chat.message', {
-                id: myId,
-                message
-            });
-            setMessage('');
-        }
-    };
-
+    }, []);
+        
     return (
         <main className="chat">            
             <section className="section-height side-panel">
@@ -89,7 +57,7 @@ function CompanyChat(){
                         </Nav>
                     </Collapse>
                 </Navbar>
-
+                
                 <div className="searchbar">
                     <form>
                         <InputGroup className="">
@@ -117,13 +85,7 @@ function CompanyChat(){
                             key={chat.chatId}
                             className="conversation-cell"
                             id={`chat${chat.chatId}`}
-                            onClick={e => {
-                                const user = document.querySelector('#currentChatUser');
-                                const vacancy = document.querySelector('#currentChatVacancy');
-
-                                user.innerHTML = chat.email;
-                                vacancy.innerHTML = chat.vacancy;
-                            }}
+                            //onClick={() => setCurrentNamespace(`${chat.chatId}`)}
                         >
                             <span className="briefcase">
                                 <FiUser size={50} />
@@ -140,8 +102,10 @@ function CompanyChat(){
                     </ul>
                 </div>
             </section>
-
-            <section className="section-height main-panel">
+                        
+            <section                 
+                className="section-height main-panel"
+            >                
                 <Navbar expand="md">
                     <NavbarBrand href="/companyProfile">
                         <FiUser size={50} />
@@ -159,31 +123,32 @@ function CompanyChat(){
                         </Nav>
                     </Collapse>
                 </Navbar>
-
+                
                 <div className="messages-area">
-                    <ul className="messages-list">
-                    {messages.map((m, index) => (
-                        <li 
-                            key={index}
-                            className="messages-list-item"
+                    <ul className="messages-list">                
+                        <li                             
+                            className={`
+                                messages-list-item 
+                                messages-list-item--mine
+                            `}
                         >
                             <span                                 
-                                className="messages-sent-mine"
-                            >
-                                {m.message}
+                                className={`
+                                    message
+                                    message--mine
+                                `}
+                            >                                
                             </span>
-                        </li>
-                    ))}
+                        </li>                    
                     </ul>
                 </div>
 
                 <footer>
-                    <form onSubmit={handleSendMessage}>
+                    <form                        
+                    >
                         <input
                             type="text"
-                            placeholder="Escreva sua mensagem"
-                            onChange={e => setMessage(e.target.value)}
-                            value={message}
+                            placeholder="Escreva sua mensagem"                            
                         />
 
                         <button
@@ -193,7 +158,7 @@ function CompanyChat(){
                         </button>
                     </form>
                 </footer>
-            </section>
+            </section>            
         </main>
     );
 }

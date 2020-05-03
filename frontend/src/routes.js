@@ -17,10 +17,16 @@ import AlterProfessional from './pages/AlterProfessional';
 import AddGraduation from './pages/AddGraduation';
 import AddVacancy from './pages/AddVacancy';
 
+import Join from './pages/examples/Join';
+import Chat from './pages/examples/Chat/index';
+
 export default function Routes(){
     return (
         <BrowserRouter>
             <Switch>
+                <Route path="/join" exact component={Join} />
+                <Route path="/chat" exact component={Chat} />
+
                 <Route path="/" exact component={Home} />
                 <Route path="/userLogin" exact component={UserLogin} />
                 <Route path="/userRegister" exact component={UserRegister} />
