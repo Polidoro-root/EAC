@@ -25,21 +25,6 @@
     background-color: transparent;    
 }
 
-.chat .side-panel .navbar,
-.chat .main-panel .navbar {
-    width: 100%;    
-    background-color: #76b7eb;    
-    height: 10vh;
-    margin: 0;
-    border-right: 1px solid #194052;
-}
-
-.chat .side-panel .navbar a,
-.chat .main-panel .navbar a {
-    color: #194052;
-    font-weight: bold;
-}
-
 .chat .side-panel .searchbar {
     display: flex;
     align-items: center;
@@ -100,20 +85,28 @@
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell {
+    background-color: #194052;
+}
+
+.chat .side-panel .conversations .conversations-list .conversation-cell a {
     height: 12vh;
     padding: 1%;
     display: flex;
-    align-items: center;    
-    background-color: #194052;
+    align-items: center;        
     border: none;
     border-radius: 0;
     border-top: 0.25px solid #76b7eb;
     list-style: none;
-    transition: filter 0.2s;    
+    transition: filter 0.2s;
+    color: #76b7eb;
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell:hover {    
-    filter: brightness(150%)
+    filter: brightness(150%);
+}
+
+.chat .side-panel .conversations .conversations-list .conversation-cell a:hover {    
+    filter: none;
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell:first-child {
@@ -124,7 +117,7 @@
     border-bottom: 1px solid #76b7eb;
 }
 
-.chat .side-panel .conversations .conversations-list .conversation-cell .user-vacancy {
+.chat .side-panel .conversations .conversations-list .conversation-cell a .email-vacancy {
     display: flex;
     flex-direction: column;
     align-items: initial;
@@ -133,12 +126,12 @@
     font-size: 150%;
 }
 
-.chat .side-panel .conversations .conversations-list .conversation-cell 
-.user-vacancy .user {
+.chat .side-panel .conversations .conversations-list .conversation-cell a
+.email-vacancy .email {
     font-weight: bold;
 }
 
-.chat .side-panel .conversations .conversations-list .conversation-cell 
+.chat .side-panel .conversations .conversations-list .conversation-cell a 
 .messages-not-verified {
     margin-left: auto;
 }
@@ -163,55 +156,4 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-}
-
-.chat .main-panel .messages-area {
-    width: 100%;
-    height: 78vh;
-    background-color: transparent;
-    overflow-y: auto;
-}
-
-.chat .main-panel .messages-area::-webkit-scrollbar {
-    width: 1%;    
-    background-color: transparent;    
-    border-left: 1px solid #76b7eb;    
-}
-
-.chat .main-panel .messages-area::-webkit-scrollbar-thumb {
-    background-color: #76b7eb;     
-}
-
-
-.chat .main-panel footer {    
-    width: 100%;
-    height: 12vh;
-    background-color: #76b7eb;    
-}
-
-.chat .main-panel footer form {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.chat .main-panel footer form input {
-    background-color: #194052;
-    padding: 1%;
-    padding-left: 2%;
-    font-size: 200%;
-    width: 90%;
-    border-top-right-radius: 25px;
-    border-top-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-}
-
-.chat .main-panel footer form button {
-    background-color: #76b7eb;
-    color: #194052;
-    padding: 1%;
-    border: none;    
 }

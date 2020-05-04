@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import './styles.css';
-
 const Join = () => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');

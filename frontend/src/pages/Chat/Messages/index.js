@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import './styles.css';
 
 import ScrollToBottom from 'react-scroll-to-bottom';
 import Message from '../Message';
 
-const Messages = ({ messages, name }) => {
+const Messages = ({ messages, email }) => {
+    useEffect(() => {
+        
+    }, [messages]);
+
     return (
         <ScrollToBottom className="messages">
             {messages.map((message, index) => 
                 <div key={index}>
-                    <Message message={message} name={name} />
+                    <Message message={message} email={email} />
                 </div>
             )}
         </ScrollToBottom>

@@ -11,22 +11,11 @@ import './styles.css';
 import { Link, useHistory } from 'react-router-dom';
 import { FiBriefcase, FiUser, FiLogOut, FiMenu } from 'react-icons/fi';
 
+import currentUrl from '../../../utils/currentUrl';
+
 const HeaderNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);    
-
-    const currentUrl = function(){
-      const url = window.location.href;
-
-      const toUrl = url.slice(22);
-
-      if(toUrl.match(/user/)) {
-        return '/user';
-      }
-      if(toUrl.match(/company/)) {
-        return '/company';
-      }      
-    }
 
     const profile = function(){      
       if(currentUrl() === "/user"){

@@ -7,8 +7,6 @@ import {
     Input,    
     } from 'reactstrap';
 import { 
-    FiChevronsDown,
-    FiChevronsUp,
     FiSearch,
     FiSend
     } from 'react-icons/fi';    

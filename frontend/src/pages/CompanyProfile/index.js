@@ -23,29 +23,11 @@ import {
 import './styles.css';
 import HeaderNavbar from '../components/Navbar';
 import api from '../../services/api';
+import createMessage from '../../utils/createMessage';
+import deleteMessage from '../../utils/deleteMessage';
 
-function CompanyProfile(){    
-    const createMessage = function(id, message){
-        if(!document.querySelector('span.action')){
-            const aElement = document.querySelector(`#${id}`);
-            const spanElement = document.createElement('span');            
-            const text = document.createTextNode(message);
-            
-            spanElement.setAttribute('class', 'action');
-            spanElement.style.color = "#76b7eb";
-            spanElement.style.fontWeight = "bold";
-            spanElement.style.fontSize = "70%";                       
-            spanElement.appendChild(text);        
-            aElement.appendChild(spanElement);            
-        }
-    };
-
-    const deleteMessage = function(){
-        if(document.querySelector('span.action')){
-            document.querySelector('span.action').remove();
-        }
-    }
-    
+function CompanyProfile(){        
+    const [firstChat, setFirstChat] = useState('');
     const [company, setCompany] = useState([]);    
     const [vacancies, setVacancies] = useState([]);
 
@@ -69,6 +51,19 @@ function CompanyProfile(){
         localStorage.setItem('Email', company.email);
         localStorage.setItem('Phone', company.phone);    
     });
+
+    const queryString = () => {
+        const email = localStorage.getItem('Email');
+
+        api.get('companyProfile/chat', {
+            headers: {
+                companyId: companyId
+            }
+        })
+        .then(response => setFirstChat(response.data[0].chatId));
+
+        return `email=${email}&room=${firstChat}`;
+    };
 
     const history = useHistory();
 
@@ -276,7 +271,7 @@ function CompanyProfile(){
             <div className="go-to-the-chat-page">
                 <Link
                     id="chat-link"
-                    to="/companyProfile/chat"
+                    to={`/companyProfile/chat?${queryString()}`}
                     onMouseOver={() => createMessage('chat-link', 'Ir para o Chat')}
                     onMouseLeave={() => deleteMessage()}
                 >

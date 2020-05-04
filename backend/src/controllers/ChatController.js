@@ -10,12 +10,13 @@ module.exports = {
         if(userId){
             const chats = await connection('chats')
                 .join('companies', 'chats.chatsCompaniesId', 'companies.id')
+                .join('contacts', 'companies.id', 'contacts.contactsCompaniesId')
                 .join('vacancies', 'chats.chatsVacanciesId', 'vacancies.id')
                 .where({
                     chatsUsersId: userId
                 })
                 .select('chats.id as chatId', 'chats.chatsCompaniesId as companyId',
-                    'chats.chatsVacanciesId as vacancyId', 'companies.name',
+                    'chats.chatsVacanciesId as vacancyId', 'contacts.email',
                     'vacancies.vacancy'
                 );
 

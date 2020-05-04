@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
 import {FiBriefcase, FiLogIn} from 'react-icons/fi';
 import './styles.css';
-import socketIOClient from 'socket.io-client';
 
 export default function Home(){    
     return (

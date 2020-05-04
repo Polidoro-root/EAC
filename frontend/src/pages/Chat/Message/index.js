@@ -1,21 +1,22 @@
 import React from 'react';
-
+import './styles.css';
 import ReactEmoji from 'react-emoji';
 
-const Message = ({ message: { user, text }, name }) => {
-    let isSentByCurrentUser = false;
+const Message = ({ message: { connection, text }, email }) => {
+    let isSentByCurrentConnection = false;
 
-    const trimmedName = name.trim().toLowerCase();
+    const trimmedEmail = email.trim().toLowerCase();
 
-    if(user === trimmedName) {
-        isSentByCurrentUser = true;
+    if(connection === trimmedEmail){
+        isSentByCurrentConnection = true;
     }
+
     return (
-        isSentByCurrentUser
+        isSentByCurrentConnection
             ? (
                 <div className="messageContainer justifyEnd">
                     <p className="sentText pr-10">
-                        {trimmedName}
+                        {trimmedEmail}
                     </p>
                     <div className="messageBox backgroundBlue">
                         <p className="messageText colorWhite">
@@ -32,11 +33,11 @@ const Message = ({ message: { user, text }, name }) => {
                         </p>
                     </div>
                     <p className="sentText pl-10">
-                        {user}
+                        {connection}
                     </p>
                 </div>
             )
-    )
+    );
 }
 
 export default Message;

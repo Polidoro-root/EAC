@@ -5,29 +5,10 @@ import Navbar from '../components/Navbar';
 import { FiSave } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
+import createMessage from '../../utils/createMessage';
+import deleteMessage from '../../utils/deleteMessage';
 
-function AddGraduation(){
-    const createMessage = function(id, message){
-        if(!document.querySelector('span.action')){
-            const aElement = document.querySelector(`#${id}`);
-            const spanElement = document.createElement('span');            
-            const text = document.createTextNode(message);
-            
-            spanElement.setAttribute('class', 'action');
-            spanElement.style.color = "#76b7eb";
-            spanElement.style.fontWeight = "bold";
-            spanElement.style.fontSize = "70%";                       
-            spanElement.appendChild(text);        
-            aElement.appendChild(spanElement);            
-        }
-    };
-
-    const deleteMessage = function(){
-        if(document.querySelector('span.action')){
-            document.querySelector('span.action').remove();
-        }
-    }
-
+function AddGraduation(){    
     const [graduationLevel, setGraduationLevel] = useState('');
     const [course, setCourse] = useState('');
 

@@ -1,0 +1,12 @@
+.chat .side-panel .navbar {
+    width: 100%;    
+    background-color: #76b7eb;    
+    height: 10vh;
+    margin: 0;
+    border-right: 1px solid #194052;
+}
+
+.chat .side-panel .navbar a {
+    color: #194052;
+    font-weight: bold;
+}

@@ -24,29 +24,11 @@ import {
     } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
+import createMessage from '../../utils/createMessage';
+import deleteMessage from '../../utils/deleteMessage';
 
 function UserProfile(){
-    const createMessage = function(id, message){
-        if(!document.querySelector('span.action')){
-            const aElement = document.querySelector(`#${id}`);
-            const spanElement = document.createElement('span');            
-            const text = document.createTextNode(message);
-            
-            spanElement.setAttribute('class', 'action');
-            spanElement.style.color = "#76b7eb";
-            spanElement.style.fontWeight = "bold";
-            spanElement.style.fontSize = "70%";                       
-            spanElement.appendChild(text);        
-            aElement.appendChild(spanElement);            
-        }
-    };
-
-    const deleteMessage = function(){
-        if(document.querySelector('span.action')){
-            document.querySelector('span.action').remove();
-        }
-    }    
-
+    const [firstChat, setFirstChat] = useState('');
     const [user, setUser] = useState([]);
     const [graduations, setGraduations] = useState([]);
 
@@ -75,9 +57,23 @@ function UserProfile(){
         localStorage.setItem('Phone', user.phone);            
     });
 
+    const queryString = () => {
+        const email = localStorage.getItem('Email');
+        api.get('userProfile/chat', {
+            headers: {
+                userId: userId
+            }
+        })
+        .then(response => setFirstChat(response.data[0].chatId));
+
+        return `email=${email}&room=${firstChat}`;
+    };
+
+    console.log(queryString());
+
     const history = useHistory();
 
-    return (        
+    return (
         <Container fluid={true}>
             
             <HeaderNavbar />
@@ -329,7 +325,7 @@ function UserProfile(){
             <div className="go-to-the-chat-page">
                 <Link
                     id="chat-link"
-                    to="/userProfile/chat"
+                    to={`/userProfile/chat?${queryString()}`}
                     onMouseOver={() => createMessage('chat-link', 'Ir para o Chat')}
                     onMouseLeave={() => deleteMessage()}
                 >
