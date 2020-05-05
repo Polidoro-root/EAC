@@ -5,24 +5,19 @@ import './styles.css';
 const InputMessage = ({ message, setMessage, sendMessage }) => {
 
     return (
-        <footer>
+        <footer className="input-message">
             <form
+                onSubmit={(event) => sendMessage(event)}
             >
                 <input
                     type="text"
                     placeholder="Escreva sua mensagem"
                     value={message}
-                    onChange={(event) => setMessage(event.target.value)}
-                    onKeyPress={(event) =>
-                        event.key === 'Enter' ? sendMessage(event) : null}
+                    onChange={(event) => setMessage(event.target.value)}                    
                 />
 
                 <button
-                    type="submit"
-                    onClick={(event) => {
-                        event.preventDefault();
-                        sendMessage(event);
-                    }}
+                    type="submit"                    
                 >
                     <FiSend size={40} />
                 </button>

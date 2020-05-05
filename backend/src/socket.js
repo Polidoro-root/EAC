@@ -1,70 +1,48 @@
 const { server } = require('./app');
 const routes = require('./routes');
 const io = require('socket.io')(server);
-
-const {
+const { 
     addConnection,
     removeConnection,
     getConnection,
     getConnectionsInRoom
 } = require('./connections');
-
+// socket.on('', () => {});
 io.on('connection', (socket) => {
-    console.log('We have a new connection!!!');    
+    console.log('We have a new connection!');    
 
-    socket.on('join', ({ email, room }, callback) => {
-        const { error, connection } = addConnection({ id: socket.id, email, room });
-
-        if(error) return callback(error);
-
-        socket.emit('message', {
-            connection: 'admin',
-            text: `${connection.email}, welcome to the room ${connection.room}`
-        });
-
-        socket.broadcast.to(connection.room).emit('message', {
-            connection: 'admin',
-            text: `${connection.email}, has joined!`
-        });
-
+    socket.on('join', ({ email, room }) => {
+        removeConnection(email);
+        const connection = addConnection({ id: socket.id, email: email, room: room });
+        
         socket.join(connection.room);
 
         io.to(connection.room).emit('roomData', {
-            connection: connection.room,
-            connections: getConnectionsInRoom(connection.room)
-        });
-
-        callback();
-    });
-
-    socket.on('sendMessage', (message, callback) => {
-        const connection = getConnection(socket.id);
-
-        console.log(message);
-
-        io.to(connection.room).emit('message', { 
-            connection: connection.email,
-            text: message
-        });
-
-        io.to(connection.room).emit('roomData', { 
             room: connection.room,
             connections: getConnectionsInRoom(connection.room)
         });
-
-        callback();
+        
+        console.log('[JOIN] => ', connection);
     });
 
-    socket.on('disconnect', () => {
-        const connection = removeConnection(socket.id);
-        console.log('disconnected');
+    socket.on('sendMessage', (message) => {
+        const connection = getConnection(socket.id);
 
-        if(connection){
-            io.to(connection.room).emit('message', {
-                connection: 'admin',
-                text: `${connection.email} has left.`
-            });            
-        }
+        console.log('[SEND MESSAGE] => ', connection, message);
+
+        io.to(connection.room).emit('message', {
+            connection: connection.email,
+            message: message
+        });
+
+        io.to(connection.room).emit('roomData', {
+            room: connection.room,
+            connections: getConnectionsInRoom(connection.room)
+        });
+    });
+
+    socket.on('disconnect', () => {        
+        console.log('DISCONNECTED!!');        
     });
 });
 

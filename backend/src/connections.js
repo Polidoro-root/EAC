@@ -1,29 +1,27 @@
-const connections = [];
+let connections = [];
 
 const addConnection = ({ id, email, room }) => {
-    console.log(id, email, room);
-    email = email.trim().toLowerCase();
-    room = room.trim().toLowerCase();
+    email = email.trim();
+    room = room.trim();
 
-    const existingConnection = connections.find((connection) => 
+    const existingConnection = connections.find((connection) =>
         connection.room === room && connection.email === email);
 
-    if(existingConnection){
-        return { error: 'Username is taken'};
-    }
+    if(existingConnection) return { error: 'This email is taken' }
 
-    const connection = { id, email, room };
+    const connection = { id: id, email: email, room: room };    
+    
+    connections.push(connection);    
 
-    connections.push(connection)    
-
-    return { connection };
+    return connection;
 }
 
-const removeConnection = (id) => {
-    const index = connections.findIndex((connection) => connection.id === id);
+const removeConnection = (email) => {
+    const index = connections.find((connection) => connection.email == email);
 
     if(index !== -1){
-        return connections.splice(index, 1)[0];
+        const connection = connections.splice(index, 1)[0]
+        console.log('Connection removed => ', connection);
     }
 }
 

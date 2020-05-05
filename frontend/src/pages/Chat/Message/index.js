@@ -2,10 +2,10 @@ import React from 'react';
 import './styles.css';
 import ReactEmoji from 'react-emoji';
 
-const Message = ({ message: { connection, text }, email }) => {
+const Message = ({ message: { connection, message }, email }) => {
     let isSentByCurrentConnection = false;
 
-    const trimmedEmail = email.trim().toLowerCase();
+    const trimmedEmail = email.trim();
 
     if(connection === trimmedEmail){
         isSentByCurrentConnection = true;
@@ -20,7 +20,7 @@ const Message = ({ message: { connection, text }, email }) => {
                     </p>
                     <div className="messageBox backgroundBlue">
                         <p className="messageText colorWhite">
-                            {ReactEmoji.emojify(text)}
+                            {message}
                         </p>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ const Message = ({ message: { connection, text }, email }) => {
                 <div className="messageContainer justifyStart">                    
                     <div className="messageBox backgroundLight">
                         <p className="messageText colorDark">
-                            {ReactEmoji.emojify(text)}
+                            {message}
                         </p>
                     </div>
                     <p className="sentText pl-10">

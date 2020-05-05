@@ -107,7 +107,7 @@ export default function UserIndex(){
                                         ))}
                                         </ul>
 
-                                        <footer>
+                                        <footer className="accept-decline-options">
                                             <button
                                                 type="button"                                
                                                 onClick={async e => {
@@ -151,7 +151,7 @@ export default function UserIndex(){
                                                             }
                                                         });
 
-                                                        history.push('/companyProfile/chat');
+                                                        history.push(`/companyProfile/chat`);
                                                     } catch(err) {
                                                         alert('Erro ao aceitar convite, tente novamente.');
                                                     }

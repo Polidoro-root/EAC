@@ -68,6 +68,7 @@ const Chat = ({ location }) => {
     const [linkRoom, setLinkRoom] = useState('');    
     const [email, setEmail] = useState('');
     const [room, setRoom] = useState('');
+    const [previousRoom, setPreviousRoom] = useState('');
     const [connections, setConnections] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
@@ -79,27 +80,22 @@ const Chat = ({ location }) => {
 
     useEffect(() => {
         const { email, room } = queryString.parse(location.search);
-        console.log(email, room);
+        
         socket = io(server);
 
-        setEmail(email);
         setRoom(room);
 
-        const error = (error) => {
-            if(error) alert(error);
-        }        
+        socket.emit('join', { email, room });
 
-        socket.emit('join', { email, room }, error);                        
-        
     }, [location.search]);
 
     useEffect(() => {
         socket.on('message', (message) => {
-            setMessages([...messages, message]);
+            setMessages([...messages, message])
         });
 
         socket.on('roomData', ({ connections }) => {
-            setConnections(connections);
+            setConnections(connections)
         });
     }, [messages]);
 
@@ -107,7 +103,7 @@ const Chat = ({ location }) => {
         event.preventDefault();
 
         if(message){
-            socket.emit('sendMessage', message, () => setMessage(''));
+            socket.emit('sendMessage', message, setMessage(''));
         }
     }
 
@@ -144,12 +140,7 @@ const Chat = ({ location }) => {
                     {chats.map((chat) => (                        
                         <li
                             key={chat.chatId}
-                            className="conversation-cell"
-                            onClick={(event) => {
-                                event.preventDefault();
-
-                                socket.emit('disconnect');
-                            }}
+                            className="conversation-cell"                            
                         >
                             <Link 
                                 to={`/${profile}/chat?email=${currentEmail}&room=${linkRoom}`}
@@ -175,7 +166,7 @@ const Chat = ({ location }) => {
                             </span>
                             </Link>
                         </li>                        
-                    ))}
+                        ))}
                     </ul>
                 </div>
             </section>

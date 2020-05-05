@@ -53,14 +53,18 @@ function CompanyProfile(){
     });
 
     const queryString = () => {
-        const email = localStorage.getItem('Email');
+        const email = localStorage.getItem('Email');        
 
         api.get('companyProfile/chat', {
             headers: {
                 companyId: companyId
             }
         })
-        .then(response => setFirstChat(response.data[0].chatId));
+        .then(response => {
+            if(response.data != false){
+                setFirstChat(response.data[0].chatId);                
+            }            
+        });
 
         return `email=${email}&room=${firstChat}`;
     };

@@ -3,9 +3,7 @@ const connection = require('../database/connection');
 module.exports = {
     async listChats(request, response){
         const userId = request.headers.userid;
-        const companyId = request.headers.companyid;
-
-        console.log(userId, companyId);
+        const companyId = request.headers.companyid;        
 
         if(userId){
             const chats = await connection('chats')
