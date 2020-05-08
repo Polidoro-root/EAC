@@ -7,13 +7,15 @@ import Message from '../Message';
 
 const Messages = ({ messages, email }) => {
     return (
-        <ScrollToBottom className="messages">
+        <section className="messages">
             {messages.map((message, index) => 
                 <div key={index}>
+                    {console.log('[MESSAGE] => ', message)}
+                    {console.log('[EMAIL] => ', email)}
                     <Message message={message} email={email} />
                 </div>
             )}
-        </ScrollToBottom>
+        </section>
     );
 }
 

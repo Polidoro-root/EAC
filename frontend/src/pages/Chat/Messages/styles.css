@@ -6,9 +6,8 @@
 }
 
 .messages::-webkit-scrollbar {
-    width: 1%;    
-    background-color: transparent;    
-    border-left: 1px solid #76b7eb;    
+    width: 1.25%;    
+    background-color: transparent;
 }
 
 .messages::-webkit-scrollbar-thumb {

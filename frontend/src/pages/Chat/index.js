@@ -65,13 +65,11 @@ const Chat = ({ location }) => {
     const toggle = () => setIsOpen(!isOpen);
 
     const [chats, setChats] = useState([]);
-    const [linkRoom, setLinkRoom] = useState('');    
-    const [email, setEmail] = useState('');
-    const [room, setRoom] = useState('');
-    const [previousRoom, setPreviousRoom] = useState('');
+    const [linkRoom, setLinkRoom] = useState('');        
+    const [currentRoom, setCurrentRoom] = useState('');    
     const [connections, setConnections] = useState('');
     const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([]);    
 
     useEffect(() => {
         api.get(`${profile}/chat`, header)
@@ -79,35 +77,35 @@ const Chat = ({ location }) => {
     }, []);
 
     useEffect(() => {
-        const { email, room } = queryString.parse(location.search);
+        localStorage.setItem('previousRoom', currentRoom);
+        const { email, room } = queryString.parse(location.search);        
         
         socket = io(server);
+        
+        const previousRoom = localStorage.getItem('previousRoom');
+        setCurrentRoom(room);        
 
-        setRoom(room);
-
-        socket.emit('join', { email, room });
+        socket.emit('join', { email, room, previousRoom });
 
     }, [location.search]);
 
     useEffect(() => {
         socket.on('message', (message) => {
             setMessages([...messages, message])
-        });
-
-        socket.on('roomData', ({ connections }) => {
-            setConnections(connections)
-        });
+        });        
     }, [messages]);
 
     const sendMessage = (event) => {
         event.preventDefault();
-
+        
         if(message){
-            socket.emit('sendMessage', message, setMessage(''));
+            const { email, room } = queryString.parse(location.search);
+            socket.emit('sendMessage', { email, room, message});
+            setMessage('');
         }
     }
 
-    console.log(message, messages);
+    console.log(messages);
     
     return (
         <main className="chat">            
@@ -175,9 +173,9 @@ const Chat = ({ location }) => {
                 className="section-height main-panel"
             >                
                 
-                <MainPanelNavbar room={room} />
+                <MainPanelNavbar room={currentRoom} />
 
-                <Messages messages={messages} email={email} />
+                <Messages messages={messages} email={currentEmail} />
 
                 <InputMessage 
                     message={message}

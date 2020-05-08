@@ -4,6 +4,7 @@ import ReactEmoji from 'react-emoji';
 
 const Message = ({ message: { connection, message }, email }) => {
     let isSentByCurrentConnection = false;
+    let showMessage = '';
 
     const trimmedEmail = email.trim();
 
@@ -11,32 +12,37 @@ const Message = ({ message: { connection, message }, email }) => {
         isSentByCurrentConnection = true;
     }
 
+    if(isSentByCurrentConnection){
+        showMessage = (
+            <div className="message-container justify-end">
+                <p className="sent-text pr-10">
+                    {trimmedEmail}
+                </p>
+                <div className="message-box background-blue">
+                    <p className="message-text colorWhite">
+                        {message}
+                    </p>
+                </div>
+            </div>
+        );
+    }
+    else {
+        showMessage = (
+            <div className="message-container justify-start">                    
+                    <div className="message-box background-light">
+                    <p className="message-text colorDark">
+                        {message}
+                    </p>
+                </div>
+                <p className="sent-text pl-10">
+                    {trimmedEmail}
+                </p>
+            </div>
+        );
+    }
+
     return (
-        isSentByCurrentConnection
-            ? (
-                <div className="messageContainer justifyEnd">
-                    <p className="sentText pr-10">
-                        {trimmedEmail}
-                    </p>
-                    <div className="messageBox backgroundBlue">
-                        <p className="messageText colorWhite">
-                            {message}
-                        </p>
-                    </div>
-                </div>
-            )
-            : (
-                <div className="messageContainer justifyStart">                    
-                    <div className="messageBox backgroundLight">
-                        <p className="messageText colorDark">
-                            {message}
-                        </p>
-                    </div>
-                    <p className="sentText pl-10">
-                        {connection}
-                    </p>
-                </div>
-            )
+        showMessage
     );
 }
 

@@ -16,11 +16,13 @@ const addConnection = ({ id, email, room }) => {
     return connection;
 }
 
-const removeConnection = (email) => {
-    const index = connections.find((connection) => connection.email == email);
+const removeConnection = (id) => {
+    const index = connections.find((connection) => {
+        if(connection.id === id) return connection;
+    });
 
     if(index !== -1){
-        const connection = connections.splice(index, 1)[0]
+        const connection = connections.splice(index, 1)[0];
         console.log('Connection removed => ', connection);
     }
 }
