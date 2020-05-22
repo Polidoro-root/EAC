@@ -69,10 +69,8 @@ export default function CompanyLogin(){
 
                 <form onSubmit={handleLogin}>                   
 
-                    <div className="row input-email my-3">
-                        <Col xs="1">
-                            <FiAtSign color="#76b7eb" size={35} />
-                        </Col>
+                    <div className="row input-email my-3">                        
+                        <FiAtSign color="#76b7eb" size={35} />                        
                         <Col>
                             <input 
                                 type="text" 
@@ -82,10 +80,8 @@ export default function CompanyLogin(){
                             />
                         </Col>
                     </div>
-                    <div className="row input-password my-3">                        
-                        <Col xs="1">
-                            <FiLock color="#76b7eb" size={35} />
-                        </Col>
+                    <div className="row input-password my-3">                                                
+                        <FiLock color="#76b7eb" size={35} />                        
                         <Col>
                             <input 
                                 type="password" 

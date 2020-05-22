@@ -30,3 +30,9 @@
     padding: 2%;
     font-size: 200%;
 }
+
+@media (max-width: 576px){
+    .container-fluid .container .content form .footer {
+        margin-top: 10% !important;
+    }
+}

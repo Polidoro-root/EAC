@@ -11,10 +11,12 @@ import {
     FiSend
     } from 'react-icons/fi';    
 import HeaderNavbar from '../components/Navbar';
+import sessionVerify from '../../utils/sessionVerify';
 import api from '../../services/api';
 
-
-export default function UserIndex(){    
+sessionVerify();
+export default function UserIndex(){
+    
     const [search, setSearch] = useState('');
     const [vacancies, setVacancies] = useState([]);
 
@@ -62,9 +64,12 @@ export default function UserIndex(){
                 </InputGroup>
             </form>
 
-            <ul className="list-disponible-vacancies">
+            <ul className="row list-disponible-vacancies">
                 {vacancies.map(vacancy => (
-                    <li key={vacancy.id}>                        
+                    <li 
+                        key={vacancy.id}
+                        className=""
+                    >
                         <strong>VAGA:</strong>
                         <p>{vacancy.vacancy}</p>
 

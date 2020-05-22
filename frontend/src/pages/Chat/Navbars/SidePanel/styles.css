@@ -1,3 +1,21 @@
+@media (min-width: 320px){
+    .side-panel-icon {
+        font-size: 250%;
+    }
+}
+
+@media (min-width: 768px){
+    .side-panel-icon {
+        font-size: 300%;
+    }
+}
+
+@media (min-width: 1024px){
+    .side-panel-icon {
+        font-size: 50px;
+    }
+}
+
 .chat .side-panel .navbar {
     width: 100%;    
     background-color: #76b7eb;    
@@ -9,4 +27,29 @@
 .chat .side-panel .navbar a {
     color: #194052;
     font-weight: bold;
+}
+
+.uncontrolled-button-dropdown {
+    color: #194052 !important;
+    transition: 0.2s !important;    
+}
+
+.chat .side-panel .navbar .uncontrolled-button-dropdown:hover {
+    filter: brightness(500%) !important;
+    outline-color: transparent;    
+}
+
+.chat .side-panel .navbar .dropdown-menu {
+    background-color: #194052;
+    border: 1px solid #194052;
+}
+
+.chat .side-panel .navbar .dropdown-menu .dropdown-item {
+    color: #76b7eb;
+}
+
+.chat .side-panel .navbar .dropdown-menu .dropdown-item:hover {
+    background-color: #76b7eb !important;
+    color: #194052;
+    filter: brightness(100%);
 }

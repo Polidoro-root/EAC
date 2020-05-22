@@ -30,7 +30,7 @@ import deleteMessage from '../../utils/deleteMessage';
 function UserProfile(){
     const [firstChat, setFirstChat] = useState('');
     const [user, setUser] = useState([]);
-    const [graduations, setGraduations] = useState([]);
+    const [graduations, setGraduations] = useState([]);        
 
     const userId = localStorage.getItem('userId');
 
@@ -111,13 +111,11 @@ function UserProfile(){
                             <Container>                                
                                 <div className="content">                                    
                                     <Row>
-                                        <Col xs="12" sm="10" md="6" lg="6">
-                                            <label className="icon">
-                                                <FiLock color="#76b7eb" size={30}  />
-                                            </label>
-                                            <h3 className="data">
-                                                Password
-                                            </h3>
+                                        <Col sm="12" md="6">                                            
+                                            <FiLock color="#76b7eb" className="profile-icon" />
+                                            <h2 className="profile-data">
+                                                **********
+                                            </h2>
                                         </Col>
                                     </Row>                                    
                                 </div>
@@ -159,13 +157,13 @@ function UserProfile(){
                                 <Container>
                                     <section className="content">
                                         <Row>
-                                            <Col>
-                                                <FiAtSign color="#76b7eb" size={50} />
-                                                <h2>{user.email}</h2>
+                                            <Col sm="12" md="6">
+                                                <FiAtSign color="#76b7eb" className="profile-icon" />
+                                                <h2 className="profile-data">{user.email}</h2>
                                             </Col>
-                                            <Col>
-                                                <FiPhone color="#76b7eb" size={50} />
-                                                <h2>{user.phone}</h2>
+                                            <Col sm="12" md="6">
+                                                <FiPhone color="#76b7eb" className="profile-icon" />
+                                                <h2 className="profile-data">{user.phone}</h2>
                                             </Col>
                                         </Row>
                                     </section>
@@ -205,40 +203,32 @@ function UserProfile(){
                         <Container>
                             <div className="content">
                                 <Row>
-                                    <Col xs="12" sm="10" md="6" lg="6">
-                                        <label className="icon">
-                                            <FiCrosshair color="#76b7eb" size={30} />
-                                        </label>
-                                        <h3 className="data">
+                                    <Col sm="12" md="6">                                        
+                                        <FiCrosshair color="#76b7eb" className="profile-icon" />
+                                        <h2 className="profile-data">
                                             {user.interestArea}
-                                        </h3>
+                                        </h2>
                                     </Col>
-                                    <Col xs="12" sm="10" md="6" lg="6">
-                                        <label className="icon">
-                                            <FiBookOpen color="#76b7eb" size={30} />
-                                        </label>
-                                        <h3 className="data">
+                                    <Col sm="12" md="6">                                        
+                                        <FiBookOpen color="#76b7eb" className="profile-icon" />
+                                        <h2 className="profile-data">
                                             {user.experienceArea}
-                                        </h3>
+                                        </h2>
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col xs="12" sm="10" md="6" lg="6">
-                                        <label className="icon">
-                                            <FiChevronsLeft color="#76b7eb" size={30} />
-                                            <FiBriefcase color="#76b7eb" size={30} />
-                                        </label>
-                                        <h3 className="data">
+                                    <Col sm="12" md="6">                                        
+                                            <FiChevronsLeft color="#76b7eb" className="profile-icon" />
+                                            <FiBriefcase color="#76b7eb" className="profile-icon" />
+                                        <h2 className="profile-data">
                                             {user.lastJob}
-                                        </h3>
+                                        </h2>
                                     </Col>
-                                    <Col xs="12" sm="10" md="6" lg="6">
-                                        <label className="icon">
-                                            <FiFileText color="#76b7eb" size={30} />
-                                        </label>
-                                        <h3 className="data">
+                                    <Col sm="12" md="6">                                        
+                                        <FiFileText color="#76b7eb" className="profile-icon" />
+                                        <h2 className="profile-data">
                                             {user.aboutYourself}
-                                        </h3>
+                                        </h2>
                                     </Col>
                                 </Row>                                
                             </div>
@@ -270,8 +260,7 @@ function UserProfile(){
                             eventKey="0"
                             
                         >
-                            <h2>Graduações</h2>
-                            
+                            <h2>Graduações</h2>                            
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">

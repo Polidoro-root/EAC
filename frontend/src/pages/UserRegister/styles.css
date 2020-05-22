@@ -49,3 +49,9 @@
     font-size: 150%;
     padding: 2%;
 }
+
+form .container .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

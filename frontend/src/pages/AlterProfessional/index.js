@@ -49,10 +49,10 @@ function AlterProfessional(){
 
             <Container>
                 <section className="content">
-                    <h2>Editar Área Profissional</h2>
+                    <h2 id="alterProfessional">Editar Área Profissional</h2>
                     <form onSubmit={handleAlterProfessional}>
                         <Row>
-                            <Col className="input-professional">
+                            <Col sm="12" md="6" className="input-professional">
                                 <input
                                     type="text"
                                     placeholder="Área de Interesse"
@@ -60,17 +60,15 @@ function AlterProfessional(){
                                     onChange={e => setInterestArea(e.target.value)}
                                 />                                    
                             </Col>
-                            <Col className="input-professional">
+                            <Col sm="12" md="6" className="input-professional">
                                 <input 
                                     type="text"
                                     placeholder="Experiência na Área"
                                     value={experienceArea}
                                     onChange={e => setExperienceArea(e.target.value)}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="input-professional">
+                            </Col>                        
+                            <Col sm="12" md="6" className="input-professional">
                                 <input 
                                     type="text" 
                                     placeholder="Último Emprego"
@@ -78,7 +76,7 @@ function AlterProfessional(){
                                     onChange={e => setLastJob(e.target.value)}
                                 />
                             </Col>
-                            <Col className="input-professional">
+                            <Col sm="12" md="6" className="input-professional">
                                 <textarea 
                                     type="text" 
                                     placeholder="Sobre si mesmo"
@@ -97,7 +95,7 @@ function AlterProfessional(){
                                 onMouseOver={() => createMessage('alter-professional-save', 'Salvar')}
                                 onMouseLeave={() => deleteMessage()}
                             >
-                                <FiSave color="#76b7eb" size={30} />
+                                <FiSave color="#76b7eb" size={40} />
                             </button>
                         </div >
                     </form>

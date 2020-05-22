@@ -3,19 +3,12 @@ import { Link, useHistory } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import { Container, Col, Row } from 'reactstrap';
 import { 
-    FiArrowLeftCircle, 
-    FiArrowRight, 
+    FiArrowLeftCircle,     
     FiUserPlus,
     FiUnlock,
     FiLock,
     FiAtSign,
-    FiPhone,
-    FiHome, 
-    TiSortNumerically, 
-    FaMailBulk, 
-    GiFamilyHouse,
-    FaCity,
-    FaSearchLocation,
+    FiPhone,    
     FiBookOpen, 
     FiChevronsLeft,
     FiBriefcase,
@@ -65,13 +58,8 @@ export default function UserRegister(){
 
     return (
         <Container fluid={true}>
-            <header className="row">
-                <Col xs="1">
-                    <Link to="/userLogin">
-                        <FiArrowLeftCircle color="#76b7eb" size={50} />
-                    </Link>
-                </Col>
-                <Col xs="10">
+            <header className="row">                
+                <Col>
                     <h1>Cadastro</h1>
                     <p>Insira as informações necessárias e desfrute de nossos serviços</p>
                 </Col>
@@ -80,7 +68,7 @@ export default function UserRegister(){
                 <Container>
                     <div className="content">
                         <Row>                    
-                            <Col xs="12" sm="10" md="6" lg="6">
+                            <Col xs="12" md="6" lg="6">
                                 <label htmlFor="password">
                                     <FiLock color="#76b7eb" size={30}  />
                                 </label>
@@ -91,7 +79,7 @@ export default function UserRegister(){
                                     onChange={e => setPassword(e.target.value)}
                                 />
                             </Col>
-                            <Col xs="12" sm="10" md="6" lg="6">
+                            <Col xs="12" md="6" lg="6">
                                 <label htmlFor="confirm-password">
                                     <FiUnlock color="#76b7eb" size={30}  />
                                 </label>
@@ -108,7 +96,7 @@ export default function UserRegister(){
                 <Container>
                     <div className="content">
                         <Row>
-                            <Col xs="12" sm="10" md="6">
+                            <Col xs="12" md="6">
                                 <label htmlFor="email">
                                     <FiAtSign color="#76b7eb" size={30}  />
                                 </label>
@@ -119,7 +107,7 @@ export default function UserRegister(){
                                     onChange={e => setEmail(e.target.value)}
                                 />
                             </Col>
-                            <Col xs="12" sm="10" md="6">
+                            <Col xs="12" md="6">
                                 <label htmlFor="phone">
                                     <FiPhone color="#76b7eb" size={30}  />
                                 </label>
@@ -140,7 +128,7 @@ export default function UserRegister(){
                 <Container>
                     <div className="content">
                         <Row>
-                            <Col xs="12" sm="10" md="6" lg="6">
+                            <Col xs="12" md="6" lg="6">
                                 <label htmlFor="interestArea">
                                     <FiCrosshair color="#76b7eb" size={30}  />
                                 </label>
@@ -151,7 +139,7 @@ export default function UserRegister(){
                                     onChange={e => setInterestArea(e.target.value)}
                                 />
                             </Col>
-                            <Col xs="12" sm="10" md="6" lg="6">
+                            <Col xs="12" md="6" lg="6">
                                 <label htmlFor="experienceArea">
                                     <FiBookOpen color="#76b7eb" size={30}  />
                                 </label>
@@ -161,10 +149,8 @@ export default function UserRegister(){
                                     value={experienceArea}
                                     onChange={e => setExperienceArea(e.target.value)}
                                 />
-                            </Col>
-                        </Row>                             
-                        <Row>
-                            <Col xs="12" sm="10" md="6" lg="6">                    
+                            </Col>                        
+                            <Col xs="12" md="6" lg="6">                    
                                 <label htmlFor="lastJob">
                                     <FiChevronsLeft color="#76b7eb" size={30}  />
                                     <FiBriefcase color="#76b7eb" size={30}  />
@@ -176,11 +162,12 @@ export default function UserRegister(){
                                     onChange={e => setLastJob(e.target.value)}
                                 />
                             </Col>
-                            <Col xs="12" sm="10" md="6" lg="6">
+                            <Col xs="12" md="6" lg="6">
                                 <label htmlFor="aboutYourself">
                                     <FiFileText color="#76b7eb" size={30}  />
                                 </label>
                                 <textarea
+                                    placeholder="Fale sobre si"
                                     value={aboutYourself}
                                     onChange={e => setAboutYourself(e.target.value)}
                                 >
@@ -191,7 +178,7 @@ export default function UserRegister(){
                     </div>
                 </Container>
 
-                <Row>
+                <Row className="mb-5">
                     <Col xs="9" sm="6" md="4" lg="3">
                         <button type="submit" className="button">
                             Cadastrar

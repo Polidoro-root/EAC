@@ -26,7 +26,8 @@ export default function UserIndex(){
         .then(response => {
             setVacancies(response.data[0]['vacancies']);
         })
-    }, []);
+		}, []);
+		console.log(vacancies);
 
     useEffect(() => {
         api.get('companyIndex', {
@@ -43,6 +44,8 @@ export default function UserIndex(){
 
     const history = useHistory();
 
+    let filteredInvitations;
+
     return (            
         <Container fluid={true}>
             <HeaderNavbar />
@@ -50,8 +53,8 @@ export default function UserIndex(){
             <h1>Interessados</h1>
 
             {vacancies.map(vacancy => (
-            <div key={vacancy.id}>
-                <Accordion>
+            <div key={vacancy.id}>                
+                <Accordion>                    
                     <Card className="accordion">
                         <Card.Header className="accordion-header">
                             <Accordion.Toggle                             
@@ -66,28 +69,27 @@ export default function UserIndex(){
                                 </h2>
                             </Accordion.Toggle>
                         </Card.Header>
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body className="accordion-body">
+                        <Accordion.Collapse eventKey="0">                            
+                            <Card.Body className="accordion-body">                            
                             <ul className="list-invitations">
-                                {invitations.map(invitation => (                    
+                                {invitations.filter(invitation =>
+                                    invitation.invitationsVacanciesId === vacancy.id)
+                                    .map(invitation => (                    
                                     <li key={invitation.id} className="invitation">
                                         <Row>
-                                            <Col>
+                                            <Col sm="12" md="6">
                                                 <strong>Área de Interesse:</strong>
                                                 <p>{invitation.interestArea}</p>
                                             </Col>
-                                            <Col>
+                                            <Col sm="12" md="6">
                                                 <strong>Experiência na Área:</strong>
                                                 <p>{invitation.experienceArea}</p>
-                                            </Col>
-                                        </Row>
-
-                                        <Row>
-                                            <Col>
+                                            </Col>                                        
+                                            <Col sm="12" md="6">
                                                 <strong>Último Emprego:</strong>
                                                 <p>{invitation.lastJob}</p>
                                             </Col>
-                                            <Col>
+                                            <Col sm="12" md="6">
                                                 <strong>Sobre Si:</strong>
                                                 <p>{invitation.aboutYourself}</p>
                                             </Col>

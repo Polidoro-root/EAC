@@ -7,6 +7,7 @@ const ContactController = require('./controllers/ContactController');
 const VacancyController = require('./controllers/VacancyController');
 const InvitationController = require('./controllers/InvitationController');
 const ChatController = require('./controllers/ChatController');
+const MessageController = require('./controllers/MessageController');
 
 routes.post('/userRegister', UserController.createUser);
 
@@ -28,7 +29,7 @@ routes.delete('/userProfile/:id', GraduationController.deleteGraduation);
 
 routes.put('/userProfile/alterContact', ContactController.alterContact);
 
-routes.get('/userProfile/chat', ChatController.listChats);
+routes.get('/userProfile/chat', ChatController.listUserChats);
 
 routes.post('/companyRegister', CompanyController.createCompany);
 
@@ -54,6 +55,10 @@ routes.delete('/companyProfile/:id', VacancyController.deleteVacancy);
 
 routes.put('/companyProfile/alterContact', ContactController.alterContact);
 
-routes.get('/companyProfile/chat', ChatController.listChats);
+routes.get('/companyProfile/chat', ChatController.listCompanyChats);
+
+routes.get('/chat/:id', MessageController.getMessages);
+
+routes.post('/chat', MessageController.inputMessage);
 
 module.exports = routes;

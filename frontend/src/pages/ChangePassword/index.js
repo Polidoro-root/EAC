@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import './styles.css';
 import api from '../../services/api';
 import { 
@@ -65,42 +65,54 @@ export default function ChangePassword(){
             <Container>                
                 <section className="content">
                     <h2>Editar Senha</h2>
-                    <form onSubmit={handleChangePassword}>
-                        <div className="input-password">
+                    <form className="row" onSubmit={handleChangePassword}>
+                        <Col 
+                            sm="12"
+                            md="9"                        
+                            className="input-password"
+                        >
                             <input 
                                 type="password" 
                                 placeholder="Senha Atual"
                                 value={currentPassword}
                                 onChange={e => setCurrentPassword(e.target.value)} 
                             />
-                        </div>
-                        <div className="input-password">
+                        </Col>
+                        <Col
+                            sm="12"
+                            md="9"
+                            className="input-password"
+                        >
                             <input 
                                 type="password" 
                                 placeholder="Nova Senha"
                                 value={newPassword}
                                 onChange={e => setNewPassword(e.target.value)} 
                             />
-                        </div>
-                        <div className="input-password">
+                        </Col>
+                        <Col
+                            sm="12"
+                            md="9"
+                            className="input-password"
+                        >
                             <input 
                                 type="password" 
                                 placeholder="Confirmar Nova Senha" 
                                 value={confirmNewPassword}
                                 onChange={e => setConfirmNewPassword(e.target.value)} 
                             />
-                        </div>
+                        </Col>
                     
 
-                        <div className="footer">
+                        <div className="footer col-12">
                             <button 
                                 id="change-password-save"
-                                className="button col-3" 
+                                className="button col-sm-12 col-lg-3" 
                                 type="submit"
                                 onMouseOver={() => createMessage('change-password-save', 'Salvar')}
                                 onMouseLeave={() => deleteMessage()}                        
                             >
-                                <FiSave color="#76b7eb" size={35} />
+                                <FiSave color="#76b7eb" size={40} />
                             </button>
                         </div>
                     </form>

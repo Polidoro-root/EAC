@@ -2,9 +2,10 @@ import React from 'react';
 import './styles.css';
 import ReactEmoji from 'react-emoji';
 
-const Message = ({ message: { connection, message }, email }) => {
+const Message = ({ message, email, createdAt }) => {    
     let isSentByCurrentConnection = false;
-    let showMessage = '';
+    let showMessage = '';    
+    const connection = localStorage.getItem('Email');
 
     const trimmedEmail = email.trim();
 
@@ -14,13 +15,13 @@ const Message = ({ message: { connection, message }, email }) => {
 
     if(isSentByCurrentConnection){
         showMessage = (
-            <div className="message-container justify-end">
-                <p className="sent-text pr-10">
-                    {trimmedEmail}
-                </p>
+            <div className="message-container justify-end">                
                 <div className="message-box background-blue">
-                    <p className="message-text colorWhite">
+                    <p className="message-text">
                         {message}
+                    </p>
+                    <p className="message-timestamp">
+                        {createdAt}
                     </p>
                 </div>
             </div>
@@ -29,14 +30,14 @@ const Message = ({ message: { connection, message }, email }) => {
     else {
         showMessage = (
             <div className="message-container justify-start">                    
-                    <div className="message-box background-light">
-                    <p className="message-text colorDark">
+                <div className="message-box background-light">                    
+                    <p className="message-text">
                         {message}
                     </p>
-                </div>
-                <p className="sent-text pl-10">
-                    {trimmedEmail}
-                </p>
+                    <p className="message-timestamp">
+                        {createdAt}
+                    </p>
+                </div>                
             </div>
         );
     }

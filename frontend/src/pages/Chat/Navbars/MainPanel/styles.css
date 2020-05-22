@@ -1,3 +1,48 @@
+@media (min-width: 320px){    
+    .main-panel-icon {
+        font-size: 30px;
+        color: #194052;
+    }        
+
+    .slide-menu .conversations .conversations-list {
+        list-style: none;
+    }
+
+    .slide-menu .conversations .conversations-list .conversation-cell {
+        border-bottom: 1px solid #76b7eb;
+        height: 12vh;
+        padding-top: 3%;
+    }
+
+    .slide-menu .conversations .conversations-list .conversation-cell a {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+    }    
+
+    .slide-menu .conversations .conversations-list .conversation-cell .email-vacancy {        
+        display: grid;
+        padding-top: 2%;
+        color: #76b7eb;
+    }
+}
+
+@media (min-width: 768px){
+    .main-panel-icon {
+        font-size: 40px;
+    }    
+}
+
+@media (min-width: 992px){    
+    .slide-menu {
+        display: none;
+    }
+
+    .main-panel-icon {
+        font-size: 50px;        
+    }
+}
+
 .chat .main-panel .navbar {
     width: 100%;    
     background-color: #76b7eb;    

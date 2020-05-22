@@ -59,8 +59,8 @@ export default function UserLogin(){
     }
 
     return (
-        <Container>            
-            <div className="content mt-4">
+        <Container>                        
+            <div className="content content-login">
             <section className="form">                
                 
                 <div className="icon-header">
@@ -70,9 +70,7 @@ export default function UserLogin(){
                 <form onSubmit={handleLogin}>                   
 
                     <div className="row input-email my-3">
-                        <Col xs="1">
-                            <FiAtSign color="#76b7eb" size={35} />
-                        </Col>
+                        <FiAtSign color="#76b7eb" size={35} />
                         <Col>
                             <input 
                                 type="text" 
@@ -82,10 +80,8 @@ export default function UserLogin(){
                             />
                         </Col>
                     </div>
-                    <div className="row input-password my-3">                        
-                        <Col xs="1">
-                            <FiLock color="#76b7eb" size={35} />
-                        </Col>
+                    <div className="row input-password my-3">
+                        <FiLock color="#76b7eb" size={35} />
                         <Col>
                             <input 
                                 type="password" 

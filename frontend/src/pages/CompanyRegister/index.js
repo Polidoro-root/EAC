@@ -10,13 +10,7 @@ import {
     FiUnlock,
     FiFileText,
     FiAtSign,
-    FiPhone,
-    FiHome, 
-    TiSortNumerically, 
-    FaMailBulk, 
-    GiFamilyHouse,
-    FaCity,
-    FaSearchLocation,    
+    FiPhone,    
  } from 'react-icons/all';
 import './styles.css';
 import InputMask from 'react-input-mask';
@@ -58,13 +52,8 @@ export default function CompanyRegister(){
 
     return (
         <Container fluid={true}>
-            <header className="row">
-                <Col xs="1">
-                    <Link to="/userLogin">
-                        <FiArrowLeftCircle color="#76b7eb" size={50} />
-                    </Link>
-                </Col>
-                <Col xs="10">
+            <header className="row">                
+                <Col>
                     <h1>Cadastro</h1>
                     <p>Insira as informações necessárias e desfrute de nossos serviços</p>
                 </Col>
@@ -73,7 +62,7 @@ export default function CompanyRegister(){
                 <Container>
                     <div className="content">                    
                         <Row>
-                            <Col xs="12" sm="10" md="6">
+                            <Col xs="12" md="6">
                                 <label htmlFor="name">
                                     <FiBriefcase color="#76b7eb" size={30}  />
                                 </label>
@@ -84,7 +73,7 @@ export default function CompanyRegister(){
                                     onChange={e => setName(e.target.value)}
                                 />
                             </Col>
-                            <Col xs="12" sm="10" md="6">
+                            <Col xs="12" md="6">
                                 <label htmlFor="cnpj">
                                     <FiFileText color="#76b7eb" size={30}  />
                                 </label>
@@ -97,10 +86,8 @@ export default function CompanyRegister(){
                                     value={cnpj}
                                     onChange={e => setCnpj(e.target.value)}
                                 />
-                            </Col>
-                        </Row>
-                        <Row>                    
-                            <Col xs="12" sm="10" md="6">
+                            </Col>                                          
+                            <Col xs="12" md="6">
                                 <label htmlFor="password">
                                     <FiLock color="#76b7eb" size={30}  />
                                 </label>
@@ -111,7 +98,7 @@ export default function CompanyRegister(){
                                     onChange={e => setPassword(e.target.value)}
                                 />
                             </Col>
-                            <Col xs="12" sm="10" md="6">
+                            <Col xs="12" md="6">
                                 <label htmlFor="password">
                                     <FiUnlock color="#76b7eb" size={30}  />
                                 </label>
@@ -129,7 +116,7 @@ export default function CompanyRegister(){
                 <Container>
                     <div className="content">
                         <Row>
-                            <Col xs="12" sm="10" md="6">
+                            <Col xs="12" md="6">
                                 <label htmlFor="email">
                                     <FiAtSign color="#76b7eb" size={30}  />
                                 </label>
@@ -140,7 +127,7 @@ export default function CompanyRegister(){
                                     onChange={e => setEmail(e.target.value)}
                                 />
                             </Col>
-                            <Col xs="12" sm="10" md="6">
+                            <Col xs="12" md="6">
                                 <label htmlFor="phone">
                                     <FiPhone color="#76b7eb" size={30}  />
                                 </label>
@@ -167,13 +154,7 @@ export default function CompanyRegister(){
                         </button>
                     </Col>
                 </Row>
-
-                <Row className="my-5">
-                    <a href="https://discordapp.com/register">
-                        Não tem conta no Discord? Crie uma
-                        <FiArrowRight color="#76b7eb" size={35} className="arrow-icon" />
-                    </a>
-                </Row>
+                
             </form>
         </Container>
     );

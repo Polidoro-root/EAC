@@ -35,13 +35,20 @@ const HeaderNavbar = () => {
       }
     };
 
-    const history = useHistory();
+    let profileMessage = '';
+    let logoutMessage = '';
 
-    function handleLogout(){
-      localStorage.clear();
-      history.push('/');
+    if(isOpen === true){
+      profileMessage = <span className="nav-message">Perfil</span>;
+      logoutMessage= <span className="nav-message">Encerrar Sessão</span>;
     }
+
+    const history = useHistory();
     
+    function handleLogout(){
+      localStorage.clear();      
+    }
+        
     return (
       <div>                
         <Navbar className="navbar" expand="sm">
@@ -58,14 +65,16 @@ const HeaderNavbar = () => {
               <NavItem >
                 <NavLink>
                   <Link to={profile}>                    
-                      <FiUser className="mx-3" color="#194052" size={30} />                    
+                      <FiUser className="mx-3" color="#194052" size={30} />
+                      {profileMessage}
                   </Link>
                 </NavLink>                
               </NavItem>
               <NavItem>
                 <NavLink>
-                  <Link onClick={handleLogout}>
+                  <Link to="/" onClick={handleLogout}>
                     <FiLogOut className="mx-3" color="#194052" size={30} />
+                    {logoutMessage}
                   </Link>
                 </NavLink>
               </NavItem>            

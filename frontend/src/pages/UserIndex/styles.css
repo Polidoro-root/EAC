@@ -24,22 +24,46 @@
     font-size: 18px;    
 }
 
-.list-disponible-vacancies {
-    margin-top: 5%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 24px;
-    list-style: none;
-    margin-left: 1%;
-    margin-right: 1%;
+@media (min-width: 300px){
+    .list-disponible-vacancies {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 24px;
+        list-style: none;
+        margin-left: 0.15%;
+        margin-right: 0.15%;
+    }
 }
 
-.list-disponible-vacancies li {
+@media (min-width: 576px){
+    .list-disponible-vacancies {
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        grid-gap: 24px;
+        list-style: none;
+        margin-left: 0.15%;
+        margin-right: 0.15%;
+    }
+}
+
+@media (min-width: 768px){
+    .list-disponible-vacancies {
+        display: grid;
+        grid-template-columns: repeat(3, 3fr);
+        grid-gap: 24px;
+        list-style: none;
+        margin-left: 0.15%;
+        margin-right: 0.15%;
+    }
+}
+
+.list-disponible-vacancies li {    
+    margin-top: 5%;    
     background-color: transparent;
     padding: 24px;
     border-radius: 8px;
     position: relative;
-    border: 2px solid #76b7eb;
+    border: 2px solid #76b7eb;    
 }
 
 .list-disponible-vacancies li button {

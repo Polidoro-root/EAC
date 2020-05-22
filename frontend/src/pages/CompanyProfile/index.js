@@ -91,8 +91,7 @@ function CompanyProfile(){
                         <Accordion.Toggle                             
                             className="accordion-button" 
                             variant="link" 
-                            eventKey="0"
-                            
+                            eventKey="0"                            
                         >
                             <h2>Dados da Empresa</h2>
                             
@@ -103,27 +102,21 @@ function CompanyProfile(){
                             <Container>
                                 <div className="content">
                                     <Row>
-                                        <Col xs="12" sm="12" md="4" lg="4">
-                                            <label className="icon">
-                                                <FiUser color="#76b7eb" size={30}  />
-                                            </label>
-                                            <h3 className="data">
+                                        <Col sm="12" md="4">
+                                            <FiUser color="#76b7eb" className="profile-data" />
+                                            <h3 className="profile-data">
                                                 {company.name}
                                             </h3>
                                         </Col>
-                                        <Col xs="12" sm="12" md="4" lg="4">
-                                            <label className="icon">
-                                                <FiLock color="#76b7eb" size={30}  />
-                                            </label>
-                                            <h3 className="data">
+                                        <Col sm="12" md="4">
+                                            <FiLock color="#76b7eb" className="profile-icon" />
+                                            <h3 className="profile-data">
                                                 Password
                                             </h3>
                                         </Col>
-                                        <Col xs="12" sm="12" md="4" lg="4">
-                                            <label className="icon">
-                                                <FiFileText  color="#76b7eb" size={30}  />
-                                            </label>
-                                            <h3 className="data">
+                                        <Col sm="12" md="4">
+                                            <FiFileText  color="#76b7eb" className="profile-icon" />
+                                            <h3 className="profile-data">
                                                 {company.cnpj}
                                             </h3>
                                         </Col>
@@ -156,11 +149,9 @@ function CompanyProfile(){
                         <Accordion.Toggle                             
                             className="accordion-button" 
                             variant="link" 
-                            eventKey="0"
-                            
+                            eventKey="0"                            
                         >
-                            <h2>Contatos</h2>
-                            
+                            <h2>Contatos</h2>                            
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
@@ -168,13 +159,13 @@ function CompanyProfile(){
                                 <Container>
                                     <section className="content">
                                         <Row>
-                                            <Col>
-                                                <FiAtSign color="#76b7eb" size={50} />
-                                                <h2>{company.email}</h2>
+                                            <Col sm="12" md="6">
+                                                <FiAtSign color="#76b7eb" className="profile-icon"/>
+                                                <h3 className="profile-data">{company.email}</h3>
                                             </Col>
-                                            <Col>
-                                                <FiPhone color="#76b7eb" size={50} />
-                                                <h2>{company.phone}</h2>
+                                            <Col sm="12" md="6">
+                                                <FiPhone color="#76b7eb" className="profile-icon" />
+                                                <h3 className="profile-data">{company.phone}</h3>
                                             </Col>
                                         </Row>
                                     </section>
@@ -203,11 +194,9 @@ function CompanyProfile(){
                         <Accordion.Toggle
                             className="accordion-button" 
                             variant="link" 
-                            eventKey="0"
-                            
+                            eventKey="0"                            
                         >
-                            <h2>Vagas</h2>
-                            
+                            <h2>Vagas</h2>                            
                         </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">

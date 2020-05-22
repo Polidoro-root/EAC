@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { Container } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import Navbar from '../components/Navbar';
 import { useHistory } from 'react-router-dom';
 import { FiSave } from 'react-icons/fi';
@@ -55,16 +55,16 @@ function AlterContact(){
             <Container>                
                 <section className="content">
                     <h2>Editar Contato</h2>
-                    <form onSubmit={handleAlterContact}>
-                        <div className="input-contact">
+                    <form className="row" onSubmit={handleAlterContact}>
+                        <Col sm="12" md="9" className="input-contact">
                             <input 
                                 type="text" 
                                 placeholder="Email"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)} 
                             />
-                        </div>
-                        <div className="input-contact">
+                        </Col>
+                        <Col sm="12" md="9" className="input-contact">
                             <InputMask 
                                 mask="(99) 99999-9999"
                                 maskChar={false}
@@ -74,9 +74,9 @@ function AlterContact(){
                                 value={phone}
                                 onChange={e => setPhone(e.target.value)} 
                             />
-                        </div>
+                        </Col>
 
-                        <div className="footer">
+                        <div className="footer col-12">
                             <button 
                                 id="add-contact-save"
                                 className="button col-3" 
@@ -84,7 +84,7 @@ function AlterContact(){
                                 onMouseOver={() => createMessage('add-contact-save', 'Salvar')}
                                 onMouseLeave={() => deleteMessage()}
                             >
-                                <FiSave color="#76b7eb" size={30} />
+                                <FiSave color="#76b7eb" size={40} />
                             </button>
                         </div>
                     </form>

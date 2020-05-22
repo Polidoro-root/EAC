@@ -48,7 +48,7 @@ function AddGraduation(){
                     <h2>Adicionar Graduação</h2>
                     <form onSubmit={handleRegister}>
                         <Row>
-                            <Col className="input-graduation">
+                            <Col sm="12" md="9" className="input-graduation">
                                 <input
                                     type="text" 
                                     placeholder="Nível de Graduação"
@@ -56,7 +56,7 @@ function AddGraduation(){
                                     onChange={e => setGraduationLevel(e.target.value)}
                                 />                                    
                             </Col>
-                            <Col className="input-graduation">
+                            <Col sm="12" md="9" className="input-graduation mt-3">
                                 <input 
                                     type="text" 
                                     placeholder="Curso"
@@ -74,7 +74,7 @@ function AddGraduation(){
                                 onMouseOver={() => createMessage('add-graduation-save', 'Salvar')}
                                 onMouseLeave={() => deleteMessage()}
                             >
-                                <FiSave color="#76b7eb" size={30} />
+                                <FiSave color="#76b7eb" size={40} />
                             </button>
                         </div >
                     </form>

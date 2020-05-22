@@ -4,6 +4,7 @@ exports.up = function(knex) {
         table.increments('id');
         table.integer('messagesChatsId').notNullable();
         table.json('messages').notNullable();
+        table.string('created_at', 5).notNullable();
         table.foreign('messagesChatsId').references('id').inTable('chats');
     });
 };

@@ -55,7 +55,7 @@ function AddVacancy(){
                     <h2>Adicionar Vaga</h2>
                     <form onSubmit={handleRegister}>
                         <Row>
-                            <Col className="input-vacancy">
+                            <Col sm="12" md="6" className="input-vacancy mb-2">
                                 <input
                                     type="text" 
                                     placeholder="Vaga Disponível"
@@ -63,7 +63,7 @@ function AddVacancy(){
                                     onChange={e => setVacancy(e.target.value)}
                                 />                                    
                             </Col>
-                            <Col className="input-vacancy">
+                            <Col  sm="12" md="6" className="input-vacancy my-2">
                                 <InputMask
                                     mask="R$ 9999,99"
                                     maskChar={null}
@@ -72,11 +72,8 @@ function AddVacancy(){
                                     value={salary}
                                     onChange={e => setSalary(e.target.value)}
                                 />
-                            </Col>
-                        </Row>                        
-
-                        <Row>
-                            <Col className="input-vacancy">
+                            </Col>                        
+                            <Col sm="12" md="6" className="input-vacancy my-2">
                                 <input
                                     type="text" 
                                     placeholder="Cidade"
@@ -84,7 +81,7 @@ function AddVacancy(){
                                     onChange={e => setCity(e.target.value)}
                                 />                                    
                             </Col>
-                            <Col className="input-vacancy">
+                            <Col  sm="12" md="6" className="input-vacancy my-2">
                                 <select                                    
                                     value={uf}
                                     onChange={e => setUf(e.target.value)}
@@ -118,11 +115,8 @@ function AddVacancy(){
                                     <option value="SP">SP</option>
                                     <option value="TO">TO</option>
                                 </select>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col className="input-vacancy">
+                            </Col>                        
+                            <Col  sm="12" className="input-vacancy mt-2">
                                 <textarea
                                     type="text" 
                                     placeholder="Requisitos"

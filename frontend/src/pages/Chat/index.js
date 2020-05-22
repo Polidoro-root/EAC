@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {     
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,    
+import {      
     Input,
     InputGroup,
     InputGroupAddon
@@ -15,9 +10,7 @@ import {
     FiUser,
     FiBriefcase,
     FiAlertCircle,
-    FiSearch,
-    FiSend,
-    FiMoreVertical,    
+    FiSearch,    
 } from 'react-icons/fi';
 import api from '../../services/api';
 import currentUrl from '../../utils/currentUrl';
@@ -28,6 +21,7 @@ import SidePanelNavbar from './Navbars/SidePanel';
 import MainPanelNavbar from './Navbars/MainPanel';
 import InputMessage from './Input';
 import Messages from './Messages';
+import Conversations from './Conversations';
 
 let profile, header, icon;
 
@@ -57,125 +51,71 @@ else if(currentUrl() === '/company') {
 const currentEmail = localStorage.getItem('Email');
 
 const server = 'http://localhost:3333';
-let socket;
+const socket = io(server);
 
-const Chat = ({ location }) => {
+const Chat = ({ location }) => {        
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
-
-    const [chats, setChats] = useState([]);
-    const [linkRoom, setLinkRoom] = useState('');        
-    const [currentRoom, setCurrentRoom] = useState('');    
-    const [connections, setConnections] = useState('');
+            
+    const [currentRoom, setCurrentRoom] = useState('');        
     const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState([]);    
+    const [messages, setMessages] = useState([]);            
 
     useEffect(() => {
-        api.get(`${profile}/chat`, header)
-            .then(response => setChats(response.data));        
-    }, []);
-
-    useEffect(() => {
+        socket.emit('disconnect');
         localStorage.setItem('previousRoom', currentRoom);
         const { email, room } = queryString.parse(location.search);        
-        
-        socket = io(server);
         
         const previousRoom = localStorage.getItem('previousRoom');
         setCurrentRoom(room);        
 
         socket.emit('join', { email, room, previousRoom });
-
+        api.get(`chat/${room}`).then(response => setMessages(response.data));
     }, [location.search]);
-
-    useEffect(() => {
-        socket.on('message', (message) => {
-            setMessages([...messages, message])
-        });        
-    }, [messages]);
 
     const sendMessage = (event) => {
         event.preventDefault();
-        
+                
         if(message){
             const { email, room } = queryString.parse(location.search);
-            socket.emit('sendMessage', { email, room, message});
-            setMessage('');
+            socket.emit('sendMessage', { email, room, message });
+            api.post('chat', { email, message }, {
+                headers: { chatId: room }
+            });
+            setMessage('');            
         }
-    }
+    }    
 
-    console.log(messages);
-    
     return (
         <main className="chat">            
             <section className="section-height side-panel">
 
-                <SidePanelNavbar />
+                <SidePanelNavbar />                
 
-                <div className="searchbar">
-                    <form>
-                        <InputGroup className="">
-                            <Input 
-                                type="text"
-                                className="search-input"
-                                placeholder="Procure por vaga"
-                            />
-                            <InputGroupAddon addonType="prepend">
-                                <button
-                                    className="button"
-                                    type="submit"
-                                >
-                                    <FiSearch size={30}/>
-                                </button>
-                            </InputGroupAddon>
-                        </InputGroup>
-                    </form>
-                </div>
-
-                <div className="conversations">
-                    <ul className="conversations-list"> 
-                    {chats.map((chat) => (                        
-                        <li
-                            key={chat.chatId}
-                            className="conversation-cell"                            
-                        >
-                            <Link 
-                                to={`/${profile}/chat?email=${currentEmail}&room=${linkRoom}`}
-                                onMouseOver={(event) => {
-                                    event.preventDefault();
-
-                                    setLinkRoom(chat.chatId);
-                                }}                                
-                            >
-                            <span className="conversation-icon">
-                                {icon}
-                            </span>
-                            <span className="email-vacancy">
-                                <span className="email">
-                                    {chat.email}
-                                </span>
-                                <span className="vacancy">
-                                    {chat.vacancy}
-                                </span>
-                            </span>
-                            <span className="messages-not-verified">
-                                <FiAlertCircle size={40} />
-                            </span>
-                            </Link>
-                        </li>                        
-                        ))}
-                    </ul>
-                </div>
+                <Conversations 
+                    header={header}
+                    profile={profile}
+                    currentEmail={currentEmail}
+                    icon={icon}
+                />
             </section>
                         
             <section                 
                 className="section-height main-panel"
             >                
                 
-                <MainPanelNavbar room={currentRoom} />
+                <MainPanelNavbar room={currentRoom} conversations={
+                        <Conversations                            
+                            header={header}
+                            profile={profile}
+                            currentEmail={currentEmail}
+                            icon={icon}
+                        />
+                    } 
+                />
 
-                <Messages messages={messages} email={currentEmail} />
+                <Messages messages={messages} />
 
                 <InputMessage 
                     message={message}

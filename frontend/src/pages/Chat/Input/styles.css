@@ -12,17 +12,51 @@
     justify-content: space-evenly;
 }
 
-.input-message form input {
-    background-color: #194052;
-    padding: 1%;
-    padding-left: 2%;
-    font-size: 200%;
-    width: 90%;
-    border-top-right-radius: 25px;
-    border-top-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
+@media (min-width: 320px){
+    .input-message form input {
+        background-color: #194052;
+        padding: 3%;
+        padding-left: 2%;
+        font-size: 200%;
+        width: 90%;
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;        
+        word-wrap: normal;
+    }
 }
+
+@media (min-width: 380px){
+    .input-message form input {
+        background-color: #194052;
+        padding: 2%;
+        padding-left: 2%;
+        font-size: 200%;
+        width: 90%;
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;        
+        word-wrap: normal;
+    }
+}
+
+@media (min-width: 550px){
+    .input-message form input {
+        background-color: #194052;
+        padding: 1%;
+        padding-left: 2%;
+        font-size: 200%;
+        width: 90%;
+        border-top-right-radius: 25px;
+        border-top-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        border-bottom-left-radius: 25px;        
+        word-wrap: normal;
+    }
+}
+
 
 .input-message form button {
     background-color: #76b7eb;

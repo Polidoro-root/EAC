@@ -1,7 +1,6 @@
 const { server } = require('./app');
-const routes = require('./routes');
 const io = require('socket.io')(server);
-// socket.on('', () => {});
+
 io.on('connection', (socket) => {
     console.log('We have a new connection!');    
 
@@ -17,11 +16,9 @@ io.on('connection', (socket) => {
     socket.on('sendMessage', ({ email, room, message }) => {
         console.log('[SEND MESSAGE] => ', socket.id, message);
 
-        io.to(room).emit('message', {
-            connection: email,
+        io.to(room).emit('message', {            
             message: message
-        });
-        
+        });        
     });
 
     socket.on('disconnect', () => {        

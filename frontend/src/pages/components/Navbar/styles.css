@@ -21,3 +21,15 @@
 .nav-item {
     padding: 0;
 }
+
+.nav-message {
+    color: #194052;
+    font-size: 150%;
+    font-weight: bold;    
+}
+
+@media (min-width: 576px){
+    .nav-message {
+        display: none;
+    }
+}

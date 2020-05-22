@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import './styles.css';
-
-import ScrollToBottom from 'react-scroll-to-bottom';
 import Message from '../Message';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
-const Messages = ({ messages, email }) => {
+const Messages = ({ messages }) => {    
     return (
-        <section className="messages">
-            {messages.map((message, index) => 
-                <div key={index}>
-                    {console.log('[MESSAGE] => ', message)}
-                    {console.log('[EMAIL] => ', email)}
-                    <Message message={message} email={email} />
+        <ScrollToBottom className="messages">
+            {messages.map((message) =>                 
+                <div key={message.id}>                    
+                    <Message 
+                        message={message.messages.message}
+                        email={message.messages.email}
+                        createdAt={message.created_at}
+                    />
                 </div>
             )}
-        </section>
+        </ScrollToBottom>
     );
 }
 

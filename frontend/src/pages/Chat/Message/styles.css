@@ -22,13 +22,6 @@
     margin-top: 3px;
 }
 
-.sent-text {
-    display: flex;
-    align-items: center;
-    color: #194052;
-    letter-spacing: 0.3px;
-}
-
 .pl-10 {
     padding-left: 10px;    
 }

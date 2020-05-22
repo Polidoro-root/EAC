@@ -29,7 +29,7 @@ export default function Routes(){
                 <Route path="/userProfile/alterContact" exact component={AlterContact} />
                 <Route path="/userProfile/alterProfessional" exact component={AlterProfessional} />
                 <Route path="/userProfile/addGraduation" exact component={AddGraduation} />
-                <Route path="/userProfile/chat" exact component={Chat} />
+                <Route path="/userProfile/chat" component={Chat} />
                 <Route path="/companyLogin" exact component={CompanyLogin} />
                 <Route path="/companyRegister" exact component={CompanyRegister} />
                 <Route path="/companyIndex" exact component={CompanyIndex} />
@@ -37,7 +37,7 @@ export default function Routes(){
                 <Route path="/companyProfile/changePassword" exact component={ChangePassword} />
                 <Route path="/companyProfile/alterContact" exact component={AlterContact} />
                 <Route path="/companyProfile/addVacancy" exact component={AddVacancy} />
-                <Route path="/companyProfile/chat" exact component={Chat} />
+                <Route path="/companyProfile/chat" component={Chat} />
             </Switch>
         </BrowserRouter>
     );

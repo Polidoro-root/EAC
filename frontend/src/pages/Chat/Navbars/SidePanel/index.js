@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import {     
     Collapse,
     Navbar,
-    NavbarToggler,    
-    Nav,        
+    NavbarToggler,
+    Nav,
+    UncontrolledButtonDropdown,
+    DropdownMenu,
+    DropdownItem,
+    DropdownToggle,
 } from 'reactstrap';
 import {
     FiUser,
@@ -22,12 +26,19 @@ const SidePanelNavbar = () => {
     const toggle = () => setIsOpen(!isOpen);
 
     if(currentUrl() === '/user'){
-        icon = <FiUser color="#194052" size={50} />;
+        icon = <FiUser color="#194052" className="side-panel-icon"/>;
         profile = '/userProfile';
     }
     else if(currentUrl() === '/company'){
-        icon = <FiBriefcase color="#194052" size={50} />;
+        icon = <FiBriefcase color="#194052" className="side-panel-icon"/>;
         profile = '/companyProfile';
+    }    
+
+    const history = useHistory();
+    
+    const handleLogout = () => {
+        localStorage.clear();
+        history.push('/');
     }
 
     return (
@@ -36,13 +47,21 @@ const SidePanelNavbar = () => {
                 {icon}
             </Link>
             <NavbarToggler onClick={toggle} />
-            <Collapse isOpen={isOpen} navbar>
-                <Nav className="ml-auto" navbar>
-                    <button>
+            <Nav className="ml-auto" navbar>
+                <UncontrolledButtonDropdown direction="left">
+                    <DropdownToggle className="uncontrolled-button-dropdown">
                         <FiMoreVertical size={30} />
-                    </button>
-                </Nav>
-            </Collapse>
+                    </DropdownToggle>
+                    <DropdownMenu className="dropdown-menu">
+                        <DropdownItem 
+                            className="dropdown-item"
+                            onClick={handleLogout}
+                        >
+                            Encerrar Sessão
+                        </DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledButtonDropdown>
+            </Nav>            
         </Navbar>
     );
 }
