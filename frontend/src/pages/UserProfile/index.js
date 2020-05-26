@@ -29,6 +29,7 @@ import deleteMessage from '../../utils/deleteMessage';
 
 function UserProfile(){
     const [firstChat, setFirstChat] = useState('');
+    const [firstVacancy, setFirstVacancy] = useState('');
     const [user, setUser] = useState([]);
     const [graduations, setGraduations] = useState([]);        
 
@@ -67,16 +68,15 @@ function UserProfile(){
         })
         .then(response => {
             if(response.data != false){
-                setFirstChat(response.data[0].chatId);                
+                setFirstChat(response.data[0].chatId);
+                setFirstVacancy(response.data[0].vacancy);
             }            
         });
 
-        return `email=${email}&room=${firstChat}`;
+        return `email=${email}&room=${firstChat}&vacancy=${firstVacancy}`;
     };
 
-    console.log(queryString());
-
-    const history = useHistory();
+    console.log(queryString());    
 
     return (
         <Container fluid={true}>

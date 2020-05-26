@@ -5,11 +5,9 @@ import ReactEmoji from 'react-emoji';
 const Message = ({ message, email, createdAt }) => {    
     let isSentByCurrentConnection = false;
     let showMessage = '';    
-    const connection = localStorage.getItem('Email');
+    const connection = localStorage.getItem('Email');    
 
-    const trimmedEmail = email.trim();
-
-    if(connection === trimmedEmail){
+    if(connection === email){
         isSentByCurrentConnection = true;
     }
 

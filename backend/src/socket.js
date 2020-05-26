@@ -14,10 +14,16 @@ io.on('connection', (socket) => {
     });
 
     socket.on('sendMessage', ({ email, room, message }) => {
-        console.log('[SEND MESSAGE] => ', socket.id, message);
+        const hours = new Date().getHours();
+        const minutes = new Date().getMinutes();
+        const created_at = `${hours}:${minutes < 10 ? `0${minutes}` : minutes }`;
 
-        io.to(room).emit('message', {            
-            message: message
+        console.log('[SEND MESSAGE] => ', email, message, created_at);
+
+        io.to(room).emit('message', {
+            email: email,
+            message: message,
+            created_at: created_at
         });        
     });
 

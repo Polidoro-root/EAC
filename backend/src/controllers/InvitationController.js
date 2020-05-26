@@ -1,7 +1,8 @@
 const connection = require('../database/connection');
+const nodemailer = require('nodemailer');
 
 module.exports = {
-    async showInvitations(request, response){        
+    async showInvitations(request, response){
         const companyId = request.headers.companyid;    
 
         let invitations = await connection('invitations')
@@ -26,7 +27,11 @@ module.exports = {
     },
 
     async createInvitation(request, response){
-        const { userId, companyId, vacancyId } = request.body;
+        const { userId, companyId, vacancyId } = request.body;        
+        // const transporter = nodemailer.createTransport({
+        //     host: 'localhost',
+        //     port: 3333,
+        // });
 
         console.log(userId, companyId, vacancyId);
 
@@ -37,6 +42,36 @@ module.exports = {
                 invitationsCompaniesId: companyId,
                 invitationsVacanciesId: vacancyId,
             });
+
+        // const [userEmail] = await connection('contacts')
+        //     .where({
+        //         contactsUsersId: userId,
+        //     })
+        //     .select('email');
+        
+        // const [companyEmail] = await connection('contacts')
+        //     .where({
+        //         contactsCompaniesId: companyId,
+        //     })
+        //     .select('email');
+
+        // const [vacancy] = await connection('vacancies')
+        //     .where({
+        //         id: vacancyId
+        //     })
+        //     .select('vacancy');
+
+        // const message = {
+        //     from: userEmail,
+        //     to: companyEmail,
+        //     subject: 'Convite para entrevista de emprego as cégas pelo site EAC.',
+        //     text: `O usuário ${userEmail} do site EAC está interessado na vaga de ${vacancy}.`
+        // };
+
+        // transporter.sendMail(message, (error) => {
+        //     if(error) console.log(error);
+        //     else console.log('Email successfully sent');
+        // });
 
         return response.json(invite);
     },

@@ -53,26 +53,31 @@ const currentEmail = localStorage.getItem('Email');
 const server = 'http://localhost:3333';
 const socket = io(server);
 
-const Chat = ({ location }) => {        
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggle = () => setIsOpen(!isOpen);
-            
-    const [currentRoom, setCurrentRoom] = useState('');        
+const Chat = ({ location }) => {
+    const [currentRoom, setCurrentRoom] = useState('');
+    const [currentVacancy, setCurrentVacancy] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);            
 
     useEffect(() => {
         socket.emit('disconnect');
         localStorage.setItem('previousRoom', currentRoom);
-        const { email, room } = queryString.parse(location.search);        
+        const { email, room, vacancy } = queryString.parse(location.search);        
         
-        const previousRoom = localStorage.getItem('previousRoom');
-        setCurrentRoom(room);        
+        const previousRoom = localStorage.getItem('previousRoom');        
+        setCurrentRoom(room);
+        setCurrentVacancy(vacancy);
 
         socket.emit('join', { email, room, previousRoom });
         api.get(`chat/${room}`).then(response => setMessages(response.data));
     }, [location.search]);
+
+    socket.on('message', ({ email, message, created_at }) => {
+        setMessages([...messages, { 
+            messages: { email, message },
+            created_at: created_at
+        }]);
+    });
 
     const sendMessage = (event) => {
         event.preventDefault();
@@ -85,7 +90,7 @@ const Chat = ({ location }) => {
             });
             setMessage('');            
         }
-    }    
+    }
 
     return (
         <main className="chat">            
@@ -105,7 +110,10 @@ const Chat = ({ location }) => {
                 className="section-height main-panel"
             >                
                 
-                <MainPanelNavbar room={currentRoom} conversations={
+                <MainPanelNavbar
+                    email={currentEmail}
+                    vacancy={currentVacancy}
+                    conversations={
                         <Conversations                            
                             header={header}
                             profile={profile}
@@ -115,7 +123,10 @@ const Chat = ({ location }) => {
                     } 
                 />
 
-                <Messages messages={messages} />
+                <Messages
+                    messages={messages}
+                    email={currentEmail}
+                />
 
                 <InputMessage 
                     message={message}

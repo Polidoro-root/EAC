@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { 
     Container,
     Row,
     Col,    
  } from 'reactstrap';
 import { Accordion, Card } from 'react-bootstrap';
-import {
-    FiChevronsDown,
-    FiChevronsUp,
+import {    
     FiLock,
     FiUnlock,
     FiUser,
@@ -67,9 +65,7 @@ function CompanyProfile(){
         });
 
         return `email=${email}&room=${firstChat}`;
-    };
-
-    const history = useHistory();
+    };    
 
     return (
         <Container fluid={true}>

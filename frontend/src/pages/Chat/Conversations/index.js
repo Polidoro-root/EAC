@@ -36,7 +36,7 @@ const Conversations = ({ header, profile, currentEmail, icon }) => {
                     className="conversation-cell"                            
                 >
                     <Link 
-                        to={`/${profile}/chat?email=${currentEmail}&room=${linkRoom}`}
+                        to={`/${profile}/chat?email=${currentEmail}&room=${linkRoom}&vacancy=${chat.vacancy}`}
                         onMouseOver={(event) => {
                             event.preventDefault();
 

@@ -12,8 +12,8 @@ module.exports = {
                 chatsUsersId: userId
             })
             .select('chats.id as chatId', 'chats.chatsCompaniesId as companyId',
-                'chats.chatsVacanciesId as vacancyId', 'contacts.email',
-                'vacancies.vacancy'
+                'chats.chatsVacanciesId as vacancyId', 'contacts.email as email',
+                'vacancies.vacancy as vacancy'
             );
         
         return response.json(chats);
@@ -30,8 +30,8 @@ module.exports = {
                 chatsCompaniesId: companyId
             })
             .select('chats.id as chatId', 'chats.chatsUsersId as userId',
-                'chats.chatsVacanciesId as vacancyId', 'contacts.email',
-                'vacancies.vacancy'
+                'chats.chatsVacanciesId as vacancyId', 'contacts.email as email',
+                'vacancies.vacancy as vacancy'
             );                    
 
         return response.json(chats);

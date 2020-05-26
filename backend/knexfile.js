@@ -8,7 +8,7 @@ module.exports = {
       host: 'localhost',
       user: 'postgres',
       password: 'polidoro13',
-      database: 'EAC'
+      database: 'eac'
     },
     migrations: {
       directory: './src/database/migrations'

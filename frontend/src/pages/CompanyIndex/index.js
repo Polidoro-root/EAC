@@ -60,7 +60,7 @@ export default function UserIndex(){
                             <Accordion.Toggle                             
                                 className="accordion-button" 
                                 variant="link" 
-                                eventKey="0"                                
+                                eventKey="0"
                             >
                                 <h2>
                                     {`${vacancy.vacancy} 
@@ -69,8 +69,8 @@ export default function UserIndex(){
                                 </h2>
                             </Accordion.Toggle>
                         </Card.Header>
-                        <Accordion.Collapse eventKey="0">                            
-                            <Card.Body className="accordion-body">                            
+                        <Accordion.Collapse eventKey="0">
+                            <Card.Body className="accordion-body">
                             <ul className="list-invitations">
                                 {invitations.filter(invitation =>
                                     invitation.invitationsVacanciesId === vacancy.id)
@@ -93,7 +93,7 @@ export default function UserIndex(){
                                                 <strong>Sobre Si:</strong>
                                                 <p>{invitation.aboutYourself}</p>
                                             </Col>
-                                        </Row>                                                                        
+                                        </Row>
                                         
                                         <h2>Graduações</h2>
 
@@ -111,7 +111,7 @@ export default function UserIndex(){
 
                                         <footer className="accept-decline-options">
                                             <button
-                                                type="button"                                
+                                                type="button"
                                                 onClick={async e => {
                                                     e.preventDefault();
                                                             
@@ -122,7 +122,7 @@ export default function UserIndex(){
                                                         });
 
                                                         setInvitations(invitations.filter(invitation => 
-                                                            invitation.id !== id));                                            
+                                                            invitation.id !== id));
                                                     } catch(err) {
                                                         alert('Erro ao deletar convite, tente novamente.');
                                                     }
@@ -132,9 +132,9 @@ export default function UserIndex(){
                                             </button>
                                             
                                             <button
-                                                type="button"                                    
+                                                type="button"
                                                 onClick={async e => {
-                                                    e.preventDefault();                                    
+                                                    e.preventDefault();
                                                             
                                                     try{
                                                         const invitationId = invitation.id;

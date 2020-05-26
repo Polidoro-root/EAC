@@ -1,29 +1,20 @@
 import React, { useState } from 'react';
 import {     
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    UncontrolledButtonDropdown,
-    DropdownMenu,
-    DropdownItem,
-    DropdownToggle,
+    Navbar,    
+    NavbarBrand,    
 } from 'reactstrap';
 import {
     FiUser,
-    FiBriefcase,    
-    FiMoreVertical,
+    FiBriefcase,        
     FiMenu
 } from 'react-icons/fi';
 import CheeseburgerMenu from 'cheeseburger-menu';
 import './styles.css';
 import currentUrl from '../../../../utils/currentUrl';
-import api from '../../../../services/api';
 
 let icon;
 
-const MainPanelNavbar = ({ room, conversations }) => {
+const MainPanelNavbar = ({ email, vacancy, conversations }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -40,12 +31,15 @@ const MainPanelNavbar = ({ room, conversations }) => {
             <NavbarBrand>
                 {icon}
             </NavbarBrand>
-            <div className="currentChat">
-                <strong>
-                    <span id="roomName">
-                        {room}
+            <div className="currentChat">                                    
+                <span className="email-vacancy">
+                    <strong className="email">
+                        {email}
+                    </strong>
+                    <span className="vacancy">
+                        {vacancy}
                     </span>
-                </strong>
+                </span>
             </div>
             <button
                 className="slide-menu"
