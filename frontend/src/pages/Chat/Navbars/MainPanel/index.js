@@ -31,7 +31,7 @@ const MainPanelNavbar = ({ email, vacancy, conversations }) => {
             <NavbarBrand>
                 {icon}
             </NavbarBrand>
-            <div className="currentChat">                                    
+            <div className="current-chat">                                    
                 <span className="email-vacancy">
                     <strong className="email">
                         {email}

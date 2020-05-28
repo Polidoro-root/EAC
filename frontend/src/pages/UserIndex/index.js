@@ -11,10 +11,8 @@ import {
     FiSend
     } from 'react-icons/fi';    
 import HeaderNavbar from '../components/Navbar';
-import sessionVerify from '../../utils/sessionVerify';
 import api from '../../services/api';
 
-sessionVerify();
 export default function UserIndex(){
     
     const [search, setSearch] = useState('');

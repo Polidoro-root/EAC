@@ -8,8 +8,7 @@ module.exports = {
             .where({
                 messagesChatsId: id
             })
-            .select('*');
-        console.log(messages);
+            .select('*');        
 
         return response.json(messages);
     },
@@ -31,9 +30,7 @@ module.exports = {
                     message: message
                 },
                 created_at: time
-            });
-        
-        console.log(insertedMessage);
+            });                
     },
 
     async deleteMessages(request, response){

@@ -24,7 +24,7 @@
         display: grid;
         padding-top: 2%;
         color: #76b7eb;
-    }
+    }    
 }
 
 @media (min-width: 768px){
@@ -54,4 +54,14 @@
 .chat .main-panel .navbar a {
     color: #194052;
     font-weight: bold;
+}
+
+.chat .main-panel .navbar .current-chat {
+    margin-right: auto;
+}
+
+.chat .main-panel .navbar .current-chat .email-vacancy {
+    display: grid;
+    color: #194052;
+    font-size: 125%;
 }
