@@ -1,24 +1,18 @@
 const { server } = require('./app');
 const io = require('socket.io')(server);
+const { now } = require('./utils');
 
 io.on('connection', (socket) => {
-    console.log('We have a new connection!');    
+    console.log('We have a new connection!');
 
     socket.on('join', ({ email, room, previousRoom }) => {
-        socket.leave(previousRoom);
-        console.log('[LEAVE] => ', { previousRoom: previousRoom });
+        socket.leave(previousRoom);        
 
-        socket.join(room);
-            
-        console.log('[JOIN] => ', { id: socket.id, email: email, room: room });
+        socket.join(room);                
     });
 
-    socket.on('sendMessage', ({ email, room, message }) => {
-        const hours = new Date().getHours();
-        const minutes = new Date().getMinutes();
-        const created_at = `${hours}:${minutes < 10 ? `0${minutes}` : minutes }`;
-
-        console.log('[SEND MESSAGE] => ', email, message, created_at);
+    socket.on('sendMessage', ({ email, room, message }) => {        
+        const created_at = now();
 
         io.to(room).emit('message', {
             email: email,

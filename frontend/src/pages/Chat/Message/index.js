@@ -14,7 +14,7 @@ const Message = ({ message, email, createdAt }) => {
     if(isSentByCurrentConnection){
         showMessage = (
             <div className="message-container justify-end">                
-                <div className="message-box background-blue">
+                <div className="message-box current-account">
                     <p className="message-text">
                         {message}
                     </p>
@@ -28,7 +28,7 @@ const Message = ({ message, email, createdAt }) => {
     else {
         showMessage = (
             <div className="message-container justify-start">                    
-                <div className="message-box background-light">                    
+                <div className="message-box other-account">                    
                     <p className="message-text">
                         {message}
                     </p>

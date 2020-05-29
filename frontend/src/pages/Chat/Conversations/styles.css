@@ -24,16 +24,15 @@
 
 .chat .side-panel .conversations .conversations-list .conversation-cell {
   background-color: #194052;
+  border-bottom: 0.25px solid #76b7eb;
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell a {
   height: 12vh;
   padding: 1%;
   display: flex;
-  align-items: center;        
-  border: none;
-  border-radius: 0;
-  border-top: 0.25px solid #76b7eb;
+  align-items: center;
+  border-radius: 0;  
   list-style: none;
   transition: filter 0.2s;
   color: #76b7eb;
@@ -45,14 +44,6 @@
 
 .chat .side-panel .conversations .conversations-list .conversation-cell a:hover {    
   filter: none;
-}
-
-.chat .side-panel .conversations .conversations-list .conversation-cell:first-child {
-  border-top: none;
-} 
-
-.chat .side-panel .conversations .conversations-list .conversation-cell:last-child {
-    border-bottom: 1px solid #76b7eb;
 }
 
 .chat .side-panel .conversations::-webkit-scrollbar {    
@@ -82,27 +73,18 @@
     display: flex;
     align-items: center;        
     border: none;
-    border-radius: 0;
-    border-top: 0.25px solid #76b7eb;
+    border-radius: 0;    
     list-style: none;
     transition: filter 0.2s;
     color: #76b7eb;
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell:hover {    
-    filter: brightness(150%);
+    filter: brightness(150%);    
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell a:hover {    
     filter: none;
-}
-
-.chat .side-panel .conversations .conversations-list .conversation-cell:first-child {
-    border-top: none !important;    
-} 
-
-.chat .side-panel .conversations .conversations-list .conversation-cell:last-child {
-    border-bottom: 1px solid #76b7eb;
 }
 
 .chat .side-panel .conversations .conversations-list .conversation-cell a .email-vacancy {

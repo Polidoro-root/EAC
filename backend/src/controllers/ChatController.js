@@ -1,4 +1,5 @@
 const connection = require('../database/connection');
+const io = require('../socket');
 
 module.exports = {
     async listUserChats(request, response){
@@ -21,7 +22,7 @@ module.exports = {
 
     async listCompanyChats(request, response){
         const companyId = request.headers.companyid;
-
+        
         const chats = await connection('chats')
             .join('users', 'chats.chatsUsersId', 'users.id')
             .join('contacts', 'users.id', 'contacts.contactsUsersId')

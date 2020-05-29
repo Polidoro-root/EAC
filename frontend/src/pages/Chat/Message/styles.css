@@ -1,10 +1,24 @@
-.message-box {
-    background-color: #76b7eb;
-    border-radius: 20px;
-    padding: 5px 20px;
-    color: #194052;
-    display: inline-block;
-    max-width: 80%;
+@media (min-width: 320px){
+    .message-box {
+        background-color: #76b7eb;
+        border-radius: 20px;
+        padding: 5px 20px;        
+        color: #194052;
+        display: inline-block;
+        max-width: 80%;    
+    }
+}
+
+@media (min-width: 992px){
+    .message-box {
+        background-color: #76b7eb;
+        border-radius: 20px;
+        padding: 1.5%;
+        padding-bottom: 0;
+        color: #194052;
+        display: inline-block;
+        max-width: 80%;    
+    }
 }
 
 .message-text {
@@ -18,7 +32,7 @@
 .message-container {
     display: flex;
     justify-content: flex-end;
-    padding: 0 5%;
+    padding: 0 2%;
     margin-top: 3px;
 }
 
@@ -38,10 +52,21 @@
     justify-content: flex-end;
 }
 
-.background-blue {
-    background-color: #2979FF;    
+.current-account {
+    background-color: #76b7eb;
+    font-weight: bold;
 }
 
-.background-light {
-    background-color: #F3F3F3;
+.other-account {
+    background-color: transparent;
+    border: 2px solid #76b7eb;
+}
+
+.other-account .message-text,
+.other-account .message-timestamp {    
+    color: #76b7eb;    
+}
+
+.message-timestamp {
+    font-weight: bold;    
 }

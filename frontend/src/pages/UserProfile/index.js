@@ -45,9 +45,7 @@ function UserProfile(){
             setUser(response.data);
             setGraduations(response.data[0].graduations);
         });        
-    }, [userId]);   
-    
-    console.log(graduations);
+    }, [userId]);           
     
     user.map(user => {
         localStorage.setItem('InterestArea', user.interestArea);
@@ -74,9 +72,7 @@ function UserProfile(){
         });
 
         return `email=${email}&room=${firstChat}&vacancy=${firstVacancy}`;
-    };
-
-    console.log(queryString());    
+    };    
 
     return (
         <Container fluid={true}>

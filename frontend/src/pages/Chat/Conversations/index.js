@@ -5,27 +5,27 @@ import api from '../../../services/api';
 import currentUrl from '../../../utils/currentUrl';
 import './styles.css';
 
-let deleteConversation;
-
-if(currentUrl() === '/company'){
-    deleteConversation = (
-        <button 
-            type="button"
-            className="delete-conversation"
-        >
-            <FiTrash2 color="#76b7eb" size={30} />
-        </button>
-    );
-}
-
 const Conversations = ({ header, profile, currentEmail, icon }) => {
+    let deleteConversation;
+
+    if(currentUrl() === '/company'){
+        deleteConversation = (
+            <button 
+                type="button"
+                className="delete-conversation"
+            >
+                <FiTrash2 color="#76b7eb" size={30} />
+            </button>
+        );
+    }
+    
     const [linkRoom, setLinkRoom] = useState('');
     const [chats, setChats] = useState([]);
 
     useEffect(() => {
         api.get(`${profile}/chat`, header)
-            .then((response) => setChats(response.data));        
-    }, []);    
+            .then((response) => setChats(response.data));
+    }, [profile, header]);
 
     return (                
         <div className="conversations">        

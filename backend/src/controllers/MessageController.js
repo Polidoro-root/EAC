@@ -1,4 +1,5 @@
 const connection = require('../database/connection');
+const { now } = require('../utils');
 
 module.exports = {
     async getMessages(request, response){
@@ -16,10 +17,8 @@ module.exports = {
     async inputMessage(request, response){
         const chatId = request.headers.chatid;
         const { email, message } = request.body;
-
-        const hours = new Date().getHours();
-        const minutes = new Date().getMinutes();
-        const time = `${hours}:${minutes < 10 ? `0${minutes}` : minutes }`;
+        
+        const time = now();
 
         const [insertedMessage] = await connection('messages')
             .returning('*')
