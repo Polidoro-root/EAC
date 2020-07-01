@@ -7,7 +7,7 @@ const InputMessage = ({ message, setMessage, sendMessage }) => {
     return (
         <footer className="input-message">
             <form
-                onSubmit={(event) => sendMessage(event)}
+                onSubmit={sendMessage}
             >
                 <input
                     type="text"

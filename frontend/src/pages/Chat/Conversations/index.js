@@ -6,26 +6,15 @@ import currentUrl from '../../../utils/currentUrl';
 import './styles.css';
 
 const Conversations = ({ header, profile, currentEmail, icon }) => {
-    let deleteConversation;
+    const companyId = localStorage.getItem('companyId');
 
-    if(currentUrl() === '/company'){
-        deleteConversation = (
-            <button 
-                type="button"
-                className="delete-conversation"
-            >
-                <FiTrash2 color="#76b7eb" size={30} />
-            </button>
-        );
-    }
-    
     const [linkRoom, setLinkRoom] = useState('');
     const [chats, setChats] = useState([]);
 
     useEffect(() => {
         api.get(`${profile}/chat`, header)
             .then((response) => setChats(response.data));
-    }, [profile, header]);
+    }, []);
 
     return (                
         <div className="conversations">        
@@ -54,7 +43,28 @@ const Conversations = ({ header, profile, currentEmail, icon }) => {
                                 {chat.vacancy}
                             </span>
                         </span>
-                        {deleteConversation}
+                        {currentUrl() === '/company' && (
+                        <button 
+                            type="button"
+                            className="delete-conversation"
+                            onClick={async event => {
+                                event.preventDefault();
+
+                                try{
+                                    const id = chat.chatId;
+                                    await api.delete(`chat/${id}`, {
+                                        headers: { companyId: companyId }
+                                    });
+
+                                    setChats(chats.filter(chat => chat.chatId !== id))
+                                } catch(err) {
+                                    alert('Erro ao deletar conversa, tente novamente.');
+                                }
+                            }}
+                        >
+                            <FiTrash2 color="#76b7eb" size={30} />
+                        </button>
+                        )}
                     </Link>
                 </li>                
             ))}

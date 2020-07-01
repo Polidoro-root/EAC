@@ -20,16 +20,15 @@ module.exports = {
         
         const time = now();
 
-        const [insertedMessage] = await connection('messages')
-            .returning('*')
+        await connection('messages')            
             .insert({
                 messagesChatsId: chatId,
                 messages: {
-                    email: email,
-                    message: message
+                    email,
+                    message
                 },
                 created_at: time
-            });                
+            });            
     },
 
     async deleteMessages(request, response){

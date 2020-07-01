@@ -8,6 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-const server = require('http').createServer(app);
+const http = require('http');
+const server = http.createServer(app);
 
-module.exports = { server };
+module.exports = server;

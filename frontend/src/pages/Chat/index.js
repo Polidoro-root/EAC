@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import {      
-    Input,
-    InputGroup,
-    InputGroupAddon
-} from 'reactstrap';
 import './styles.css';
 import {
     FiUser,
-    FiBriefcase,
-    FiAlertCircle,
-    FiSearch,    
+    FiBriefcase,    
 } from 'react-icons/fi';
 import api from '../../services/api';
 import currentUrl from '../../utils/currentUrl';
@@ -53,7 +45,7 @@ const currentEmail = localStorage.getItem('Email');
 const server = 'http://localhost:3333';
 const socket = io(server);
 
-const Chat = ({ location }) => {
+const Chat = ({ location }) => {    
     const [currentRoom, setCurrentRoom] = useState('');
     const [currentVacancy, setCurrentVacancy] = useState('');
     const [message, setMessage] = useState('');
@@ -69,26 +61,32 @@ const Chat = ({ location }) => {
         setCurrentVacancy(vacancy);
 
         socket.emit('join', { email, room, previousRoom });
-        api.get(`chat/${room}`).then(response => setMessages(response.data));
+        api.get(`chat/${room}`).then(response => setMessages(response.data));        
     }, [location.search]);
 
-    socket.on('message', ({ email, message, created_at }) => {
-        setMessages([...messages, { 
+    socket.on('message', ({ email, message, created_at }) => {        
+        setMessages([...messages, {
             messages: { email, message },
             created_at: created_at
         }]);
     });
 
-    const sendMessage = (event) => {
-        event.preventDefault();
-                
-        if(message){
+    const sendMessage = async event => {
+        event.preventDefault();        
+        
+        try {
             const { email, room } = queryString.parse(location.search);
-            socket.emit('sendMessage', { email, room, message });
-            api.post('chat', { email, message }, {
-                headers: { chatId: room }
-            });
-            setMessage('');            
+
+            if(message){
+                const dbMessage = message;
+                setMessage('');
+                socket.emit('sendMessage', { email, room, message: dbMessage });            
+                await api.post('chat', { email, message: dbMessage }, {
+                    headers: { chatId: room }
+                });
+            }
+        } catch (error) {
+            alert('Sorry. Was not possible to send your message now!');
         }
     }
 

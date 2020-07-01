@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.css';
-import ReactEmoji from 'react-emoji';
 
 const Message = ({ message, email, createdAt }) => {    
     let isSentByCurrentConnection = false;
@@ -40,9 +39,7 @@ const Message = ({ message, email, createdAt }) => {
         );
     }
 
-    return (
-        showMessage
-    );
+    return showMessage;
 }
 
 export default Message;

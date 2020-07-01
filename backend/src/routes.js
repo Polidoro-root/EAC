@@ -61,4 +61,6 @@ routes.get('/chat/:id', MessageController.getMessages);
 
 routes.post('/chat', MessageController.inputMessage);
 
+routes.delete('/chat/:id', ChatController.deleteChat);
+
 module.exports = routes;

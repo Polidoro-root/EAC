@@ -13,6 +13,7 @@ import api from '../../services/api';
 
 export default function UserIndex(){
     const companyId = localStorage.getItem('companyId');
+    const email = localStorage.getItem('Email');
 
     const [vacancies, setVacancies] = useState([]);
     const [invitations, setInvitations] = useState([]);
@@ -145,7 +146,7 @@ export default function UserIndex(){
                                                         setInvitations(invitations.filter(invitation =>
                                                             invitation.id !== invitationId));
 
-                                                        await api.post('companyIndex', undefined, {
+                                                        const { data } = await api.post('companyIndex', undefined, {
                                                             headers: {
                                                                 userId: invitation.invitationsUsersId,
                                                                 companyId: invitation.invitationsCompaniesId,
@@ -153,7 +154,9 @@ export default function UserIndex(){
                                                             }
                                                         });
 
-                                                        history.push(`/companyProfile/chat`);
+                                                        console.log("ROOMM =>> ", data);
+
+                                                        history.push(`/companyProfile/chat?email=${email}&room=${data}&vacancy=${vacancy.vacancy}`);
                                                     } catch(err) {
                                                         alert('Erro ao aceitar convite, tente novamente.');
                                                     }

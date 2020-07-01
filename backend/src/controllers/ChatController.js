@@ -1,5 +1,4 @@
 const connection = require('../database/connection');
-const io = require('../socket');
 
 module.exports = {
     async listUserChats(request, response){
@@ -46,13 +45,45 @@ module.exports = {
         console.log(userId, companyId, vacancyId);
 
         const [chat] = await connection('chats')
-            .returning('*')
+            .returning('id')
             .insert({
                 chatsUsersId: userId,
                 chatsCompaniesId: companyId,
                 chatsVacanciesId: vacancyId
             });
 
+        console.log(chat)
+
         return response.json(chat);
+    },
+
+    async deleteChat(request, response){
+        const { id } = request.params;
+        const companyId = request.headers.companyid;        
+
+        const { chatsCompaniesId } = await connection('chats')
+          .where('id', id)
+          .select('chatsCompaniesId')
+          .first();                
+
+        if (chatsCompaniesId != companyId) {
+          return response.status(401).json({ error: 'Operation not permitted.' });
+        }
+
+        await connection('messages')
+            .where({
+                messagesChatsId: id
+            })
+            .del();
+        
+        await connection('chats')
+            .where({
+                id: id
+            })
+            .del();
+
+        console.log(id, companyId, chatsCompaniesId);
+
+        return response.status(204).send();
     }
 };

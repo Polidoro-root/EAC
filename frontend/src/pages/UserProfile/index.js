@@ -64,11 +64,9 @@ function UserProfile(){
                 userId: userId
             }
         })
-        .then(response => {
-            if(response.data != false){
-                setFirstChat(response.data[0].chatId);
-                setFirstVacancy(response.data[0].vacancy);
-            }            
+        .then(response => {            
+            setFirstChat(response.data[0].chatId);
+            setFirstVacancy(response.data[0].vacancy);            
         });
 
         return `email=${email}&room=${firstChat}&vacancy=${firstVacancy}`;

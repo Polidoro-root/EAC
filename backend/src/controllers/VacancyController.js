@@ -45,7 +45,7 @@ module.exports = {
 
         if (vacancy.vacanciesCompaniesId != companyId) {
           return response.status(401).json({ error: 'Operation not permitted.' });
-        }
+        }        
 
         await connection('vacancies')
             .where('id', id)
