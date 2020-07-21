@@ -44,7 +44,7 @@ function UserProfile(){
         .then(response => {
             setUser(response.data);
             setGraduations(response.data[0].graduations);
-        });        
+        })        
     }, [userId]);           
     
     user.map(user => {
@@ -64,9 +64,13 @@ function UserProfile(){
                 userId: userId
             }
         })
-        .then(response => {            
+        .then(response => {
             setFirstChat(response.data[0].chatId);
-            setFirstVacancy(response.data[0].vacancy);            
+            setFirstVacancy(response.data[0].vacancy);
+        })
+        .catch(error => {
+            setFirstChat('');
+            setFirstVacancy('');
         });
 
         return `email=${email}&room=${firstChat}&vacancy=${firstVacancy}`;
