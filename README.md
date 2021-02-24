@@ -2,13 +2,6 @@
 
 <p align="center">Plataforma de entrevista de emprego às cegas para todos, sem preconceito.</p>
 
-Tabela de conteúdos
-==
-<!--ts-->
-	* [Sobre o projeto](#Sobre-o-projeto)
-	* [Tecnologias](#Tecnologias)
-<!--te-->
-
 ## Sobre o projeto
 <p>
 	EAC - é uma plataforma que tem como objetivo conectar possíveis candidatos a empregos disponíveis nas empresas, sem que o candidato sofra algum tipo de preconceito no processo seletivo.<br/><br/>
